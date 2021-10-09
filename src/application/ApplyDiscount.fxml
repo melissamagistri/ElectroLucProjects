@@ -5,19 +5,18 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="106.0" prefWidth="600.0">
          <children>
-            <JFXButton fx:id="searchButton" buttonType="RAISED" defaultButton="true" layoutX="459.0" layoutY="37.0" onAction="#OnCLickSearchProduct" prefHeight="26.0" prefWidth="116.0" style="-fx-background-color: white;" text=" Search product" />
+            <JFXButton fx:id="searchButton" buttonType="RAISED" defaultButton="true" layoutX="459.0" layoutY="37.0" onAction="#OnCLickSearchProduct" prefHeight="26.0" prefWidth="116.0" style="-fx-background-color: lightskyblue;" text=" Search product" />
             <TextField fx:id="SearchBar" layoutX="22.0" layoutY="36.0" prefHeight="34.0" prefWidth="417.0" />
          </children>
       </AnchorPane>
       <AnchorPane layoutY="92.0" prefHeight="304.0" prefWidth="600.0">
          <children>
             <ListView fx:id="informationArea" layoutX="22.0" layoutY="6.0" prefHeight="221.0" prefWidth="543.0" />
-            <JFXButton buttonType="RAISED" layoutX="242.0" layoutY="250.0" onAction="#OnCLickApplyDiscount" prefHeight="26.0" prefWidth="116.0" style="-fx-background-color: white;" text="Apply discount" />
+            <JFXButton buttonType="RAISED" layoutX="242.0" layoutY="250.0" onAction="#OnCLickApplyDiscount" prefHeight="26.0" prefWidth="116.0" style="-fx-background-color: lightskyblue;" text="Apply discount" />
          </children>
       </AnchorPane>
    </children>

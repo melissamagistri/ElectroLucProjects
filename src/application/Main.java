@@ -18,9 +18,9 @@ public class Main extends Application {
 	 double x,y = 0;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Pane mainPane = (Pane) FXMLLoader.load(Main.class.getResource("Login.fxml"));
+		Pane mainPane = (Pane) FXMLLoader.load(Main.class.getResource("Titolare.fxml"));
 		
-		Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+		/*Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
         root.setOnMousePressed(event -> {
@@ -34,7 +34,7 @@ public class Main extends Application {
         });
 
         primaryStage.setScene(new Scene(root, 800, 500));
-        primaryStage.show();
+        primaryStage.show();*/
     
 		primaryStage.setTitle("ElectroLuc ShopOnline");
 		primaryStage.setScene(new Scene(mainPane));
