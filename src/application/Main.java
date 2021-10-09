@@ -18,9 +18,9 @@ public class Main extends Application {
 	 double x,y = 0;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Pane mainPane = (Pane) FXMLLoader.load(Main.class.getResource("Titolare.fxml"));
+		Pane mainPane = (Pane) FXMLLoader.load(Main.class.getResource("Login.fxml"));
 		
-		/*Parent root = FXMLLoader.load(getClass().getResource("Dashboard.fxml"));
+		/*Parent root = FXMLLoader.load(getClass().getResource("Titolare.fxml"));
         primaryStage.initStyle(StageStyle.UNDECORATED);
 
         root.setOnMousePressed(event -> {
