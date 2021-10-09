@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <JFXButton fx:id="addButton" buttonType="RAISED" defaultButton="true" layoutX="487.0" layoutY="354.0" onAction="#OnCLickAddProduct" prefHeight="26.0" prefWidth="99.0" style="-fx-background-color: lightskyblue;" stylesheets="@../../../../../style.css" text="Add product" />
+      <TextField layoutX="168.0" layoutY="77.0" prefHeight="26.0" prefWidth="302.0" />
+      <TextField layoutX="168.0" layoutY="123.0" prefHeight="70.0" prefWidth="302.0" />
+      <TextField layoutX="168.0" layoutY="213.0" prefHeight="26.0" prefWidth="302.0" />
+      <TextField layoutX="168.0" layoutY="265.0" prefHeight="26.0" prefWidth="302.0" />
+      <Label layoutX="47.0" layoutY="77.0" prefHeight="26.0" prefWidth="88.0" text="Modello">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="314.0" prefHeight="26.0" prefWidth="88.0" text="Categoria">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="123.0" prefHeight="26.0" prefWidth="106.0" text="Descrizione">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="265.0" prefHeight="26.0" prefWidth="88.0" text="Codice">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="213.0" prefHeight="16.0" prefWidth="64.0" text="Prezzo">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <AnchorPane prefHeight="54.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="164.0" layoutY="12.0" prefHeight="30.0" prefWidth="273.0" text="Insert the product datas" textFill="#bf811d">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ChoiceBox fx:id="choiceBox" layoutX="168.0" layoutY="314.0" prefHeight="26.0" prefWidth="302.0" />
+   </children>
+</AnchorPane>
