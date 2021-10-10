@@ -13,7 +13,6 @@ public class LoginController {
 
     @FXML
     void OnClickLogin(ActionEvent event) {
-
     }
 
     @FXML
