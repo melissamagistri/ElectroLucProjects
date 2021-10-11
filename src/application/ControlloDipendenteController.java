@@ -6,10 +6,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-public class DiscountController {
+public class ControlloDipendenteController {
 
     @FXML
-    private Button ApplyDiscountButton;
+    private Button ChangeSalaryButton;
+
+    @FXML
+    private Button DismissButton;
 
     @FXML
     private Button GoBackButton;
@@ -18,13 +21,18 @@ public class DiscountController {
     private TextField SearchBar;
 
     @FXML
-    private Button SearchProductButton;
+    private Button SearchButon;
 
     @FXML
     private ListView<?> informationArea;
 
     @FXML
-    void OnClickApplyDiscount(ActionEvent event) {
+    void OnClickChangeSalary(ActionEvent event) {
+
+    }
+
+    @FXML
+    void OnClickDismiss(ActionEvent event) {
 
     }
 
@@ -34,8 +42,10 @@ public class DiscountController {
     }
 
     @FXML
-    void OnClickSearchProductButton(ActionEvent event) {
+    void OnClickSearch(ActionEvent event) {
 
     }
 
 }
+
+

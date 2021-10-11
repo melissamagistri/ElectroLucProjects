@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddEmployeeController">
+   <children>
+      <AnchorPane layoutY="1.0" prefHeight="46.0" prefWidth="600.0">
+         <children>
+            <Label layoutX="185.0" layoutY="8.0" text="Insert employee datas" textFill="#bf811d">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-3.0" layoutY="47.0" prefHeight="360.0" prefWidth="606.0">
+         <children>
+            <TextField layoutX="208.0" layoutY="19.0" />
+            <TextField layoutX="208.0" layoutY="87.0" />
+            <TextField layoutX="208.0" layoutY="156.0" />
+            <TextField fx:id="CodeTextField" layoutX="208.0" layoutY="226.0" />
+            <Label fx:id="NameTextField" layoutX="74.0" layoutY="19.0" text="Name">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="SurnameTextField" layoutX="74.0" layoutY="87.0" text="Surname">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="ShopEmailTextField" layoutX="74.0" layoutY="156.0" text="Shop's Email">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="EmailTextField" layoutX="74.0" layoutY="226.0" text="Code">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="GoBack" layoutX="25.0" layoutY="312.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
+            <Button fx:id="AddButton" layoutX="520.0" layoutY="312.0" mnemonicParsing="false" onAction="#OnClickAddEmployee" style="-fx-background-color: lightskyblue;" text="Add " />
+         </children>
+      </AnchorPane>
+   </children>
+</Pane>

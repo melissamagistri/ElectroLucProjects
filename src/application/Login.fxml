@@ -27,7 +27,7 @@
       </Label>
       <TextField fx:id="tx_email" layoutX="232.0" layoutY="187.0" />
       <TextField fx:id="tx_Password" layoutX="232.0" layoutY="246.0" />
-      <Button defaultButton="true" layoutX="338.0" layoutY="327.0" mnemonicParsing="false" onAction="#OnClickLogin" prefHeight="26.0" prefWidth="53.0" text="Login" />
-      <Button defaultButton="true" layoutX="258.0" layoutY="327.0" mnemonicParsing="false" onAction="#OnClickSignIn" text="Sign In" />
+      <Button defaultButton="true" layoutX="338.0" layoutY="327.0" mnemonicParsing="false" onAction="#OnClickLogin" prefHeight="26.0" prefWidth="53.0" style="-fx-background-color: lightskyblue;" text="Login" />
+      <Button defaultButton="true" layoutX="258.0" layoutY="327.0" mnemonicParsing="false" onAction="#OnClickSignIn" style="-fx-background-color: lightskyblue;" text="Sign In" />
    </children>
 </Pane>

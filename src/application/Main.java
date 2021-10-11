@@ -1,5 +1,7 @@
 package application;
 	
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -12,34 +14,24 @@ import javafx.scene.layout.Pane;
 
 public class Main extends Application {
 	
+	private static Stage primaryStage;
+	
 	public static void main(String[] arg) {
 		Application.launch(arg);
 	}
-	 double x,y = 0;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Pane mainPane = (Pane) FXMLLoader.load(Main.class.getResource("Schermata.fxml"));
+		Main.primaryStage = primaryStage;
+		Main.primaryStage.setTitle("ElectroLuc ShopOnline");
+		Main.changeWindow("AddEmployee.fxml");
 		
-		/*Parent root = FXMLLoader.load(getClass().getResource("Titolare.fxml"));
-        primaryStage.initStyle(StageStyle.UNDECORATED);
-
-        root.setOnMousePressed(event -> {
-            x = event.getSceneX();
-            y = event.getSceneY();
-        });
-
-        root.setOnMouseDragged(event -> {
-            primaryStage.setX(event.getScreenX() - x);
-            primaryStage.setY(event.getScreenY() - y);
-        });
-
-        primaryStage.setScene(new Scene(root, 800, 500));
-        primaryStage.show();*/
-    
-		primaryStage.setTitle("ElectroLuc ShopOnline");
+	}
+	
+	//the method to change the window
+	public static void changeWindow(String newWindow) throws IOException {
+		Pane mainPane = (Pane) FXMLLoader.load(Main.class.getResource(newWindow));
 		primaryStage.setScene(new Scene(mainPane));
 		primaryStage.show();
-		
 		
 	}
 }

@@ -1,4 +1,6 @@
 package application;
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -12,7 +14,8 @@ public class LoginController {
     private TextField tx_email;
 
     @FXML
-    void OnClickLogin(ActionEvent event) {
+    void OnClickLogin(ActionEvent event) throws IOException {
+    	Main.changeWindow("Titolare.fxml");
     }
 
     @FXML

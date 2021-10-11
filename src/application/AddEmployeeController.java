@@ -3,31 +3,34 @@ package application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class AddProductController {
+public class AddEmployeeController {
+
+    @FXML
+    private Button AddButton;
 
     @FXML
     private TextField CodeTextField;
 
     @FXML
-    private TextField DescriptionTextField;
+    private Label EmailTextField;
 
     @FXML
-    private Button GoBackButton;
+    private Button GoBack;
 
     @FXML
-    private TextField ModelTextField;
+    private Label NameTextField;
 
     @FXML
-    private TextField PriceTextField;
+    private Label ShopEmailTextField;
 
     @FXML
-    private ChoiceBox<?> choiceBox;
+    private Label SurnameTextField;
 
     @FXML
-    void OnClickAddButton(ActionEvent event) {
+    void OnClickAddEmployee(ActionEvent event) {
 
     }
 
@@ -37,5 +40,4 @@ public class AddProductController {
     }
 
 }
-
 
