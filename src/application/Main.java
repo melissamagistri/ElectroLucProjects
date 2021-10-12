@@ -23,7 +23,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		Main.primaryStage = primaryStage;
 		Main.primaryStage.setTitle("ElectroLuc ShopOnline");
-		Main.changeWindow("AddEmployee.fxml");
+		Main.changeWindow("OrderConfirmedWindow.fxml");
 		
 	}
 	
