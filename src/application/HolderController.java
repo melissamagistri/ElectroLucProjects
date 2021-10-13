@@ -4,12 +4,16 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 public class HolderController {
 
     @FXML
     private VBox VBoxButtons;
+    
+    @FXML
+    private Button OnClickLogOutButton;
 
    
     @FXML
@@ -32,4 +36,8 @@ public class HolderController {
     	Main.changeWindow("AddProduct.fxml");
     }
     
+    @FXML
+    void OnClickLogOutButton(ActionEvent event) throws IOException{
+    	
+    }
 }

@@ -14,7 +14,7 @@
          <top>
             <Pane prefHeight="46.0" prefWidth="606.0" style="-fx-background-color: sandybrown;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="42.0" fitWidth="62.0" layoutX="2.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="LogOutButton" fitHeight="42.0" fitWidth="62.0" layoutX="2.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../image/data.png" />
                      </image>
@@ -55,6 +55,7 @@
                   <Button mnemonicParsing="false" onAction="#OnClickAddEmployee" prefHeight="26.0" prefWidth="133.0" style="-fx-background-color: lightskyblue;" text="Add Employee" />
                   <Button mnemonicParsing="false" onAction="#OnClickDiscount" prefHeight="26.0" prefWidth="133.0" style="-fx-background-color: lightskyblue;" text="Discount" />
                   <Button mnemonicParsing="false" onAction="#OnClickProducts" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: lightskyblue;" text="Products" />
+                  <Button fx:id="LogOutButon" mnemonicParsing="false" onAction="#OnClickLogOutButton" prefHeight="26.0" prefWidth="131.0" style="-fx-background-color: lightskyblue;" text="Log Out" />
                </children>
                <padding>
                   <Insets right="2.0" top="10.0" />

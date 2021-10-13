@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OrderStateWindowController">
    <children>
       <AnchorPane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: orange;">
@@ -45,7 +44,7 @@
             <TextField fx:id="Produc" layoutX="215.0" layoutY="106.0" prefHeight="26.0" prefWidth="270.0" />
             <TextField fx:id="OrderStateTextField" layoutX="217.0" layoutY="166.0" prefHeight="26.0" prefWidth="270.0" />
             <TextField fx:id="OrderDateTextField" layoutX="220.0" layoutY="231.0" prefHeight="26.0" prefWidth="270.0" />
-            <Button fx:id="GoBackButton" layoutX="56.0" layoutY="301.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: lightskyblue;" text="Go Back" />
+            <Button fx:id="GoBackButton" layoutX="56.0" layoutY="301.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
          </children>
       </AnchorPane>
    </children>
