@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
-public class ControlloDipendenteController {
+public class ModifyEmployeeController {
 
     @FXML
     private Button ChangeSalaryButton;

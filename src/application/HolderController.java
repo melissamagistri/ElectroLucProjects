@@ -6,7 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 
-public class TitolareController {
+public class HolderController {
 
     @FXML
     private VBox VBoxButtons;
@@ -24,7 +24,7 @@ public class TitolareController {
 
     @FXML
     void OnClickModifyEmployee(ActionEvent event) throws IOException{
-    	Main.changeWindow("CambioDIpDaTitolare.fxml");
+    	Main.changeWindow("ModifyEmployee.fxml");
     }
 
     @FXML
