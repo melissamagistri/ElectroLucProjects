@@ -32,7 +32,7 @@ public class DiscountController {
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
-    	Main.changeWindow("Titolare.fxml");
+    	Main.changeWindow("Holder.fxml");
     }
 
     @FXML
