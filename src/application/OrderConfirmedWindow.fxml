@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.OrderConfirmedController">
+   <children>
+      <Label layoutX="37.0" layoutY="73.0" text="Your order has just ">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="214.0" layoutY="73.0" text="been confirmed.">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="142.0" layoutY="30.0" text="Thank you!" textFill="SANDYBROWN">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="GoBackButton" layoutX="37.0" layoutY="239.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: lightskyblue;" text="GoBack" />
+      <Label layoutX="37.0" layoutY="142.0" text="Order Number:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="OrderNumberTextField" layoutX="178.0" layoutY="141.0" prefHeight="26.0" prefWidth="60.0" />
+   </children>
+</Pane>
