@@ -5,10 +5,7 @@ import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 
@@ -23,11 +20,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		Main.primaryStage = primaryStage;
 		Main.primaryStage.setTitle("ElectroLuc ShopOnline");
-<<<<<<< HEAD
-		Main.changeWindow("Login.fxml");
-=======
-		Main.changeWindow("OrderConfirmedWindow.fxml");
->>>>>>> d995d5d6620c86aa39485fa27b6feed84d6e1d0f
+		Main.changeWindow("Titolare.fxml");
 		
 	}
 	
