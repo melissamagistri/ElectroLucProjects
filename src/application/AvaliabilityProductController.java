@@ -1,5 +1,7 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -34,8 +36,8 @@ public class AvaliabilityProductController {
     private TableColumn<?, ?> StateTableColumn;
 
     @FXML
-    void OnCLickGoBack(ActionEvent event) {
-
+    void OnCLickGoBack(ActionEvent event) throws IOException {
+    	Main.changeWindow("EmployeeWindow.fxml");
     }
 
     @FXML

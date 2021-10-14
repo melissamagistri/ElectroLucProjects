@@ -1,5 +1,7 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,8 +16,8 @@ public class OrderConfirmedController {
     private TextField OrderNumberTextField;
 
     @FXML
-    void OnClickGoBack(ActionEvent event) {
-
+    void OnClickGoBack(ActionEvent event) throws IOException {
+    	Main.changeWindow("BuyProduct.fxml");
     }
 
 }
