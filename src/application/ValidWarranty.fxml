@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ValidWarrantyController">
    <children>
       <TextField fx:id="SearchBar" layoutX="40.0" layoutY="70.0" prefHeight="26.0" prefWidth="337.0" />
@@ -24,6 +23,5 @@
          </children>
       </AnchorPane>
       <ListView fx:id="ProductListView" layoutX="40.0" layoutY="114.0" prefHeight="200.0" prefWidth="337.0" />
-      <Button fx:id="ValidWarrantyButton" layoutX="424.0" layoutY="351.0" mnemonicParsing="false" onAction="#OnClickValidWarranty" style="-fx-background-color: lightskyblue;" text="Valid Warranty" />
    </children>
 </Pane>

@@ -13,9 +13,6 @@ public class AvaliabilityProductController {
     private Button GoBackButton;
 
     @FXML
-    private Button ListButton;
-
-    @FXML
     private TableColumn<?, ?> NameTableColuomn;
 
     @FXML
@@ -38,11 +35,6 @@ public class AvaliabilityProductController {
 
     @FXML
     void OnCLickGoBack(ActionEvent event) {
-
-    }
-
-    @FXML
-    void OnClickList(ActionEvent event) {
 
     }
 

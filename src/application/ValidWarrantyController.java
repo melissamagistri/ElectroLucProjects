@@ -20,8 +20,6 @@ public class ValidWarrantyController {
     @FXML
     private Button SearchProductButton;
 
-    @FXML
-    private Button ValidWarrantyButton;
 
     @FXML
     void OnClickGoBack(ActionEvent event) {
@@ -30,11 +28,6 @@ public class ValidWarrantyController {
 
     @FXML
     void OnClickSearchProduct(ActionEvent event) {
-
-    }
-
-    @FXML
-    void OnClickValidWarranty(ActionEvent event) {
 
     }
 
