@@ -3,6 +3,8 @@ package application;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
+
+import javafx.scene.control.ChoiceBox;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +15,10 @@ public class AddEmployeeController {
     @FXML
     private Button AddButton;
 
+
+    @FXML
+    private ChoiceBox<?> ChoiceBox;
+    
     @FXML
     private TextField CodeTextField;
 

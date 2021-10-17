@@ -20,7 +20,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		Main.primaryStage = primaryStage;
 		Main.primaryStage.setTitle("ElectroLuc ShopOnline");
-		Main.changeWindow("ValidWarranty.fxml");
+		Main.changeWindow("Holder.fxml");
 		
 	}
 	

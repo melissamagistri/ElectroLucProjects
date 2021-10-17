@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.EmployeeWindowController">
    <children>
       <AnchorPane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: orange;">
@@ -18,16 +17,21 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="CheckAvailabilityButton" layoutX="211.0" layoutY="113.0" mnemonicParsing="false" onAction="#OnClickCheckAvailability" style="-fx-background-color: lightskyblue;" text="Check Availability">
+      <Button fx:id="CheckAvailabilityButton" layoutX="210.0" layoutY="96.0" mnemonicParsing="false" onAction="#OnClickCheckAvailability" style="-fx-background-color: lightskyblue;" text="Check Availability">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="ValidWarrantyButton" layoutX="223.0" layoutY="220.0" mnemonicParsing="false" onAction="#OnClickValidWarranty" style="-fx-background-color: lightskyblue;" text="Valid Warranty">
+      <Button fx:id="ValidWarrantyButton" layoutX="221.0" layoutY="176.0" mnemonicParsing="false" onAction="#OnClickValidWarranty" style="-fx-background-color: lightskyblue;" text="Valid Warranty">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <Button fx:id="LogOutButton" layoutX="32.0" layoutY="347.0" mnemonicParsing="false" onAction="#OnClickLogOut" style="-fx-background-color: lightskyblue;" text="Log Out" />
+      <Button layoutX="231.0" layoutY="262.0" mnemonicParsing="false" style="-fx-background-color: lightskyblue;" text="Sell Product">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

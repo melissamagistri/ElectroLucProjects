@@ -26,8 +26,8 @@ public class DiscountController {
     private ListView<?> informationArea;
 
     @FXML
-    void OnClickApplyDiscount(ActionEvent event) {
-
+    void OnClickApplyDiscount(ActionEvent event) throws IOException {
+    	Main.changeWindow("ManageDiscount.fxml");
     }
 
     @FXML

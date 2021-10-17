@@ -1,5 +1,6 @@
 package application;
 
+
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -9,9 +10,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 public class AddProductController {
-
-    @FXML
-    private TextField CodeTextField;
 
     @FXML
     private TextField DescriptionTextField;
@@ -24,6 +22,9 @@ public class AddProductController {
 
     @FXML
     private TextField PriceTextField;
+
+    @FXML
+    private TextField UnitStockTextField;
 
     @FXML
     private ChoiceBox<?> choiceBox;
@@ -39,5 +40,7 @@ public class AddProductController {
     }
 
 }
+
+
 
 

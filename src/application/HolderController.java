@@ -33,11 +33,11 @@ public class HolderController {
 
     @FXML
     void OnClickProducts(ActionEvent event) throws IOException {
-    	Main.changeWindow("AddProduct.fxml");
+    	Main.changeWindow("ConfirmSupplier.fxml");
     }
     
     @FXML
     void OnClickLogOutButton(ActionEvent event) throws IOException{
-    	
+    	Main.changeWindow("Login.fxml"); //Oppure chiudi l'applicazione?ß
     }
 }
