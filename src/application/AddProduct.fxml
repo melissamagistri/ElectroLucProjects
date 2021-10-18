@@ -10,29 +10,29 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddProductController">
    <children>
       <TextField fx:id="ModelTextField" layoutX="125.0" layoutY="64.0" prefHeight="26.0" prefWidth="302.0" />
-      <TextField fx:id="DescriptionTextField" layoutX="125.0" layoutY="159.0" prefHeight="54.0" prefWidth="302.0" />
-      <TextField fx:id="PriceTextField" layoutX="125.0" layoutY="114.0" prefHeight="26.0" prefWidth="302.0" />
-      <Label layoutX="14.0" layoutY="64.0" prefHeight="26.0" prefWidth="88.0" text="Model">
+      <TextField fx:id="DescriptionTextField" layoutX="125.0" layoutY="144.0" prefHeight="54.0" prefWidth="302.0" />
+      <TextField fx:id="PriceTextField" layoutX="125.0" layoutY="102.0" prefHeight="26.0" prefWidth="302.0" />
+      <Label layoutX="27.0" layoutY="64.0" prefHeight="26.0" prefWidth="61.0" text="Model">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="310.0" prefHeight="26.0" prefWidth="88.0" text="Category">
+      <Label layoutX="25.0" layoutY="310.0" prefHeight="26.0" prefWidth="88.0" text="Category">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="14.0" layoutY="159.0" prefHeight="26.0" prefWidth="106.0" text="Description">
+      <Label layoutX="25.0" layoutY="145.0" prefHeight="26.0" prefWidth="96.0" text="Description">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="15.0" layoutY="116.0" prefHeight="16.0" prefWidth="64.0" text="Price">
+      <Label layoutX="26.0" layoutY="103.0" prefHeight="16.0" prefWidth="64.0" text="Price">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <AnchorPane prefHeight="54.0" prefWidth="600.0" style="-fx-background-color: orange;">
+      <AnchorPane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: orange;">
          <children>
             <Label layoutX="191.0" layoutY="12.0" prefHeight="30.0" prefWidth="273.0" text="Insert the model datas">
                <font>
@@ -44,17 +44,17 @@
       <ChoiceBox fx:id="choiceBox" layoutX="125.0" layoutY="310.0" prefHeight="26.0" prefWidth="302.0" />
       <Button layoutX="488.0" layoutY="360.0" mnemonicParsing="false" onAction="#OnClickAddButton" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: lightskyblue;" text="Add" />
       <Button fx:id="GoBackButton" layoutX="17.0" layoutY="360.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandyBrown;" text="GoBack" />
-      <Label layoutX="10.0" layoutY="234.0" text="Unit in Stock">
+      <Label layoutX="25.0" layoutY="222.0" text="Unit in Stock">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="UnitStockTextField" layoutX="125.0" layoutY="233.0" prefHeight="26.0" prefWidth="302.0" />
-      <Label layoutX="10.0" layoutY="278.0" text="Supplier">
+      <TextField fx:id="UnitStockTextField" layoutX="125.0" layoutY="221.0" prefHeight="26.0" prefWidth="302.0" />
+      <Label layoutX="26.0" layoutY="266.0" text="Supplier">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField layoutX="125.0" layoutY="277.0" prefHeight="26.0" prefWidth="302.0" />
+      <TextField layoutX="125.0" layoutY="265.0" prefHeight="26.0" prefWidth="302.0" />
    </children>
 </AnchorPane>

@@ -15,7 +15,7 @@ public class LoginController {
 
     @FXML
     void OnClickLogin(ActionEvent event) throws IOException {
-    	Main.changeWindow("Titolare.fxml");
+    	Main.changeWindow("Holder.fxml");
     }
 
     @FXML

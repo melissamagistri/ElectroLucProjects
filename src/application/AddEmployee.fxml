@@ -10,9 +10,9 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddEmployeeController">
    <children>
-      <AnchorPane layoutY="1.0" prefHeight="46.0" prefWidth="600.0">
+      <AnchorPane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: orange;">
          <children>
-            <Label layoutX="185.0" layoutY="8.0" text="Insert employee datas" textFill="#bf811d">
+            <Label layoutX="185.0" layoutY="8.0" text="Insert employee datas">
                <font>
                   <Font size="25.0" />
                </font>
@@ -35,7 +35,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="ShopEmailTextField" layoutX="71.0" layoutY="143.0" text="Fiscal Code">
+            <Label fx:id="ShopEmailTextField" layoutX="73.0" layoutY="143.0" text="Fiscal Code">
                <font>
                   <Font size="20.0" />
                </font>

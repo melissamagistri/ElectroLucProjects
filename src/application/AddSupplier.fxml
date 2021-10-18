@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.AddSupplierController">
    <children>
       <AnchorPane layoutX="-6.0" prefHeight="47.0" prefWidth="608.0" style="-fx-background-color: orange;">
@@ -19,27 +18,27 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="46.0" layoutY="82.0" text="Agency name">
+      <Label layoutX="45.0" layoutY="83.0" text="Supplier name">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="129.0" text="VAT number">
+      <Label layoutX="43.0" layoutY="130.0" text="VAT number">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="PhoneNumber" layoutX="45.0" layoutY="224.0" text="Email address">
+      <Label fx:id="PhoneNumber" layoutX="46.0" layoutY="225.0" text="Email address">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="177.0" text="Phone Number">
+      <Label layoutX="43.0" layoutY="178.0" text="Phone Number">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="44.0" layoutY="269.0" text="Agency Address">
+      <Label layoutX="44.0" layoutY="269.0" text="Supplier Address">
          <font>
             <Font size="18.0" />
          </font>
