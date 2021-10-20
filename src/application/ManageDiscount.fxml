@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ManageDiscountController">
    <children>
       <AnchorPane layoutX="-6.0" prefHeight="47.0" prefWidth="607.0" style="-fx-background-color: orange;">
@@ -19,19 +18,19 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="57.0" layoutY="96.0" text="Insert the product code:">
+      <Label layoutX="51.0" layoutY="121.0" text="Insert the product code:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="51.0" layoutY="177.0" text="How much discount to apply:">
+      <Label layoutX="51.0" layoutY="215.0" text="How much discount to apply:">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="CodeTextFiled" layoutX="312.0" layoutY="95.0" />
-      <TextField fx:id="DiscountTextField" layoutX="312.0" layoutY="176.0" />
+      <TextField fx:id="CodeTextFiled" layoutX="312.0" layoutY="120.0" prefHeight="26.0" prefWidth="200.0" />
+      <TextField fx:id="DiscountTextField" layoutX="312.0" layoutY="214.0" prefHeight="26.0" prefWidth="200.0" />
       <Button fx:id="GoBackButton" layoutX="51.0" layoutY="334.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text=" Go Back" />
-      <Button fx:id="ApplyButton" layoutX="511.0" layoutY="334.0" mnemonicParsing="false" onAction="#OnClickApply" style="-fx-background-color: lightskyblue;" text="Apply" />
+      <Button fx:id="ApplyButton" layoutX="512.0" layoutY="334.0" mnemonicParsing="false" onAction="#OnClickApply" style="-fx-background-color: lightskyblue;" text="Apply" />
    </children>
 </Pane>

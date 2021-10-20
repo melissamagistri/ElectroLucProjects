@@ -23,8 +23,8 @@
          <children>
             <TextField layoutX="208.0" layoutY="19.0" />
             <TextField layoutX="208.0" layoutY="74.0" />
-            <TextField layoutX="208.0" layoutY="143.0" />
-            <TextField fx:id="CodeTextField" layoutX="208.0" layoutY="213.0" />
+            <TextField layoutX="208.0" layoutY="130.0" />
+            <TextField fx:id="CodeTextField" layoutX="208.0" layoutY="187.0" />
             <Label fx:id="NameTextField" layoutX="74.0" layoutY="19.0" text="Name">
                <font>
                   <Font size="20.0" />
@@ -35,24 +35,24 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="ShopEmailTextField" layoutX="73.0" layoutY="143.0" text="Fiscal Code">
+            <Label fx:id="ShopEmailTextField" layoutX="73.0" layoutY="130.0" text="Fiscal Code">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label fx:id="EmailTextField" layoutX="76.0" layoutY="213.0" text="Code">
+            <Label fx:id="EmailTextField" layoutX="76.0" layoutY="187.0" text="Code">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
             <Button fx:id="GoBack" layoutX="25.0" layoutY="312.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
             <Button fx:id="AddButton" layoutX="520.0" layoutY="312.0" mnemonicParsing="false" onAction="#OnClickAddEmployee" style="-fx-background-color: lightskyblue;" text="Add " />
-            <Label layoutX="75.0" layoutY="261.0" text="Contract">
+            <Label layoutX="75.0" layoutY="243.0" text="Contract">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="ChoiceBox" layoutX="208.0" layoutY="262.0" prefHeight="26.0" prefWidth="160.0" />
+            <ChoiceBox fx:id="ChoiceBox" layoutX="208.0" layoutY="243.0" prefHeight="26.0" prefWidth="160.0" />
          </children>
       </AnchorPane>
    </children>

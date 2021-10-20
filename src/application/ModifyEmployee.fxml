@@ -1,24 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ModifyEmployeeController">
    <children>
-      <AnchorPane prefHeight="106.0" prefWidth="600.0">
+      <AnchorPane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: orange;">
          <children>
-            <TextField fx:id="SearchBar" layoutX="22.0" layoutY="36.0" prefHeight="34.0" prefWidth="469.0" />
-            <Button fx:id="SearchButon" layoutX="514.0" layoutY="40.0" mnemonicParsing="false" onAction="#OnClickSearch" style="-fx-background-color: lightskyblue;" text="Search" />
+            <Label layoutX="209.0" layoutY="9.0" text="Modify Employee">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="96.0" prefHeight="304.0" prefWidth="600.0">
+      <AnchorPane layoutY="47.0" prefHeight="353.0" prefWidth="600.0">
          <children>
-            <ListView fx:id="informationArea" layoutX="22.0" layoutY="6.0" prefHeight="221.0" prefWidth="543.0" />
-            <Button fx:id="DismissButton" layoutX="382.0" layoutY="249.0" mnemonicParsing="false" onAction="#OnClickDismiss" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: lightskyblue;" text="Dismiss" />
-            <Button fx:id="ChangeSalaryButton" layoutX="468.0" layoutY="248.0" mnemonicParsing="false" onAction="#OnClickChangeSalary" style="-fx-background-color: lightskyblue;" text="Change Salary" />
-            <Button fx:id="GoBackButton" layoutX="22.0" layoutY="249.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
+            <ListView fx:id="informationArea" layoutX="22.0" layoutY="86.0" prefHeight="183.0" prefWidth="543.0" />
+            <Button fx:id="DismissButton" layoutX="380.0" layoutY="296.0" mnemonicParsing="false" onAction="#OnClickDismiss" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: lightskyblue;" text="Dismiss" />
+            <Button fx:id="ChangeSalaryButton" layoutX="469.0" layoutY="296.0" mnemonicParsing="false" onAction="#OnClickChangeSalary" style="-fx-background-color: lightskyblue;" text="Change Salary" />
+            <Button fx:id="GoBackButton" layoutX="22.0" layoutY="296.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
+            <TextField fx:id="SearchBar" layoutX="22.0" layoutY="27.0" prefHeight="34.0" prefWidth="469.0" />
+            <Button fx:id="SearchButon" layoutX="517.0" layoutY="31.0" mnemonicParsing="false" onAction="#OnClickSearch" style="-fx-background-color: lightskyblue;" text="Search" />
          </children>
       </AnchorPane>
    </children>
