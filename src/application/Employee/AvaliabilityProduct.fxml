@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Employee.AvaliabilityProduct">
+   <children>
+      <TextField fx:id="SearchBar" layoutX="24.0" layoutY="24.0" prefHeight="26.0" prefWidth="355.0" />
+      <Button fx:id="SearchProductButton" layoutX="418.0" layoutY="25.0" mnemonicParsing="false" onAction="#OnClickSearchButton" style="-fx-background-color: lightskyblue;" text="Search Product" />
+      <Button fx:id="GoBackButton" layoutX="24.0" layoutY="347.0" mnemonicParsing="false" onAction="#OnCLickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
+      <TableView fx:id="ProductTableView" layoutX="27.0" layoutY="78.0" prefHeight="241.0" prefWidth="479.0">
+        <columns>
+          <TableColumn fx:id="NameTableColuomn" prefWidth="120.0" text="Name" />
+          <TableColumn fx:id="PriceTableColuomn" prefWidth="120.0" text="Price" />
+            <TableColumn fx:id="NumberTableColoumn" prefWidth="120.0" text="Number" />
+            <TableColumn fx:id="StateTableColumn" prefWidth="120.0" text="State" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
