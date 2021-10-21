@@ -21,30 +21,30 @@
             </Label>
          </children>
       </AnchorPane>
-      <Button fx:id="CheckAvailabilityButton" layoutX="55.0" layoutY="73.0" mnemonicParsing="false" onAction="#OnClickCheckAvailability" style="-fx-background-color: lightskyblue;" text="Check Availability">
+      <Button fx:id="CheckAvailabilityButton" layoutX="78.0" layoutY="72.0" mnemonicParsing="false" onAction="#OnClickCheckAvailability" style="-fx-background-color: lightskyblue;" text="Check Availability">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="ValidWarrantyButton" layoutX="48.0" layoutY="165.0" mnemonicParsing="false" onAction="#OnClickValidWarranty" style="-fx-background-color: lightskyblue;" text="Valid Warranty">
+      <Button fx:id="ValidWarrantyButton" layoutX="78.0" layoutY="159.0" mnemonicParsing="false" onAction="#OnClickValidWarranty" style="-fx-background-color: lightskyblue;" text="Valid Warranty">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <Button fx:id="LogOutButton" layoutX="525.0" layoutY="349.0" mnemonicParsing="false" onAction="#OnClickLogOut" style="-fx-background-color: lightskyblue;" text="Log Out" />
-      <Button layoutX="55.0" layoutY="258.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: lightskyblue;" text="Sell Product">
+      <Button layoutX="78.0" layoutY="248.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="120.0" style="-fx-background-color: lightskyblue;" text="Sell Product">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
       <VBox layoutY="47.0" prefHeight="354.0" prefWidth="50.0" spacing="40.0">
          <children>
-            <ImageView fitHeight="51.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="42.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/Tick.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="55.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="42.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../image/download.png" />
                </image>
@@ -56,7 +56,7 @@
             </ImageView>
          </children>
          <padding>
-            <Insets top="15.0" />
+            <Insets left="10.0" top="25.0" />
          </padding>
       </VBox>
    </children>

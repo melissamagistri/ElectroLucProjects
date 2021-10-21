@@ -34,15 +34,15 @@
       <Button fx:id="LogOutButton" layoutX="525.0" layoutY="350.0" mnemonicParsing="false" onAction="#OnClickLogOut" style="-fx-background-color: lightskyblue;" text="Log Out" />
       <VBox layoutY="46.0" prefHeight="354.0" prefWidth="49.0" spacing="100.0">
          <padding>
-            <Insets top="35.0" />
+            <Insets left="10.0" top="35.0" />
          </padding>
          <children>
-            <ImageView fitHeight="46.0" fitWidth="63.0">
+            <ImageView fitHeight="44.0" fitWidth="49.0">
                <image>
                   <Image url="@../image/compra.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="46.0" fitWidth="61.0">
+            <ImageView fitHeight="46.0" fitWidth="49.0">
                <image>
                   <Image url="@../image/ordini.png" />
                </image>
