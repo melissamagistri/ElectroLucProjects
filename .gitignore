@@ -2,3 +2,4 @@ bin/
 .metadata
 .DS_Store
 PROJECT_SCHEMAS.lun
+.~lock.PROJECT_SCHEMAS.lun#
