@@ -6,7 +6,7 @@ public abstract class Person {
 	private String secondName;
 	private String fiscalCode;
 
-	protected String getFirstName() {
+	public String getFirstName() {
 		return firstName;
 	}
 
@@ -14,7 +14,7 @@ public abstract class Person {
 		this.firstName = firstName;
 	}
 
-	protected String getSecondName() {
+	public String getSecondName() {
 		return secondName;
 	}
 
@@ -22,7 +22,7 @@ public abstract class Person {
 		this.secondName = secondName;
 	}
 
-	protected String getFiscalCode() {
+	public String getFiscalCode() {
 		return fiscalCode;
 	}
 

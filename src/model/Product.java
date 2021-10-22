@@ -2,16 +2,16 @@ package model;
 
 public class Product {
 
-	private final int prodCode;
+	private final int prodID;
 	private final String modelID;
 
-	public Product(final int prodCode, final String modelID) {
-		this.prodCode = prodCode;
+	public Product(final int productID, final String modelID) {
+		this.prodID = productID;
 		this.modelID = modelID;
 	}
 
-	public int getProdCode() {
-		return prodCode;
+	public int getProductID() {
+		return prodID;
 	}
 
 	public String getModelID() {
