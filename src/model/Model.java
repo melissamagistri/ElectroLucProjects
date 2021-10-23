@@ -1,5 +1,6 @@
 package model;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 public class Model {
@@ -10,7 +11,7 @@ public class Model {
 	private final String description;
 	private final String category;
 	private final String imageUri;
-	private final int unitPrice;
+	private final BigDecimal unitPrice;
 	private final Optional<Integer> discount;
 	private final int unitInStock;
 	private final int maxUnitPerOrder;
@@ -20,7 +21,7 @@ public class Model {
 	private final boolean salesCatalog;
 
 	private Model(final int modelID, final String modelName, final String brand, final String description,
-			final String imageUrl,final int price, final Optional<Integer> discount, 
+			final String imageUrl,final BigDecimal price, final Optional<Integer> discount, 
 			final int unitInStock, final int maxUnitPerOrder, final String modelCategory, final int magazineShelf,
 			final int magazineLane, final int magazineCompartment, final boolean salesCatalog) {
 		this.modelID = modelID;
@@ -40,7 +41,7 @@ public class Model {
 	}
 
 	public Model(final int modelID, final String brand, final String modelName, final String description,
-			final String imageUrl,final int price, final int unitInStock, final int maxUnitPerOrder, 
+			final String imageUrl,final BigDecimal price, final int unitInStock, final int maxUnitPerOrder, 
 			final String modelCategory, final int magazineShelf,
 			final int magazineLane, final int magazineCompartment, final boolean salesCatalog) {
 		this(modelID, modelName, brand, description, imageUrl, price, Optional.empty(), 
@@ -49,7 +50,7 @@ public class Model {
 	}
 
 	public Model(final int modelID, final String brand, final String modelName, final String description,
-	final String imageUrl,final int price, final int discount, 
+	final String imageUrl,final BigDecimal price, final int discount, 
 	final int unitInStock, final int maxUnitPerOrder, final String modelCategory, final int magazineShelf,
 	final int magazineLane, final int magazineCompartment, final boolean salesCatalog) {
 		this(modelID, modelName, brand, description, imageUrl, price, Optional.of(discount), 
@@ -85,7 +86,7 @@ public class Model {
 		return imageUri;
 	}
 
-	public int getUnitPrice() {
+	public BigDecimal getUnitPrice() {
 		return unitPrice;
 	}
 
