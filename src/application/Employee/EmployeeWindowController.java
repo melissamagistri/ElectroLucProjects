@@ -2,7 +2,7 @@ package application.Employee;
 
 import java.io.IOException;
 
-
+import application.Customer.CustomerMain;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -19,18 +19,18 @@ public class EmployeeWindowController {
     private Button ValidWarrantyButton;
 
     @FXML
-    void OnClickCheckAvailability(ActionEvent event) {
-
+    void OnClickCheckAvailability(ActionEvent event) throws IOException {
+    	EmployeeMain.changeWindow("AvaliabilityProduct.fxml");
     }
 
     @FXML
     void OnClickLogOut(ActionEvent event) throws IOException {
-    	EmployeeMain.changeWindow("Holder.fxml");
+    	EmployeeMain.changeWindow("Login.fxml");
     }
 
     @FXML
-    void OnClickValidWarranty(ActionEvent event) {
-
+    void OnClickValidWarranty(ActionEvent event) throws IOException {
+    	EmployeeMain.changeWindow("ValidWarranty.fxml");
     }
 
 }

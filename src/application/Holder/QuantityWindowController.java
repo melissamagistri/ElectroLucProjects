@@ -1,4 +1,4 @@
-package application.Employee;
+package application.Holder;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ public class QuantityWindowController {
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
-    	EmployeeMain.changeWindow("Holder.fxml");
+    	HolderMain.changeWindow("Holder.fxml");
     }
 
     @FXML

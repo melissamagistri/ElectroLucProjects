@@ -28,7 +28,7 @@ public class ValidWarrantyController {
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
-    	EmployeeMain.changeWindow("EployeeWindow.fxml");
+    	EmployeeMain.changeWindow("EmployeeWindow.fxml");
     }
 
     @FXML

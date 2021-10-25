@@ -47,7 +47,15 @@
                         <Image url="@../../image/Computer.png" />
                      </image>
                   </ImageView>
+                  <ImageView fitHeight="42.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../../image/quantity.png" />
+                     </image>
+                  </ImageView>
                </children>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
             </VBox>
          </left>
          <center>
@@ -57,10 +65,10 @@
                   <Button mnemonicParsing="false" onAction="#OnClickAddEmployee" prefHeight="26.0" prefWidth="133.0" style="-fx-background-color: lightskyblue;" text="Add Employee" />
                   <Button mnemonicParsing="false" onAction="#OnClickDiscount" prefHeight="26.0" prefWidth="133.0" style="-fx-background-color: lightskyblue;" text="Discount" />
                   <Button mnemonicParsing="false" onAction="#OnClickProducts" prefHeight="26.0" prefWidth="132.0" style="-fx-background-color: lightskyblue;" text="Products" />
-                  <Button fx:id="LogOutButon" mnemonicParsing="false" onAction="#OnClickLogOutButton" prefHeight="26.0" prefWidth="131.0" style="-fx-background-color: lightskyblue;" text="Log Out" />
+                  <Button mnemonicParsing="false" onAction="#OnClickQuantityButton" prefHeight="26.0" prefWidth="131.0" style="-fx-background-color: lightskyblue;" text="Quantity" />
                </children>
                <padding>
-                  <Insets right="2.0" top="10.0" />
+                  <Insets left="5.0" right="2.0" top="10.0" />
                </padding>
             </VBox>
          </center>

@@ -18,8 +18,8 @@ public class ClientWindowController {
     private Button ViewOrdersButton;
 
     @FXML
-    void OnClickBuyProduct(ActionEvent event) {
-
+    void OnClickBuyProduct(ActionEvent event) throws IOException {
+    	CustomerMain.changeWindow("BuyProduct.fxml");
     }
 
     @FXML
@@ -28,8 +28,8 @@ public class ClientWindowController {
     }
 
     @FXML
-    void OnClickViewOrders(ActionEvent event) {
-
+    void OnClickViewOrders(ActionEvent event) throws IOException {
+    	CustomerMain.changeWindow("OrdersWindow.fxml");
     }
 
 }

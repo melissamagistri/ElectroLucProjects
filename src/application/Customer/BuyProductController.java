@@ -26,8 +26,8 @@ public class BuyProductController {
     private TextField SearchProductTextField;
 
     @FXML
-    void OnClickBuy(ActionEvent event) {
-
+    void OnClickBuy(ActionEvent event) throws IOException {
+    	CustomerMain.changeWindow("OrderConfirmedWindow.fxml");
     }
 
     @FXML

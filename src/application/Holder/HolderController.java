@@ -12,9 +12,6 @@ public class HolderController {
 
     @FXML
     private VBox VBoxButtons;
-    
-    @FXML
-    private Button OnClickLogOutButton;
 
    
     @FXML
@@ -38,7 +35,8 @@ public class HolderController {
     }
     
     @FXML
-    void OnClickLogOutButton(ActionEvent event) throws IOException{
-    	HolderMain.changeWindow("Login.fxml"); //Oppure chiudi l'applicazione?ß
+    void OnClickQuantityButton(ActionEvent event) throws IOException {
+    	HolderMain.changeWindow("QuantityWindow.fxml");
     }
+   
 }
