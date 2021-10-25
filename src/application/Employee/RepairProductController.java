@@ -2,7 +2,7 @@ package application.Employee;
 
 import java.io.IOException;
 
-import application.Main;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,7 +17,7 @@ public class RepairProductController {
 
 	    @FXML
 	    void OnClickGoBack(ActionEvent event) throws IOException {
-	    	Main.changeWindow("ValidWarranty.fxml");
+	    	EmployeeMain.changeWindow("ValidWarranty.fxml");
 	    }
 
 	    @FXML

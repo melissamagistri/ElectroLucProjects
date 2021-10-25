@@ -2,7 +2,7 @@ package application.Employee;
 
 import java.io.IOException;
 
-import application.Main;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -38,7 +38,7 @@ public class AvaliabilityProductController {
 
     @FXML
     void OnCLickGoBack(ActionEvent event) throws IOException {
-    	Main.changeWindow("EmployeeWindow.fxml");
+    	EmployeeMain.changeWindow("EmployeeWindow.fxml");
     }
 
     @FXML

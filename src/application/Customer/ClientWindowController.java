@@ -2,7 +2,6 @@ package application.Customer;
 
 import java.io.IOException;
 
-import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,7 +24,7 @@ public class ClientWindowController {
 
     @FXML
     void OnClickLogOut(ActionEvent event) throws IOException {
-    	Main.changeWindow("Login.fxml");
+    	CustomerMain.changeWindow("Login.fxml");
     }
 
     @FXML

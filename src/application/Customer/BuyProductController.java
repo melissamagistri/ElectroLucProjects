@@ -2,7 +2,6 @@ package application.Customer;
 
 import java.io.IOException;
 
-import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -33,7 +32,7 @@ public class BuyProductController {
 
     @FXML
     void OnClickGoBSck(ActionEvent event) throws IOException {
-    	Main.changeWindow("ClientWindow.fxml");
+    	CustomerMain.changeWindow("ClientWindow.fxml");
     }
 
     @FXML

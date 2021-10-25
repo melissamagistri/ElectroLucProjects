@@ -2,7 +2,6 @@ package application.Holder;
 
 import java.io.IOException;
 
-import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -28,12 +27,12 @@ public class DiscountController {
 
     @FXML
     void OnClickApplyDiscount(ActionEvent event) throws IOException {
-    	Main.changeWindow("ManageDiscount.fxml");
+    	HolderMain.changeWindow("ManageDiscount.fxml");
     }
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
-    	Main.changeWindow("Holder.fxml");
+    	HolderMain.changeWindow("Holder.fxml");
     }
 
     @FXML

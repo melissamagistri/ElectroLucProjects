@@ -2,7 +2,7 @@ package application.Customer;
 
 import java.io.IOException;
 
-import application.Main;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -18,7 +18,7 @@ public class OrderConfirmedController {
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
-    	Main.changeWindow("BuyProduct.fxml");
+    	CustomerMain.changeWindow("BuyProduct.fxml");
     }
 
 }

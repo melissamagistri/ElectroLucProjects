@@ -29,22 +29,22 @@
                <children>
                   <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/user.png" />
+                        <Image url="@../../image/user.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="51.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/add.png" />
+                        <Image url="@../../image/add.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="47.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/Percento.png" />
+                        <Image url="@../../image/Percento.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="44.0" fitWidth="56.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../image/Computer.png" />
+                        <Image url="@../../image/Computer.png" />
                      </image>
                   </ImageView>
                </children>

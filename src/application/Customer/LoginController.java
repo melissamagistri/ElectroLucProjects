@@ -1,4 +1,4 @@
-package application;
+package application.Customer;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
@@ -15,7 +15,7 @@ public class LoginController {
 
     @FXML
     void OnClickLogin(ActionEvent event) throws IOException {
-    	Main.changeWindow("Holder.fxml");
+    	CustomerMain.changeWindow("ClientWindow.fxml");
     }
 
     @FXML

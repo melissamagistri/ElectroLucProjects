@@ -2,7 +2,6 @@ package application.Employee;
 
 import java.io.IOException;
 
-import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -29,7 +28,7 @@ public class ValidWarrantyController {
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
-    	Main.changeWindow("EployeeWindow.fxml");
+    	EmployeeMain.changeWindow("EployeeWindow.fxml");
     }
 
     @FXML
@@ -39,7 +38,7 @@ public class ValidWarrantyController {
     
     @FXML
     void OnClickRepairProduct(ActionEvent event) throws IOException {
-    	Main.changeWindow("RepairProduct.fxml");
+    	EmployeeMain.changeWindow("RepairProduct.fxml");
     }
 
 }

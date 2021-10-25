@@ -2,7 +2,7 @@ package application.Employee;
 
 import java.io.IOException;
 
-import application.Main;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -23,7 +23,7 @@ public class QuantityWindowController {
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
-    	Main.changeWindow("Holder.fxml");
+    	EmployeeMain.changeWindow("Holder.fxml");
     }
 
     @FXML

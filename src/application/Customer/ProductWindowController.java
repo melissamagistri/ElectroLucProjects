@@ -2,7 +2,7 @@ package application.Customer;
 
 import java.io.IOException;
 
-import application.Main;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,12 +25,12 @@ public class ProductWindowController {
 
     @FXML
     void OnClcikGoBack(ActionEvent event) throws IOException {
-    	Main.changeWindow("Holder.fxml");
+    	CustomerMain.changeWindow("Holder.fxml");
     }
 
     @FXML
     void OnClickAddModel(ActionEvent event) throws IOException {
-    	Main.changeWindow("AddProduct.fxml");
+    	CustomerMain.changeWindow("AddProduct.fxml");
     }
 
 }

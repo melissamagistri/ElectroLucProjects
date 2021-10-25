@@ -1,4 +1,4 @@
-package application;
+package application.Holder;
 	
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 
 
-public class Main extends Application {
+public class HolderMain extends Application {
 	
 	private static Stage primaryStage;
 	
@@ -18,15 +18,15 @@ public class Main extends Application {
 	}
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Main.primaryStage = primaryStage;
-		Main.primaryStage.setTitle("ElectroLuc ShopOnline");
-		Main.changeWindow("Employee/EmployeeWindow.fxml");
+		HolderMain.primaryStage = primaryStage;
+		HolderMain.primaryStage.setTitle("ElectroLuc ShopOnline");
+		HolderMain.changeWindow("Holder.fxml");
 		
 	}
 	
 	//the method to change the window
 	public static void changeWindow(String newWindow) throws IOException {
-		Pane mainPane = (Pane) FXMLLoader.load(Main.class.getResource(newWindow));
+		Pane mainPane = (Pane) FXMLLoader.load(HolderMain.class.getResource(newWindow));
 		primaryStage.setScene(new Scene(mainPane));
 		primaryStage.show();
 		
