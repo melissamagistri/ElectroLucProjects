@@ -1,4 +1,5 @@
 bin/
 .metadata
 .DS_Store
-schemaAndSql/
+negozioElettronica.sql
+PROJECT_SCHEMAS.lun
