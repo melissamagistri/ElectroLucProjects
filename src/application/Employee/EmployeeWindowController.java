@@ -32,5 +32,14 @@ public class EmployeeWindowController {
     	EmployeeMain.changeWindow("ValidWarranty.fxml");
     }
 
+    @FXML
+    void OnClickSell(ActionEvent event) throws IOException {
+    	EmployeeMain.changeWindow("SellWindow.fxml");
+    }
+    
+    @FXML
+    void OnClickChangePassword(ActionEvent event) throws IOException {
+    	EmployeeMain.changeWindow("ChangePassword.fxml");
+    }
 }
 
