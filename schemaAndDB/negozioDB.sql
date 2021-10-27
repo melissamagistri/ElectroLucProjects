@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `negozio elettronica` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `negozio elettronica`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: negozio elettronica
@@ -81,7 +79,7 @@ CREATE TABLE `customers` (
   `LastName` varchar(20) NOT NULL,
   `Fiscalcode` varchar(16) NOT NULL,
   `Phone` varchar(10) DEFAULT NULL,
-  `DedliveryAddress` varchar(60) NOT NULL,
+  `DeliveryAddress` varchar(60) NOT NULL,
   PRIMARY KEY (`Fiscalcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -157,7 +155,7 @@ DROP TABLE IF EXISTS `employees_account`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `employees_account` (
   `EmployeeID` int NOT NULL,
-  `Passowrd` varchar(45) NOT NULL,
+  `Password` varchar(45) NOT NULL,
   PRIMARY KEY (`EmployeeID`),
   CONSTRAINT `FK_EmployeeID` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -185,7 +183,7 @@ CREATE TABLE `models` (
   `Brand` varchar(30) NOT NULL,
   `Description` varchar(100) NOT NULL,
   `Category` varchar(15) NOT NULL,
-  `modelImage` longblob NOT NULL,
+  `ModelImage` longblob,
   `UnitPrice` decimal(10,4) NOT NULL,
   `Discount` int DEFAULT NULL,
   `UnitInStock` int NOT NULL,
@@ -200,7 +198,8 @@ CREATE TABLE `models` (
   KEY `FK_warehouseLane_idx` (`Lane`),
   CONSTRAINT `FK_warehouseCompartment` FOREIGN KEY (`Compartment`) REFERENCES `warehouse` (`Compartment`),
   CONSTRAINT `FK_warehouseLane` FOREIGN KEY (`Lane`) REFERENCES `warehouse` (`Lane`),
-  CONSTRAINT `FK_warehouseShelf` FOREIGN KEY (`Shelf`) REFERENCES `warehouse` (`Shelf`)
+  CONSTRAINT `FK_warehouseShelf` FOREIGN KEY (`Shelf`) REFERENCES `warehouse` (`Shelf`),
+  CONSTRAINT `models_chk_1` CHECK ((`SalesCatalogMembership` <= 1))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -442,4 +441,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-26  8:03:24
+-- Dump completed on 2021-10-27 17:08:27
