@@ -5,16 +5,15 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 import db.connection.DBConnection;
-import model.Model;
 
 
 public class Discount {
 
-	public static Optional<SQLException> applyDiscount(final Model model, final int discount) {
+	public static Optional<SQLException> applyDiscount(final int modelID, final int discount) {
 
 		//check if it has been insert discount = 0
 		if(discount == 0) {
-			Discount.removeDiscount(model);
+			Discount.removeDiscount(modelID);
 			return Optional.empty();
 		}
 
@@ -25,7 +24,7 @@ public class Discount {
 		try {
 			preparedStmt = conn.getMySQLConnection().prepareStatement(query);
 			preparedStmt.setInt(1, discount);
-			preparedStmt.setInt(2, model.getModelID());
+			preparedStmt.setInt(2, modelID);
 
 			//execute query
 			preparedStmt.executeUpdate();
@@ -38,14 +37,14 @@ public class Discount {
 		return Optional.empty();
 	}
 
-	public static Optional<SQLException> removeDiscount(final Model model) {
+	public static Optional<SQLException> removeDiscount(final int modelID) {
 		DBConnection conn = new DBConnection();
 
 		String query = "UPDATE models SET Discount = null WHERE ModelID = ?";
 		PreparedStatement preparedStmt;
 		try {
 			preparedStmt = conn.getMySQLConnection().prepareStatement(query);
-			preparedStmt.setInt(1, model.getModelID());
+			preparedStmt.setInt(1, modelID);
 
 			//execute query
 			preparedStmt.executeUpdate();
