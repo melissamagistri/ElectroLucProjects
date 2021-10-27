@@ -47,6 +47,11 @@ public class AddEmployeeController {
     void OnClickGoBack(ActionEvent event) throws IOException {
     	HolderMain.changeWindow("Holder.fxml");
     }
+    
+    @FXML
+    void OnClickRandomPassword(ActionEvent event) {
+
+    }
 
 }
 
