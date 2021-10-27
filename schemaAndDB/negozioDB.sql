@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `negozio elettronica` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `negozio elettronica`;
 -- MySQL dump 10.13  Distrib 8.0.26, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: negozio elettronica
@@ -80,7 +82,8 @@ CREATE TABLE `customers` (
   `Fiscalcode` varchar(16) NOT NULL,
   `Phone` varchar(10) DEFAULT NULL,
   `DeliveryAddress` varchar(60) NOT NULL,
-  PRIMARY KEY (`Fiscalcode`)
+  PRIMARY KEY (`Fiscalcode`),
+  CONSTRAINT `customers_fiscalcode_chk` CHECK ((length(`Fiscalcode`) = 16))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -106,7 +109,8 @@ CREATE TABLE `customers_accounts` (
   `Fiscalcode` varchar(16) NOT NULL,
   PRIMARY KEY (`Email`),
   KEY `Fiscalcode_idx` (`Fiscalcode`),
-  CONSTRAINT `Fiscalcode` FOREIGN KEY (`Fiscalcode`) REFERENCES `customers` (`Fiscalcode`)
+  CONSTRAINT `Fiscalcode` FOREIGN KEY (`Fiscalcode`) REFERENCES `customers` (`Fiscalcode`),
+  CONSTRAINT `customers_accounts_fiscalcode_chk` CHECK ((length(`Fiscalcode`) = 16))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -133,7 +137,8 @@ CREATE TABLE `employees` (
   `Fiscalcode` varchar(16) NOT NULL,
   `Salary` float NOT NULL,
   PRIMARY KEY (`EmployeeID`),
-  UNIQUE KEY `Fiscalcode` (`Fiscalcode`)
+  UNIQUE KEY `Fiscalcode` (`Fiscalcode`),
+  CONSTRAINT `employees_fiscalcode_chk` CHECK ((length(`Fiscalcode`) = 16))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -213,13 +218,13 @@ LOCK TABLES `models` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `order_deteils`
+-- Table structure for table `order_details`
 --
 
-DROP TABLE IF EXISTS `order_deteils`;
+DROP TABLE IF EXISTS `order_details`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `order_deteils` (
+CREATE TABLE `order_details` (
   `ProductID` int NOT NULL,
   `OrderID` int NOT NULL,
   `Quantity` int NOT NULL,
@@ -231,12 +236,12 @@ CREATE TABLE `order_deteils` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `order_deteils`
+-- Dumping data for table `order_details`
 --
 
-LOCK TABLES `order_deteils` WRITE;
-/*!40000 ALTER TABLE `order_deteils` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_deteils` ENABLE KEYS */;
+LOCK TABLES `order_details` WRITE;
+/*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
+/*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -441,4 +446,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-27 17:08:27
+-- Dump completed on 2021-10-27 20:15:04
