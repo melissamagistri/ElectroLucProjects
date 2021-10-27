@@ -17,7 +17,7 @@ public class ActionModel {
 		DBConnection conn = new DBConnection();
 
 		List<Model> res = new ArrayList<>();
-		String query = "SELECT * FROM models WHERE ModelName = " +modelName +"AND SalesCatalogMembership = true;";
+		String query = "SELECT * FROM models WHERE ModelName = " +modelName +" AND SalesCatalogMembership = true";
 		try {
 			PreparedStatement preparedStmt = conn.getMySQLConnection().prepareStatement(query);
 
