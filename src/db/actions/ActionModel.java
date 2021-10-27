@@ -12,8 +12,8 @@ import model.Model;
 
 public class ActionModel {
 
+	public static List<Model> searchModelForName(final String modelName) {
 
-	public static List<Model> searchModelForName(String modelName) {
 		DBConnection conn = new DBConnection();
 
 		List<Model> res = new ArrayList<>();
