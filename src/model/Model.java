@@ -1,6 +1,7 @@
 package model;
 
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.Optional;
 
 public class Model {
@@ -10,20 +11,20 @@ public class Model {
 	private final String brand;
 	private final String description;
 	private final String category;
-	private final String imageUri;
+	private final Optional<Blob> imageUri;
 	private final BigDecimal unitPrice;
 	private final Optional<Integer> discount;
 	private final int unitInStock;
 	private final int maxUnitPerOrder;
-	private final int shelf;
-	private final int lane;
-	private final int compartment;
+	private final String shelf;
+	private final String lane;
+	private final String compartment;
 	private final boolean salesCatalog;
 
-	private Model(final int modelID, final String modelName, final String brand, final String description,
-			final String imageUrl,final BigDecimal price, final Optional<Integer> discount, 
-			final int unitInStock, final int maxUnitPerOrder, final String modelCategory, final int magazineShelf,
-			final int magazineLane, final int magazineCompartment, final boolean salesCatalog) {
+	public Model(final int modelID, final String modelName, final String brand, final String description,
+			final Optional<Blob> imageUrl,final BigDecimal price, final Optional<Integer> discount, 
+			final int unitInStock, final int maxUnitPerOrder, final String modelCategory, final String magazineShelf,
+			final String magazineLane, final String magazineCompartment, final boolean salesCatalog) {
 		this.modelID = modelID;
 		this.modelName = modelName;
 		this.brand = brand;
@@ -38,24 +39,6 @@ public class Model {
 		this.lane = magazineLane;
 		this.compartment = magazineCompartment;
 		this.salesCatalog = salesCatalog;
-	}
-
-	public Model(final int modelID, final String brand, final String modelName, final String description,
-			final String imageUrl,final BigDecimal price, final int unitInStock, final int maxUnitPerOrder, 
-			final String modelCategory, final int magazineShelf,
-			final int magazineLane, final int magazineCompartment, final boolean salesCatalog) {
-		this(modelID, modelName, brand, description, imageUrl, price, Optional.empty(), 
-				unitInStock, maxUnitPerOrder, modelCategory, magazineShelf, magazineLane, magazineCompartment, 
-				salesCatalog);
-	}
-
-	public Model(final int modelID, final String brand, final String modelName, final String description,
-	final String imageUrl,final BigDecimal price, final int discount, 
-	final int unitInStock, final int maxUnitPerOrder, final String modelCategory, final int magazineShelf,
-	final int magazineLane, final int magazineCompartment, final boolean salesCatalog) {
-		this(modelID, modelName, brand, description, imageUrl, price, Optional.of(discount), 
-				unitInStock, maxUnitPerOrder, modelCategory, magazineShelf, magazineLane, magazineCompartment,
-				salesCatalog);
 	}
 
 	public Optional<Integer> getDiscount() {
@@ -82,7 +65,7 @@ public class Model {
 		return description;
 	}
 
-	public String getImageUri() {
+	public Optional<Blob> getImageUri() {
 		return imageUri;
 	}
 
@@ -98,15 +81,15 @@ public class Model {
 		return maxUnitPerOrder;
 	}
 
-	public int getShelf() {
+	public String getShelf() {
 		return shelf;
 	}
 
-	public int getLane() {
+	public String getLane() {
 		return lane;
 	}
 
-	public int getCompartment() {
+	public String getCompartment() {
 		return compartment;
 	}
 
