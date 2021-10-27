@@ -1,7 +1,6 @@
 package db.actions;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import db.connection.DBConnection;
 
@@ -10,13 +9,14 @@ public class Warranty {
 	public static Boolean isInWarranty(final int receiptID, final int productID) {
 		DBConnection conn = new DBConnection();
 
-		String query = "SELECT COUNT(*)"
-				+ "FROM orders o, receipts r, order_deteils od "
-				+ "WHERE r.ReceiptID = " +receiptID +" "
-				+ "AND r.OrderID = o.OrderID "
-				+ "AND o.OrderID = od.OrderID "
-				+ "AND od.ProductID = " +productID +" "
-				+ "AND year(TIMEDIFF(CURRENT_DATE(), r.IssueDate)) < 2;";
+		String query = "SELECT count(*)"
+				+ "	FROM orders o, order_details od, receipts r"
+				+ "	WHERE r.ReceiptID = " +receiptID
+				+ "	AND TIMESTAMPDIFF(YEAR, r.IssueDate, now()) <= 2"
+				+ "	AND r.OrderID = o.OrderID"
+				+ "	AND o.OrderID = od.OrderID"
+				+ "	AND od.ProductID = " +productID +";";
+		
 		try {
 			PreparedStatement preparedStmt = conn.getMySQLConnection().prepareStatement(query);
 
