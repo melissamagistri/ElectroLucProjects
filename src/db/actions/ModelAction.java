@@ -10,7 +10,7 @@ import java.util.Optional;
 import db.connection.DBConnection;
 import model.Model;
 
-public class ActionModel {
+public class ModelAction {
 
 	public static List<Model> searchModelForName(final String modelName) {
 
