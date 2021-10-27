@@ -24,7 +24,7 @@ public class EmployeeWindowController {
 
     @FXML
     void OnClickLogOut(ActionEvent event) throws IOException {
-    	EmployeeMain.changeWindow("Login.fxml");
+    	EmployeeMain.changeWindow("EmployeeLogin.fxml");
     }
 
     @FXML

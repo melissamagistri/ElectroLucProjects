@@ -20,7 +20,7 @@ public class EmployeeMain extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		EmployeeMain.primaryStage = primaryStage;
 		EmployeeMain.primaryStage.setTitle("ElectroLuc ShopOnline");
-		EmployeeMain.changeWindow("Login.fxml");
+		EmployeeMain.changeWindow("EmployeeLogin.fxml");
 		
 	}
 	
