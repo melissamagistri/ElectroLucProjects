@@ -9,7 +9,7 @@ public class Warranty {
 	public static Boolean isInWarranty(final int receiptID, final int productID) throws SQLException {
 		DBConnection conn = new DBConnection();
 
-		String query = "SELECT count(*)"
+		String query = "SELECT *"
 				+ "	FROM orders o, order_details od, receipts r"
 				+ "	WHERE r.ReceiptID = " +receiptID
 				+ "	AND TIMESTAMPDIFF(YEAR, now(), o.OrderDate) <= 2"
