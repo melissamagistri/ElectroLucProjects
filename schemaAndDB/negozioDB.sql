@@ -369,7 +369,6 @@ DROP TABLE IF EXISTS `receipts`;
 CREATE TABLE `receipts` (
   `ReceiptID` int NOT NULL,
   `OrderID` int NOT NULL,
-  `IssueDate` datetime NOT NULL,
   PRIMARY KEY (`ReceiptID`),
   UNIQUE KEY `OrderID` (`OrderID`),
   CONSTRAINT `OrderID` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`)
@@ -446,4 +445,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-27 20:15:04
+-- Dump completed on 2021-10-28  9:15:40

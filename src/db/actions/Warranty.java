@@ -6,7 +6,7 @@ import db.connection.DBConnection;
 
 public class Warranty {
 
-	public static Boolean isInWarranty(final int receiptID, final int productID) {
+	public static Boolean isInWarranty(final int receiptID, final int productID) throws SQLException {
 		DBConnection conn = new DBConnection();
 
 		String query = "SELECT count(*)"
@@ -17,15 +17,9 @@ public class Warranty {
 				+ "	AND o.OrderID = od.OrderID"
 				+ "	AND od.ProductID = " +productID +";";
 		
-		try {
-			PreparedStatement preparedStmt = conn.getMySQLConnection().prepareStatement(query);
+		PreparedStatement preparedStmt = conn.getMySQLConnection().prepareStatement(query);
 
-		    // execute the query, and get a java resultset
-			return preparedStmt.executeQuery(query).next();
-
-		} catch (SQLException e) {
-			System.err.print(e);
-			return false;
-		}
+		// execute the query, and get a java resultset
+		return preparedStmt.executeQuery(query).isBeforeFirst();
 	}
 }

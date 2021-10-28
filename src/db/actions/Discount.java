@@ -2,54 +2,39 @@ package db.actions;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Optional;
-
 import db.connection.DBConnection;
 
 
 public class Discount {
 
-	public static Optional<SQLException> applyDiscount(final int modelID, final int discount) {
+	public static void applyDiscount(final int modelID, final int discount) throws SQLException {
 
 		//check if it has been insert discount = 0
 		if(discount == 0) {
 			Discount.removeDiscount(modelID);
-			return Optional.empty();
+			return;
 		}
 
 		DBConnection conn = new DBConnection();
 
 		String query = "UPDATE models SET Discount = ? WHERE ModelID = ?";
-		PreparedStatement preparedStmt;
-		try {
-			preparedStmt = conn.getMySQLConnection().prepareStatement(query);
-			preparedStmt.setInt(1, discount);
-			preparedStmt.setInt(2, modelID);
+		PreparedStatement preparedStmt = conn.getMySQLConnection().prepareStatement(query);
+		preparedStmt.setInt(1, discount);
+		preparedStmt.setInt(2, modelID);
 
-			//execute query
-			preparedStmt.executeUpdate();
+		//execute query
+		preparedStmt.executeUpdate();
 
-		} catch (SQLException e) {
-			return Optional.of(e);
-		}
-		return Optional.empty();
 	}
 
-	public static Optional<SQLException> removeDiscount(final int modelID) {
+	public static void removeDiscount(final int modelID) throws SQLException {
 		DBConnection conn = new DBConnection();
 
 		String query = "UPDATE models SET Discount = null WHERE ModelID = ?";
-		PreparedStatement preparedStmt;
-		try {
-			preparedStmt = conn.getMySQLConnection().prepareStatement(query);
-			preparedStmt.setInt(1, modelID);
+		PreparedStatement preparedStmt = conn.getMySQLConnection().prepareStatement(query);
+		preparedStmt.setInt(1, modelID);
 
-			//execute query
-			preparedStmt.executeUpdate();
-
-		} catch (SQLException e) {
-			return Optional.of(e);
-		}
-		return Optional.empty();
+		//execute query
+		preparedStmt.executeUpdate();
 	}
 }
