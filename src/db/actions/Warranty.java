@@ -12,7 +12,7 @@ public class Warranty {
 		String query = "SELECT count(*)"
 				+ "	FROM orders o, order_details od, receipts r"
 				+ "	WHERE r.ReceiptID = " +receiptID
-				+ "	AND TIMESTAMPDIFF(YEAR, r.IssueDate, now()) <= 2"
+				+ "	AND TIMESTAMPDIFF(YEAR, now(), o.OrderDate) <= 2"
 				+ "	AND r.OrderID = o.OrderID"
 				+ "	AND o.OrderID = od.OrderID"
 				+ "	AND od.ProductID = " +productID +";";
