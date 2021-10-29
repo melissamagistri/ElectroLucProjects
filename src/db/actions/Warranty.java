@@ -10,12 +10,11 @@ public class Warranty {
 		DBConnection conn = new DBConnection();
 
 		String query = "SELECT *"
-				+ "	FROM orders o, order_details od, receipts r"
+				+ "	FROM orders o, receipts r"
 				+ "	WHERE r.ReceiptID = " +receiptID
 				+ "	AND TIMESTAMPDIFF(YEAR, now(), o.OrderDate) <= 2"
 				+ "	AND r.OrderID = o.OrderID"
-				+ "	AND o.OrderID = od.OrderID"
-				+ "	AND od.ProductID = " +productID +";";
+				+ "	AND o.ProductID = " +productID +";";
 		
 		PreparedStatement preparedStmt = conn.getMySQLConnection().prepareStatement(query);
 
