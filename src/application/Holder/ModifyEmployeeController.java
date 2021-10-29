@@ -6,12 +6,11 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 public class ModifyEmployeeController {
 
-    @FXML
+	@FXML
     private Button ChangeSalaryButton;
 
     @FXML
@@ -27,11 +26,31 @@ public class ModifyEmployeeController {
     private Button SearchButon;
 
     @FXML
-    private ListView<?> informationArea;
+    private TextField txContract;
 
     @FXML
+    private TextField txFiscalCode;
+
+    @FXML
+    private TextField txIDCode;
+
+    @FXML
+    private TextField txName;
+
+    @FXML
+    private TextField txSurname;
+    
+    @FXML
+    private TextField txSalary;
+
+    /*public ModifyEmployeeController(){
+    	this.txFiscalCode.setEditable(false);
+    	this.txName.setEditable(false);
+    	this.txSurname.setEditable(false);
+    }*/
+    @FXML
     void OnClickChangeSalary(ActionEvent event) {
-    	//schermata di cambio sakrio al dipendente
+    	
     }
 
     @FXML

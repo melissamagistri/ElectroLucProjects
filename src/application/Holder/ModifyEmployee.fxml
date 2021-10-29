@@ -2,9 +2,9 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Holder.ModifyEmployeeController">
@@ -20,12 +20,51 @@
       </AnchorPane>
       <AnchorPane layoutY="47.0" prefHeight="353.0" prefWidth="600.0">
          <children>
-            <ListView fx:id="informationArea" layoutX="22.0" layoutY="86.0" prefHeight="183.0" prefWidth="543.0" />
-            <Button fx:id="DismissButton" layoutX="380.0" layoutY="296.0" mnemonicParsing="false" onAction="#OnClickDismiss" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: lightskyblue;" text="Dismiss" />
-            <Button fx:id="ChangeSalaryButton" layoutX="469.0" layoutY="296.0" mnemonicParsing="false" onAction="#OnClickChangeSalary" style="-fx-background-color: lightskyblue;" text="Change Salary" />
-            <Button fx:id="GoBackButton" layoutX="22.0" layoutY="296.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
-            <TextField fx:id="SearchBar" layoutX="22.0" layoutY="27.0" prefHeight="34.0" prefWidth="469.0" />
-            <Button fx:id="SearchButon" layoutX="517.0" layoutY="31.0" mnemonicParsing="false" onAction="#OnClickSearch" style="-fx-background-color: lightskyblue;" text="Search" />
+            <Button fx:id="DismissButton" layoutX="384.0" layoutY="310.0" mnemonicParsing="false" onAction="#OnClickDismiss" prefHeight="26.0" prefWidth="69.0" style="-fx-background-color: lightskyblue;" text="Dismiss" />
+            <Button fx:id="ChangeSalaryButton" layoutX="469.0" layoutY="310.0" mnemonicParsing="false" onAction="#OnClickChangeSalary" style="-fx-background-color: lightskyblue;" text="Change Salary" />
+            <Button fx:id="GoBackButton" layoutX="22.0" layoutY="310.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
+            <TextField fx:id="SearchBar" layoutX="22.0" layoutY="27.0" prefHeight="17.0" prefWidth="343.0" />
+            <Button fx:id="SearchButon" layoutX="390.0" layoutY="27.0" mnemonicParsing="false" onAction="#OnClickSearch" style="-fx-background-color: lightskyblue;" text="Search" />
+            <VBox layoutX="22.0" layoutY="77.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+               <children>
+                  <Label text="Name">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="Surname">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="Fiscla Code">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="ID Code">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="Contract">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="Salary">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
+            <TextField fx:id="txName" layoutX="146.0" layoutY="77.0" />
+            <TextField fx:id="txSurname" layoutX="146.0" layoutY="115.0" />
+            <TextField fx:id="txFiscalCode" layoutX="146.0" layoutY="152.0" />
+            <TextField fx:id="txIDCode" layoutX="146.0" layoutY="194.0" />
+            <TextField fx:id="txContract" layoutX="146.0" layoutY="230.0" />
+            <TextField fx:id="txSalary" layoutX="146.0" layoutY="266.0" />
          </children>
       </AnchorPane>
    </children>

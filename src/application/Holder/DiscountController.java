@@ -21,9 +21,18 @@ public class DiscountController {
 
     @FXML
     private Button SearchProductButton;
+    
+    @FXML
+    private TextField txModel;
 
     @FXML
-    private ListView<?> informationArea;
+    private TextField txPrice;
+    
+    @FXML
+    private TextField txNewDiscount;
+
+    @FXML
+    private TextField txOldDiscoun;
 
     @FXML
     void OnClickApplyDiscount(ActionEvent event) throws IOException {
@@ -37,6 +46,11 @@ public class DiscountController {
 
     @FXML
     void OnClickSearchProductButton(ActionEvent event) {
+
+    }
+    
+    @FXML
+    void OnClickDeleteDiscount(ActionEvent event) {
 
     }
 

@@ -30,7 +30,7 @@ public class HolderController {
 
     @FXML
     void OnClickProducts(ActionEvent event) throws IOException {
-    	HolderMain.changeWindow("ConfirmSupplier.fxml");
+    	HolderMain.changeWindow("ProductMenu.fxml");
     }
     
     @FXML

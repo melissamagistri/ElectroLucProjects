@@ -16,5 +16,10 @@ public class SellWindowController {
     void OnClickSell(ActionEvent event) throws IOException {
     	EmployeeMain.changeWindow("ReciptWindow.fxml");
     }
+    
+    @FXML
+    void OnCLickSearch(ActionEvent event) throws IOException {
+    	
+    }
 
 }

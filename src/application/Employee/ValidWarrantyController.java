@@ -12,15 +12,6 @@ public class ValidWarrantyController {
 
     @FXML
     private Button GoBackButton;
-    
-    @FXML
-    private Button RepairProductButton;
-
-    @FXML
-    private ListView<?> ProductListView;
-
-    @FXML
-    private TextField SearchBar;
 
     @FXML
     private Button SearchProductButton;
@@ -36,10 +27,10 @@ public class ValidWarrantyController {
 
     }
     
-    @FXML
+    /*@FXML
     void OnClickRepairProduct(ActionEvent event) throws IOException {
     	EmployeeMain.changeWindow("RepairProduct.fxml");
-    }
+    }*/
 
 }
 
