@@ -31,7 +31,7 @@ public class LoginController {
     	} else {
     		DBConnection connection = new DBConnection();
     		String sql = "select * from `negozio elettronica`.employees_account where EmployeeId = '"
-    		+ this.tx_employeeId.getText() + "'" + " and Passowrd ='" + this.tx_Password.getText() + "'";
+    		+ this.tx_employeeId.getText() + "'" + " and Password ='" + this.tx_Password.getText() + "'";
     		Statement statement = connection.getMySQLConnection().createStatement();
     		ResultSet resultSet = statement.executeQuery(sql);
     		
