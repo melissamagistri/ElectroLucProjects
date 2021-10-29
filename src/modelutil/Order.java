@@ -1,6 +1,5 @@
 package modelutil;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Optional;
 
@@ -9,11 +8,19 @@ public abstract class Order {
 
 	private int orderCode;
 	private Date orderDate;
-	private BigDecimal totalAmount;
 	private Optional<String> customerEmail;
 	private Optional<Integer> employeeID;
 	private String orderType;
 	private String paymentMethod;
+	private int productID;
+
+	public int getProductID() {
+		return productID;
+	}
+
+	protected void setProductID(int productID) {
+		this.productID = productID;
+	}
 
 	public int getOrderCode() {
 		return orderCode;
@@ -29,14 +36,6 @@ public abstract class Order {
 
 	protected void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
-	}
-
-	public BigDecimal getTotalAmount() {
-		return totalAmount;
-	}
-
-	protected void setTotalAmount(BigDecimal totalAmount) {
-		this.totalAmount = totalAmount;
 	}
 
 	public Optional<String> getCustomerEmail() {

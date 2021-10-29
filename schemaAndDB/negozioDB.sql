@@ -214,32 +214,6 @@ LOCK TABLES `models` WRITE;
 /*!40000 ALTER TABLE `models` ENABLE KEYS */;
 UNLOCK TABLES;
 
---
--- Table structure for table `order_details`
---
-
-DROP TABLE IF EXISTS `order_details`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `order_details` (
-  `ProductID` int NOT NULL,
-  `OrderID` int NOT NULL,
-  `Quantity` int NOT NULL,
-  PRIMARY KEY (`OrderID`,`ProductID`),
-  KEY `FK_ProductID_idx` (`ProductID`),
-  CONSTRAINT `FK_OrderID` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`),
-  CONSTRAINT `FK_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `order_details`
---
-
-LOCK TABLES `order_details` WRITE;
-/*!40000 ALTER TABLE `order_details` DISABLE KEYS */;
-/*!40000 ALTER TABLE `order_details` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `orders`
@@ -251,7 +225,7 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `OrderID` int NOT NULL,
   `OrderDate` datetime NOT NULL,
-  `TotalAmount` decimal(10,4) NOT NULL,
+  `ProductID` int NOT NULL,
   `PaymentMethod` varchar(20) NOT NULL,
   `OrderType` varchar(10) NOT NULL,
   `EmployeeID` int DEFAULT NULL,
@@ -260,6 +234,7 @@ CREATE TABLE `orders` (
   KEY `FK_employeeID_order_idx` (`EmployeeID`),
   KEY `FK_customerEmail_idx` (`Email`),
   CONSTRAINT `FK_customerEmail` FOREIGN KEY (`Email`) REFERENCES `customers_accounts` (`Email`),
+  CONSTRAINT `FK_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`),
   CONSTRAINT `FK_employeeID_order` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
