@@ -17,16 +17,12 @@ public class DBConnection {
 		
 		Connection connection = null;
 	    try {
-	    	System.out.println("DataSource.getConnection() driver = " + DRIVER);
 	        Class.forName(DRIVER);
-	        System.out.println("DataSource.getConnection() dbUri = " + DB_URI);
 	        connection = DriverManager.getConnection(DB_URI, DB_USER_NAME, DB_PASSWORD);
 	    }catch (ClassNotFoundException e) {
-	    	new Exception(e.getMessage());
-	        System.out.println("Errore "+ e.getMessage());
+	        System.err.println("Error can't find the driver");
 	    }catch(SQLException e) {
-	    	new Exception(e.getMessage());
-	    	System.out.println("Errore "+ e.getMessage());
+	    	System.err.println("Error couldn't connect to the database");
 	    }
 	    return connection;
     }
