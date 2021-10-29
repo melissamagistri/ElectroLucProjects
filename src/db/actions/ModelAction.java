@@ -12,7 +12,7 @@ import model.Model;
 
 public class ModelAction {
 
-	public static List<Model> searchModelForName(final String modelName) throws SQLException {
+	public static List<Model> searchModelInSalesCatalog(final String modelName) throws SQLException {
 
 		DBConnection conn = new DBConnection();
 
