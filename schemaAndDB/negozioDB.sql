@@ -82,8 +82,7 @@ CREATE TABLE `customers` (
   `Fiscalcode` varchar(16) NOT NULL,
   `Phone` varchar(10) DEFAULT NULL,
   `DeliveryAddress` varchar(60) NOT NULL,
-  PRIMARY KEY (`Fiscalcode`),
-  CONSTRAINT `customers_fiscalcode_chk` CHECK ((length(`Fiscalcode`) = 16))
+  PRIMARY KEY (`Fiscalcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -109,8 +108,7 @@ CREATE TABLE `customers_accounts` (
   `Fiscalcode` varchar(16) NOT NULL,
   PRIMARY KEY (`Email`),
   KEY `Fiscalcode_idx` (`Fiscalcode`),
-  CONSTRAINT `Fiscalcode` FOREIGN KEY (`Fiscalcode`) REFERENCES `customers` (`Fiscalcode`),
-  CONSTRAINT `customers_accounts_fiscalcode_chk` CHECK ((length(`Fiscalcode`) = 16))
+  CONSTRAINT `Fiscalcode` FOREIGN KEY (`Fiscalcode`) REFERENCES `customers` (`Fiscalcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -137,8 +135,7 @@ CREATE TABLE `employees` (
   `Fiscalcode` varchar(16) NOT NULL,
   `Salary` float NOT NULL,
   PRIMARY KEY (`EmployeeID`),
-  UNIQUE KEY `Fiscalcode` (`Fiscalcode`),
-  CONSTRAINT `employees_fiscalcode_chk` CHECK ((length(`Fiscalcode`) = 16))
+  UNIQUE KEY `Fiscalcode` (`Fiscalcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
