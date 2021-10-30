@@ -6,16 +6,6 @@ import java.sql.SQLException;
 
 public class SalesCatalog {
 
-	public static void insert(final Connection conn, final int modelID) throws SQLException {
-
-		String query = "UPDATE models SET SalesCatalogMembership = true WHERE ModelID = ?";
-		PreparedStatement preparedStmt = conn.prepareStatement(query);
-		preparedStmt.setInt(1, modelID);
-
-		//execute query
-		preparedStmt.executeUpdate();
-	}
-
 	public static void remove(final Connection conn, final int modelID) throws SQLException {
 
 		String query = "UPDATE models SET SalesCatalogMembership = false WHERE ModelID = ?";

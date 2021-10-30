@@ -20,7 +20,7 @@
       </AnchorPane>
       <Button layoutX="189.0" layoutY="158.0" mnemonicParsing="false" onAction="#OnClickAddProduct" style="-fx-background-color: lightskyblue;" text="Add Product" />
       <Button layoutX="189.0" layoutY="258.0" mnemonicParsing="false" onAction="#OnClickRemoveproduct" style="-fx-background-color: lightskyblue;" text="Remove Product" />
-      <Label layoutX="189.0" layoutY="88.0" text="Chosse an action to complete">
+      <Label layoutX="189.0" layoutY="88.0" text="Choose an action to complete">
          <font>
             <Font size="18.0" />
          </font>
