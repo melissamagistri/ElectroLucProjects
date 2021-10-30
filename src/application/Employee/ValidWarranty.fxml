@@ -9,7 +9,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Employee.ValidWarrantyController">
    <children>
-      <TextField fx:id="SearchBar" layoutX="125.0" layoutY="72.0" prefHeight="26.0" prefWidth="155.0" />
+      <TextField fx:id="ProductIDTextBar" layoutX="125.0" layoutY="72.0" prefHeight="26.0" prefWidth="155.0" />
       <Button fx:id="SearchProductButton" layoutX="515.0" layoutY="73.0" mnemonicParsing="false" onAction="#OnClickSearchProduct" style="-fx-background-color: lightskyblue;" text="Search" />
       <Button fx:id="GoBackButton" layoutX="40.0" layoutY="351.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
       <AnchorPane layoutX="1.0" prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: orange;">
@@ -21,12 +21,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label layoutX="20.0" layoutY="170.0" prefHeight="114.0" prefWidth="560.0">
+      <Label fx:id="resultLabel" layoutX="20.0" layoutY="170.0" prefHeight="114.0" prefWidth="560.0">
          <font>
             <Font size="25.0" />
          </font>
       </Label>
-      <TextField layoutX="125.0" layoutY="110.0" prefHeight="25.0" prefWidth="155.0" />
+      <TextField fx:id="ReceiptIDTextBar" layoutX="125.0" layoutY="110.0" prefHeight="25.0" prefWidth="155.0" />
       <Label layoutX="40.0" layoutY="75.0" text="Product">
          <font>
             <Font size="15.0" />

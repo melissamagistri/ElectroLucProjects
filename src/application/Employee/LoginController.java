@@ -1,10 +1,10 @@
 package application.Employee;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import application.Customer.CustomerMain;
 import db.connection.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,21 +22,36 @@ public class LoginController {
 
     @FXML
     void OnClickLogin(ActionEvent event) throws IOException, SQLException {
+    	Alert alert;
+    	Connection connection;
+
+    	//controllo connesione con il database
+    	try {
+    		connection = new DBConnection().getMySQLConnection().get();
+    	} catch (ClassNotFoundException e) {
+			alert = new Alert(AlertType.ERROR, "Error: Driver not found");
+    		alert.show();
+    		return;
+		} catch (SQLException e) {
+			alert = new Alert(AlertType.ERROR, "Error: unable to connect with the database");
+    		alert.show();
+    		return;
+		}
+
     	if(this.tx_employeeId.getText().equals("")) {
-    		Alert alert = new Alert(AlertType.ERROR,"You need to insert your personal code");
+    		alert = new Alert(AlertType.ERROR,"You need to insert your personal code");
     		alert.show();
     	} else if(this.tx_Password.getText().equals("")){
-    		Alert alert = new Alert(AlertType.ERROR, "You need to insert your password");
+    		alert = new Alert(AlertType.ERROR, "You need to insert your password");
     		alert.show();
     	} else {
-    		DBConnection connection = new DBConnection();
     		String sql = "select * from `negozio elettronica`.employees_account where EmployeeId = '"
     		+ this.tx_employeeId.getText() + "'" + " and Password ='" + this.tx_Password.getText() + "'";
-    		Statement statement = connection.getMySQLConnection().createStatement();
+    		Statement statement = connection.createStatement();
     		ResultSet resultSet = statement.executeQuery(sql);
     		
     		if(!resultSet.isBeforeFirst()) {
-    			Alert alert = new Alert(AlertType.ERROR, "Your credential are wrong");
+    			alert = new Alert(AlertType.ERROR, "Your credential are wrong");
         		alert.show();
     		} else {
     			EmployeeMain.changeWindow("EmployeeWindow.fxml");

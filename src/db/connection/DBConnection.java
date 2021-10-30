@@ -1,6 +1,7 @@
 package db.connection;
 
 import java.sql.*;
+import java.util.Optional;
 
 public class DBConnection {
     
@@ -13,17 +14,9 @@ public class DBConnection {
 	final String DB_USER_NAME = "root";
 	final String DB_PASSWORD = "LucCarino2000@";
 
-	public Connection getMySQLConnection()  {
-		
-		Connection connection = null;
-	    try {
-	        Class.forName(DRIVER);
-	        connection = DriverManager.getConnection(DB_URI, DB_USER_NAME, DB_PASSWORD);
-	    }catch (ClassNotFoundException e) {
-	        System.err.println("Error can't find the driver");
-	    }catch(SQLException e) {
-	    	System.err.println("Error couldn't connect to the database");
-	    }
+	public Optional<Connection> getMySQLConnection() throws ClassNotFoundException, SQLException  {
+	    Class.forName(DRIVER);
+	    Optional<Connection> connection = Optional.ofNullable(DriverManager.getConnection(DB_URI, DB_USER_NAME, DB_PASSWORD));
 	    return connection;
     }
 }
