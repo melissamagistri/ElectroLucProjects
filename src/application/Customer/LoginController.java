@@ -61,7 +61,7 @@ public class LoginController {
     }
 
     @FXML
-    void OnClickSignIn(ActionEvent event) throws IOException {
+    void OnClickSignUp(ActionEvent event) throws IOException {
     	CustomerMain.changeWindow("Register.fxml");
     }
 
