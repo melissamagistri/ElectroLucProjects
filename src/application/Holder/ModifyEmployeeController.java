@@ -2,6 +2,7 @@ package application.Holder;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,7 +28,7 @@ public class ModifyEmployeeController {
     private TextField SearchBar;
 
     @FXML
-    private Button SearchButon;
+    private Button SelectButton;
 
     @FXML
     private TextField txContract;
@@ -47,11 +48,6 @@ public class ModifyEmployeeController {
     @FXML
     private TextField txSalary;
 
-    /*public ModifyEmployeeController(){
-    	this.txFiscalCode.setEditable(false);
-    	this.txName.setEditable(false);
-    	this.txSurname.setEditable(false);
-    }*/
     @FXML
     void OnClickChangeSalary(ActionEvent event) throws IOException {
     	HolderMain.changeWindow("ChangeSalary.fxml");
@@ -59,7 +55,7 @@ public class ModifyEmployeeController {
 
     @FXML
     void OnClickDismiss(ActionEvent event) throws SQLException {
-    	/*Connection connection;
+    	Connection connection;
     	try {
 			connection = new DBConnection().getMySQLConnection().get();
 		} catch (ClassNotFoundException | SQLException e) {
@@ -67,11 +63,11 @@ public class ModifyEmployeeController {
 			return;
 		}
     	
-    	String sql= "Delete from `negozio elettronica`.employees "
-    				+ "where EmployeeID =" + this.txIDCode.getText();
+    	String sql= "Delete from `negozio elettronica`.employees_account "
+    				+ "where EmployeeID = '" + this.txIDCode.getText() + "'";
     	
     	Statement statement = connection.createStatement();
-		statement.executeQuery(sql);*/
+		statement.execute(sql);
     }
 
     @FXML
@@ -80,8 +76,13 @@ public class ModifyEmployeeController {
     }
 
     @FXML
-    void OnClickSearch(ActionEvent event) {
+    void OnClickSelect(ActionEvent event) {
 
+    }
+    
+    @FXML
+    void OnClickViewEmployees(ActionEvent event) throws IOException {
+    	HolderMain.changeWindow("ViewEmployees.fxml");
     }
 
 }

@@ -24,7 +24,7 @@
             <Button fx:id="ChangeSalaryButton" layoutX="469.0" layoutY="310.0" mnemonicParsing="false" onAction="#OnClickChangeSalary" style="-fx-background-color: lightskyblue;" text="Change Salary" />
             <Button fx:id="GoBackButton" layoutX="22.0" layoutY="310.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
             <TextField fx:id="SearchBar" layoutX="22.0" layoutY="27.0" prefHeight="17.0" prefWidth="343.0" />
-            <Button fx:id="SearchButon" layoutX="390.0" layoutY="27.0" mnemonicParsing="false" onAction="#OnClickSearch" style="-fx-background-color: lightskyblue;" text="Search" />
+            <Button fx:id="SelectButon" layoutX="390.0" layoutY="27.0" mnemonicParsing="false" onAction="#OnClickSelect" style="-fx-background-color: lightskyblue;" text="Select" />
             <VBox layoutX="22.0" layoutY="77.0" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
                <children>
                   <Label text="Name">
@@ -37,7 +37,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label text="Fiscla Code">
+                  <Label text="Fiscal ICode">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -59,12 +59,13 @@
                   </Label>
                </children>
             </VBox>
-            <TextField fx:id="txName" layoutX="146.0" layoutY="77.0" />
-            <TextField fx:id="txSurname" layoutX="146.0" layoutY="115.0" />
-            <TextField fx:id="txFiscalCode" layoutX="146.0" layoutY="152.0" />
-            <TextField fx:id="txIDCode" layoutX="146.0" layoutY="194.0" />
-            <TextField fx:id="txContract" layoutX="146.0" layoutY="230.0" />
-            <TextField fx:id="txSalary" layoutX="146.0" layoutY="266.0" />
+            <TextField fx:id="txName" editable="false" layoutX="146.0" layoutY="77.0" />
+            <TextField fx:id="txSurname" editable="false" layoutX="146.0" layoutY="115.0" />
+            <TextField fx:id="txFiscalCode" editable="false" layoutX="146.0" layoutY="152.0" />
+            <TextField fx:id="txIDCode" editable="false" layoutX="146.0" layoutY="194.0" />
+            <TextField fx:id="txContract" editable="false" layoutX="146.0" layoutY="230.0" />
+            <TextField fx:id="txSalary" editable="false" layoutX="146.0" layoutY="266.0" />
+            <Button layoutX="456.0" layoutY="27.0" mnemonicParsing="false" onAction="#OnClickViewEmployees" style="-fx-background-color: lightskyblue;" text="View All Employees" />
          </children>
       </AnchorPane>
    </children>
