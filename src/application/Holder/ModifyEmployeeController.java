@@ -1,8 +1,12 @@
 package application.Holder;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-
+import db.connection.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -49,13 +53,25 @@ public class ModifyEmployeeController {
     	this.txSurname.setEditable(false);
     }*/
     @FXML
-    void OnClickChangeSalary(ActionEvent event) {
-    	
+    void OnClickChangeSalary(ActionEvent event) throws IOException {
+    	HolderMain.changeWindow("ChangeSalary.fxml");
     }
 
     @FXML
-    void OnClickDismiss(ActionEvent event) {
-
+    void OnClickDismiss(ActionEvent event) throws SQLException {
+    	/*Connection connection;
+    	try {
+			connection = new DBConnection().getMySQLConnection().get();
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println("there was a problem with the db connection");
+			return;
+		}
+    	
+    	String sql= "Delete from `negozio elettronica`.employees "
+    				+ "where EmployeeID =" + this.txIDCode.getText();
+    	
+    	Statement statement = connection.createStatement();
+		statement.executeQuery(sql);*/
     }
 
     @FXML
