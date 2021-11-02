@@ -48,6 +48,12 @@ public class DiscountController {
     void OnClickApplyDiscount(ActionEvent event) throws IOException {
     	Alert alert;
     	Connection conn;
+
+    	if(SearchBar.getText().isBlank()) {
+			alert = new Alert(AlertType.ERROR, "You must insert the model id before apllying a discount");
+			alert.show();
+			return;
+    	}
     	try {
     		conn = new DBConnection().getMySQLConnection().get();
     	} catch (ClassNotFoundException e) {
@@ -59,12 +65,6 @@ public class DiscountController {
     		alert.show();
     		return;
 		}
-
-    	if(SearchBar.getText().isBlank()) {
-			alert = new Alert(AlertType.ERROR, "You must insert the model id before apllying a discount");
-			alert.show();
-			return;
-    	}
 		if(!CheckInteger.isNumeric(txNewDiscount.getText()) && !txNewDiscount.getText().isBlank()) {
     		alert = new Alert(AlertType.ERROR, "Discount must be an integer number");
     		alert.show();
@@ -93,6 +93,16 @@ public class DiscountController {
     void OnClickSearchProductButton(ActionEvent event) {
     	Alert alert;
     	Connection conn;
+    	if(SearchBar.getText().isBlank()) {
+    		alert = new Alert(AlertType.ERROR, "the search text field cannot be empty");
+    		alert.show();
+    		return;
+    	}
+    	if(!CheckInteger.isNumeric(SearchBar.getText())) {
+    		alert = new Alert(AlertType.ERROR, "model id must be an integer number");
+    		alert.show();
+    		return;
+    	}
     	try {
     		conn = new DBConnection().getMySQLConnection().get();
     	} catch (ClassNotFoundException e) {
@@ -104,17 +114,6 @@ public class DiscountController {
     		alert.show();
     		return;
 		}
-
-    	if(SearchBar.getText().isBlank()) {
-    		alert = new Alert(AlertType.ERROR, "the search text field cannot be empty");
-    		alert.show();
-    		return;
-    	}
-    	if(!CheckInteger.isNumeric(SearchBar.getText())) {
-    		alert = new Alert(AlertType.ERROR, "model id must be an integer number");
-    		alert.show();
-    		return;
-    	}
     	try {
 			Optional<Model> model = this.search(conn, Integer.valueOf(SearchBar.getText()));
 			if(model.isEmpty()) {

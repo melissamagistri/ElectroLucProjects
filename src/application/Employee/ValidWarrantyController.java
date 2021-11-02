@@ -79,10 +79,7 @@ public class ValidWarrantyController {
     		resultLabel.setText(this.isInWarranty(conn, Integer.valueOf(ReceiptIDTextBar.getText()),
     				Integer.valueOf(ProductIDTextBar.getText()))? resultTrue : resultFalse);
 
-		} catch (SQLException e) {
-			alert = new Alert(AlertType.ERROR, e.getMessage());
-    		alert.show();
-		}
+		} catch (SQLException e) {}
     }
     
     /*@FXML

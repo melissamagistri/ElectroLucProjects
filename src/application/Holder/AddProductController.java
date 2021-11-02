@@ -40,6 +40,11 @@ public class AddProductController {
     void OnClickAddButton(ActionEvent event) {
     	Alert alert;
     	Connection conn;
+    	if(!CheckInteger.isNumeric(ModelTextField.getText())) {
+    		alert = new Alert(AlertType.ERROR, "Error: model's id must be an integer number");
+    		alert.show();
+    		return;
+    	}
     	try {
     		conn = new DBConnection().getMySQLConnection().get();
     	} catch (ClassNotFoundException e) {
@@ -51,11 +56,6 @@ public class AddProductController {
     		alert.show();
     		return;
 		}
-    	if(!CheckInteger.isNumeric(ModelTextField.getText())) {
-    		alert = new Alert(AlertType.ERROR, "Error: model's id must be an integer number");
-    		alert.show();
-    		return;
-    	}
 
 
     	//insert the queries to add the model to the database
