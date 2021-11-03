@@ -5,10 +5,10 @@ import modelutil.Person;
 public class Employee extends Person{
 
 	private final int employeeID;
-	private final float salary;
+	private final double salary;
 
 	public Employee(final String firstName, final String secondName, final String ficalCode,
-			final int employeeID, final int salary) {
+			final int employeeID, final double salary) {
 		this.setFirstName(firstName);
 		this.setSecondName(secondName);
 		this.setFiscalCode(ficalCode);
@@ -20,7 +20,7 @@ public class Employee extends Person{
 		return employeeID;
 	}
 
-	public float getSalary() {
+	public double getSalary() {
 		return salary;
 	}
 
