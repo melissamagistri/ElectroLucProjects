@@ -7,14 +7,14 @@ public class Contract {
 
 	private final String contractType;
 	private final Date hireDate;
-	private final Optional<Date> firedDate;
+	private final Optional<Date> endDate;
 	private final int employeeID;
 
-	private Contract(final String contractType, final Date hireDate, final Optional<Date> firedDate, 
+	private Contract(final String contractType, final Date hireDate, final Optional<Date> endDate, 
 			final int employeeID) {
 		this.contractType = contractType;
 		this.hireDate = hireDate;
-		this.firedDate = firedDate;
+		this.endDate = endDate;
 		this.employeeID = employeeID;
 	}
 
@@ -23,9 +23,9 @@ public class Contract {
 		this(contractType, hireDate, Optional.empty(), employeeID);
 	}
 
-	public Contract(final String contractType, final Date hireDate, final Date firedDate,
+	public Contract(final String contractType, final Date hireDate, final Date endDate,
 			final int employeeID) {
-		this(contractType, hireDate, Optional.of(firedDate), employeeID);
+		this(contractType, hireDate, Optional.of(endDate), employeeID);
 	}
 
 	public String getContractType() {
@@ -36,8 +36,8 @@ public class Contract {
 		return hireDate;
 	}
 
-	public Optional<Date> getFiredDate() {
-		return firedDate;
+	public Optional<Date> getEndDate() {
+		return endDate;
 	}
 
 	public int getEmployeeID() {

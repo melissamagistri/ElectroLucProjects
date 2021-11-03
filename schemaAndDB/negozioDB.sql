@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `contract`;
 CREATE TABLE `contract` (
   `EmployeeID` int NOT NULL,
   `HireDate` datetime NOT NULL,
-  `FiredDate` datetime DEFAULT NULL,
+  `EndDate` datetime DEFAULT NULL,
   `ContractType` varchar(60) NOT NULL,
   PRIMARY KEY (`EmployeeID`,`HireDate`),
   KEY `ContractType_idx` (`ContractType`),
