@@ -2,8 +2,6 @@ package application.Holder;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -68,6 +66,12 @@ public class ModifyEmployeeController {
     	
     	Statement statement = connection.createStatement();
 		statement.execute(sql);
+		
+		String deletesql= "Delete from `negozio elettronica`.employees"
+				+ "where EmployeeID = '" + this.txIDCode.getText() + "'";
+	
+		Statement deletestatement = connection.createStatement();
+		deletestatement.execute(deletesql);
     }
 
     @FXML
@@ -77,7 +81,7 @@ public class ModifyEmployeeController {
 
     @FXML
     void OnClickSelect(ActionEvent event) {
-
+    	
     }
     
     @FXML

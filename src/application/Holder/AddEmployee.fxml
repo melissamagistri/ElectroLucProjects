@@ -59,13 +59,13 @@
                   </Label>
                </children>
             </VBox>
-            <CheckBox layoutX="391.0" layoutY="191.0" mnemonicParsing="false" onAction="#OnClickRandomPassword" text="Generate Random Password" />
-            <TextField layoutX="207.0" layoutY="18.0" />
-            <TextField layoutX="207.0" layoutY="59.0" />
-            <TextField layoutX="207.0" layoutY="102.0" />
-            <TextField layoutX="207.0" layoutY="143.0" />
-            <TextField layoutX="207.0" layoutY="188.0" />
-            <ChoiceBox layoutX="207.0" layoutY="234.0" prefHeight="25.0" prefWidth="161.0" />
+            <CheckBox fx:id="checkBox" layoutX="391.0" layoutY="191.0" mnemonicParsing="false" onAction="#OnClickRandomPassword" text="Generate Random Password" />
+            <TextField fx:id="NameTextField" layoutX="207.0" layoutY="18.0" />
+            <TextField fx:id="SurnameTextField" layoutX="207.0" layoutY="59.0" />
+            <TextField fx:id="FiscalCodeTextField" layoutX="207.0" layoutY="102.0" />
+            <TextField fx:id="CodeTextField" layoutX="207.0" layoutY="143.0" />
+            <TextField fx:id="PasswordTextField" layoutX="207.0" layoutY="188.0" />
+            <ChoiceBox fx:id="ChoiceBox" layoutX="207.0" layoutY="234.0" prefHeight="25.0" prefWidth="161.0" />
          </children>
       </AnchorPane>
    </children>
