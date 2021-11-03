@@ -20,8 +20,7 @@ public class HolderMain extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		HolderMain.primaryStage = primaryStage;
 		HolderMain.primaryStage.setTitle("ElectroLuc ShopOnline");
-		HolderMain.changeWindow("Holder.fxml");
-		
+		HolderMain.changeWindow("HolderLogin.fxml");
 	}
 	
 	//the method to change the window

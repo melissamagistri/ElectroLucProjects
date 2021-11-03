@@ -55,6 +55,7 @@ public class LoginController {
     			alert = new Alert(AlertType.ERROR, "Your credential are wrong");
         		alert.show();
     		} else {
+    			CustomerMain.CustomerEmail = this.tx_email.getText();
     			CustomerMain.changeWindow("ClientWindow.fxml");
     		}	
     	}

@@ -13,6 +13,8 @@ public class CustomerMain extends Application {
 	
 	private static Stage primaryStage;
 	
+	public static String CustomerEmail;
+	
 	public static void main(String[] arg) {
 		Application.launch(arg);
 	}
