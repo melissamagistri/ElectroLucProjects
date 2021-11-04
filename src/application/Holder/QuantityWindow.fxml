@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Holder.QuantityWindowController">
    <children>
       <AnchorPane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: orange;">
@@ -21,18 +20,18 @@
             </Label>
          </children>
       </AnchorPane>
-      <TextField layoutX="37.0" layoutY="68.0" prefHeight="26.0" prefWidth="372.0" />
-      <Button fx:id="SearchProductButton" layoutX="453.0" layoutY="68.0" mnemonicParsing="false" onAction="#OnClickSearchProduct" style="-fx-background-color: lightskyblue;" text="Search Product" />
+      <TextField fx:id="txSearchModel" layoutX="37.0" layoutY="68.0" prefHeight="26.0" prefWidth="372.0" />
+      <Button fx:id="SearchProductButton" layoutX="453.0" layoutY="68.0" mnemonicParsing="false" onAction="#OnClickSearchProduct" style="-fx-background-color: lightskyblue;" text="Search Model" />
       <Button fx:id="GoBackButton" layoutX="37.0" layoutY="360.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
-      <TableView layoutX="37.0" layoutY="150.0" prefHeight="196.0" prefWidth="372.0">
+      <TableView fx:id="tableview" layoutX="37.0" layoutY="150.0" prefHeight="196.0" prefWidth="372.0">
         <columns>
-          <TableColumn prefWidth="122.0" text="Code" />
-            <TableColumn prefWidth="123.0" text="Model" />
-          <TableColumn prefWidth="126.0" text="Quantity" />
+          <TableColumn fx:id="codecolumn" prefWidth="122.0" text="Code" />
+            <TableColumn fx:id="modelcolumn" prefWidth="123.0" text="Model" />
+          <TableColumn fx:id="quantitycolumn" prefWidth="126.0" text="Quantity" />
         </columns>
       </TableView>
       <Button fx:id="SearchQuantity" layoutX="451.0" layoutY="106.0" mnemonicParsing="false" onAction="#OnClickSearchQuantity" style="-fx-background-color: lightskyblue;" text="Search Quantity" />
-      <TextField layoutX="37.0" layoutY="106.0" prefHeight="26.0" prefWidth="372.0" />
+      <TextField fx:id="txSearchQuantity" layoutX="37.0" layoutY="106.0" prefHeight="26.0" prefWidth="372.0" />
       <Button fx:id="UpdateButton" layoutX="462.0" layoutY="360.0" mnemonicParsing="false" onAction="#OnClickUpdate" style="-fx-background-color: lightskyblue;" text="Update Unit" />
    </children>
 </Pane>

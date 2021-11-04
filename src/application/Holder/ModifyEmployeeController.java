@@ -2,6 +2,7 @@ package application.Holder;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -69,11 +70,18 @@ public class ModifyEmployeeController {
     	Statement statement = connection.createStatement();
 		statement.execute(sql);
 		
-		String deletesql= "Delete from `negozio elettronica`.employees"
+		sql= "Delete from `negozio elettronica`.contract "
 				+ "where EmployeeID = '" + this.txIDCode.getText() + "'";
 	
-		Statement deletestatement = connection.createStatement();
-		deletestatement.execute(deletesql);
+		statement.execute(sql);
+		
+		sql= "Delete from `negozio elettronica`.employees "
+				+ "where EmployeeID = '" + this.txIDCode.getText() + "'";
+	
+		statement.execute(sql);
+		
+		Alert alert = new Alert(AlertType.INFORMATION, "The Employee was dismiss");
+		alert.show();
     }
 
     @FXML
@@ -82,10 +90,6 @@ public class ModifyEmployeeController {
     }
 
     @FXML
-<<<<<<< HEAD
-    void OnClickSelect(ActionEvent event) {
-    	
-=======
     void OnClickSelect(ActionEvent event) throws SQLException {
     	Connection connection;
     	try {
@@ -121,7 +125,6 @@ public class ModifyEmployeeController {
         		this.txContract.setText(resultSet.getString("ContractType"));
     		}
     	}
->>>>>>> 71e05401fb31f1edf1620da897207abdf97b2230
     }
     
     @FXML
