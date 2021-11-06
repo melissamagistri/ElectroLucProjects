@@ -56,7 +56,8 @@ public class ViewEmployeesController implements Initializable {
 		String sql = "SELECT FirstName, LastName, Fiscalcode, c.EmployeeID, Salary "+ 
 				"FROM `negozio elettronica`.contract c " +
 				"join `negozio elettronica`.employees e on (c.EmployeeID = e.EmployeeID) " +
-				"where EndDate > CURDATE()";
+				"where EndDate > CURDATE() " + 
+				"or EndDate is NULL";
 		ObservableList<Employee> list = FXCollections.observableArrayList();
 		
 		try {
