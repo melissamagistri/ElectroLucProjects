@@ -95,12 +95,6 @@ public class AddProductController {
 		  Alert alert1 = new Alert(AlertType.INFORMATION, "Insert corretly a new supplier"); 
 		  alert1.show(); 
 
-    	try {
-			this.insertInSalesCatalog(conn, Integer.valueOf(ModelIDTextField.getText()));
-		} catch (SQLException e) {
-			alert = new Alert(AlertType.ERROR, "Error: " +e.getMessage());
-    		alert.show();
-		}
     }
 
     @FXML
