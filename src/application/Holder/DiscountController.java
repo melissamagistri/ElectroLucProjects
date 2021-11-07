@@ -195,15 +195,12 @@ public class DiscountController {
 
 		// iterate through the java resultset
 		if (rs.next()) {
-			image = Optional.ofNullable(rs.getBlob("ModelImage"));
 		    discount = Optional.ofNullable(rs.getInt("Discount"));
 		    sales = (rs.getInt("SalesCatalogMembership")==1) ? true : false;
 
 		    return Optional.of(new Model(rs.getInt("ModelID"), rs.getString("ModelName"), rs.getString("Brand"),
-		    	rs.getString("Description"), image, rs.getBigDecimal("UnitPrice"),
-		    	discount, rs.getInt("UnitInStock"), rs.getInt("MaxQuantytyPerOrder"), 
-		    	rs.getString("Category"), rs.getString("Shelf"), rs.getString("Lane"), 
-		    	rs.getString("Compartment"), sales));
+		    	rs.getString("Description"), rs.getBigDecimal("UnitPrice"),
+		    	discount, rs.getInt("UnitInStock"),	rs.getString("Category"), sales));
 		}
 		return Optional.empty();
 	}
