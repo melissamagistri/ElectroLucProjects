@@ -15,10 +15,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+<<<<<<< HEAD
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Employee;
 import model.OrderTable;
+=======
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+>>>>>>> b9c34998449ff5903005f040e11f2acd789bcd50
 
 public class OrdersWindowController {
 
@@ -26,10 +31,23 @@ public class OrdersWindowController {
     private Button GoBackButton;
 
     @FXML
-    private Button OrderStateButton;
+    private TableColumn<?, ?> dateColumn;
 
     @FXML
+<<<<<<< HEAD
     private ListView<OrderTable> OrdersListView;
+=======
+    private TableColumn<?, ?> modelNameColumn;
+
+    @FXML
+    private TableColumn<?, ?> orderIDcolumn;
+
+    @FXML
+    private TableColumn<?, ?> priceColumn;
+
+    @FXML
+    private TableView<?> tableView;
+>>>>>>> b9c34998449ff5903005f040e11f2acd789bcd50
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
     	CustomerMain.changeWindow("ClientWindow.fxml");
