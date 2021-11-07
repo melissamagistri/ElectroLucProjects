@@ -188,9 +188,9 @@ CREATE TABLE `models` (
   `UnitPrice` decimal(10,4) NOT NULL,
   `Discount` int DEFAULT NULL,
   `UnitInStock` int NOT NULL,
-  `SalesCatalogMembership` tinyint(1) NOT NULL,
+  `InSale` tinyint(1) NOT NULL,
   PRIMARY KEY (`ModelID`),
-  CONSTRAINT `models_chk_1` CHECK ((`SalesCatalogMembership` <= 1))
+  CONSTRAINT `models_chk_1` CHECK ((`InSale` <= 1))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
