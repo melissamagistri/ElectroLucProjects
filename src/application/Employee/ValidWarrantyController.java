@@ -41,17 +41,17 @@ public class ValidWarrantyController {
     void OnClickSearchProduct(ActionEvent event) {
     	Alert alert;
     	if(!CheckInteger.isNumeric(ProductIDTextBar.getText()) || !CheckInteger.isNumeric(ReceiptIDTextBar.getText())) {
-    		alert = new Alert(AlertType.ERROR, "ProductID and ReceiptID must both be integer");
+    		alert = new Alert(AlertType.ERROR, "ModelID and ReceiptID must both be integer");
     		alert.show();
     		return;
     	}
     	if(ProductIDTextBar.getText().isBlank() && ReceiptIDTextBar.getText().isBlank()) {
-    		alert = new Alert(AlertType.ERROR, "ProductID and ReceiptID must both be defined");
+    		alert = new Alert(AlertType.ERROR, "ModelID and ReceiptID must both be defined");
     		alert.show();
     		return;
     	}
     	if(ProductIDTextBar.getText().isBlank()) {
-    		alert = new Alert(AlertType.ERROR, "ProductID must be defined");
+    		alert = new Alert(AlertType.ERROR, "ModelID must be defined");
     		alert.show();
     		return;
     	}
@@ -88,14 +88,14 @@ public class ValidWarrantyController {
     }*/
 
 
-    private Boolean isInWarranty(final Connection conn, final int receiptID, final int productID) throws SQLException {
+    private Boolean isInWarranty(final Connection conn, final int receiptID, final int modelID) throws SQLException {
 
 		String query = "SELECT *"
 				+ "	FROM orders o, receipts r"
 				+ "	WHERE r.ReceiptID = " +receiptID
 				+ "	AND TIMESTAMPDIFF(YEAR, now(), o.OrderDate) <= 2"
 				+ "	AND r.OrderID = o.OrderID"
-				+ "	AND o.ProductID = " +productID +";";
+				+ "	AND o.ModelID = " +modelID +";";
 		
 		PreparedStatement preparedStmt = conn.prepareStatement(query);
 

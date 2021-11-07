@@ -12,14 +12,14 @@ public abstract class Order {
 	private Optional<Integer> employeeID;
 	private String orderType;
 	private String paymentMethod;
-	private int productID;
+	private int modelID;
 
-	public int getProductID() {
-		return productID;
+	public int getModelID() {
+		return modelID;
 	}
 
-	protected void setProductID(int productID) {
-		this.productID = productID;
+	protected void setModelID(int modelID) {
+		this.modelID = modelID;
 	}
 
 	public int getOrderCode() {

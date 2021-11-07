@@ -213,7 +213,7 @@ DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
   `OrderID` int NOT NULL,
   `OrderDate` datetime NOT NULL,
-  `ProductID` int NOT NULL,
+  `ModelID` int NOT NULL,
   `PaymentMethod` varchar(20) NOT NULL,
   `OrderType` varchar(10) NOT NULL,
   `EmployeeID` int DEFAULT NULL,
@@ -224,7 +224,7 @@ CREATE TABLE `orders` (
   KEY `FK_customerEmail_idx` (`Email`),
   CONSTRAINT `FK_customerEmail` FOREIGN KEY (`Email`) REFERENCES `customers_accounts` (`Email`),
   CONSTRAINT `FK_employeeID_order` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`),
-  CONSTRAINT `FK_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`)
+  CONSTRAINT `FK_order_ModelID` FOREIGN KEY (`ModelID`) REFERENCES `models` (`ModelID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -244,23 +244,7 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `products` (
-  `ProductID` int NOT NULL,
-  `ModelID` int NOT NULL,
-  PRIMARY KEY (`ProductID`),
-  KEY `ModelID_idx` (`ModelID`),
-  CONSTRAINT `ModelID` FOREIGN KEY (`ModelID`) REFERENCES `models` (`ModelID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `products`
---
-
-LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `purchase_invoices`

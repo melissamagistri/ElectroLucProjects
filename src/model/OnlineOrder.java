@@ -7,11 +7,11 @@ import modelutil.Order;
 
 public class OnlineOrder extends Order {
 
-	public OnlineOrder(final int orderID, final Date orderDate, final int productID, final String paymentMethod,
+	public OnlineOrder(final int orderID, final Date orderDate, final int modelID, final String paymentMethod,
 			final String customerEmail) {
 		this.setOrderCode(orderID);
 		this.setOrderDate(orderDate);
-		this.setProductID(productID);
+		this.setModelID(modelID);
 		this.setPaymentMethod(paymentMethod);
 		this.setCustomerEmail(Optional.of(customerEmail));
 		this.setOrderType("OnlineOrder");
