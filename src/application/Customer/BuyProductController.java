@@ -1,7 +1,6 @@
 package application.Customer;
 
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -79,27 +78,23 @@ public class BuyProductController {
     private List<Model> searchModelInSalesCatalog(final Connection conn, final String modelName) throws SQLException {
 
 		List<Model> res = new ArrayList<>();
-		String query = "SELECT * FROM models WHERE ModelName = " +modelName +" AND SalesCatalogMembership = true";
+		String query = "SELECT * FROM models WHERE ModelName = '" +modelName +"' AND SalesCatalogMembership = true";
 		PreparedStatement preparedStmt = conn.prepareStatement(query);
 
 		// execute the query, and get a java resultset
 		ResultSet rs = preparedStmt.executeQuery(query);
 
-		Optional<Blob> image = Optional.empty();
 		Optional<Integer> discount = Optional.empty();
 		Boolean sales;
 
 		// iterate through the java resultset
 		while (rs.next()) {
-			image = Optional.ofNullable(rs.getBlob("ModelImage"));
 		    discount = Optional.ofNullable(rs.getInt("Discount"));
 		    sales = (rs.getInt("SalesCatalogMembership")==1) ? true : false;
 
 		    res.add(new Model(rs.getInt("ModelID"), rs.getString("ModelName"), rs.getString("Brand"),
-		    		rs.getString("Description"), image, rs.getBigDecimal("UnitPrice"),
-		    		discount, rs.getInt("UnitInStock"), rs.getInt("MaxQuantytyPerOrder"), 
-		    		rs.getString("Category"), rs.getString("Shelf"), rs.getString("Lane"), 
-		    		rs.getString("Compartment"), sales));
+		    		rs.getString("Description"), rs.getBigDecimal("UnitPrice"),
+		    		discount, rs.getInt("UnitInStock"),	rs.getString("Category"), sales));
 		}
 		return res;
 	}

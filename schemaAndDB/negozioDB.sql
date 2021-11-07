@@ -185,22 +185,11 @@ CREATE TABLE `models` (
   `Brand` varchar(30) NOT NULL,
   `Description` varchar(100) NOT NULL,
   `Category` varchar(15) NOT NULL,
-  `ModelImage` longblob,
   `UnitPrice` decimal(10,4) NOT NULL,
   `Discount` int DEFAULT NULL,
   `UnitInStock` int NOT NULL,
-  `MaxQuantytyPerOrder` int NOT NULL,
   `SalesCatalogMembership` tinyint(1) NOT NULL,
-  `Shelf` varchar(10) NOT NULL,
-  `Lane` varchar(10) NOT NULL,
-  `Compartment` varchar(10) NOT NULL,
   PRIMARY KEY (`ModelID`),
-  KEY `FK_warehouseShelf_idx` (`Shelf`),
-  KEY `FK_warehouseCompartment_idx` (`Compartment`),
-  KEY `FK_warehouseLane_idx` (`Lane`),
-  CONSTRAINT `FK_warehouseCompartment` FOREIGN KEY (`Compartment`) REFERENCES `warehouse` (`Compartment`),
-  CONSTRAINT `FK_warehouseLane` FOREIGN KEY (`Lane`) REFERENCES `warehouse` (`Lane`),
-  CONSTRAINT `FK_warehouseShelf` FOREIGN KEY (`Shelf`) REFERENCES `warehouse` (`Shelf`),
   CONSTRAINT `models_chk_1` CHECK ((`SalesCatalogMembership` <= 1))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -213,7 +202,6 @@ LOCK TABLES `models` WRITE;
 /*!40000 ALTER TABLE `models` DISABLE KEYS */;
 /*!40000 ALTER TABLE `models` ENABLE KEYS */;
 UNLOCK TABLES;
-
 
 --
 -- Table structure for table `orders`
@@ -230,13 +218,13 @@ CREATE TABLE `orders` (
   `OrderType` varchar(10) NOT NULL,
   `EmployeeID` int DEFAULT NULL,
   `Email` varchar(150) DEFAULT NULL,
-  PRIMARY KEY (`OrderID`),  
+  PRIMARY KEY (`OrderID`),
   UNIQUE KEY `ProductID` (`ProductID`),
   KEY `FK_employeeID_order_idx` (`EmployeeID`),
   KEY `FK_customerEmail_idx` (`Email`),
   CONSTRAINT `FK_customerEmail` FOREIGN KEY (`Email`) REFERENCES `customers_accounts` (`Email`),
-  CONSTRAINT `FK_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`),
-  CONSTRAINT `FK_employeeID_order` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`)
+  CONSTRAINT `FK_employeeID_order` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`),
+  CONSTRAINT `FK_ProductID` FOREIGN KEY (`ProductID`) REFERENCES `products` (`ProductID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -394,9 +382,12 @@ CREATE TABLE `warehouse` (
   `Shelf` varchar(10) NOT NULL,
   `Lane` varchar(10) NOT NULL,
   `Compartment` varchar(10) NOT NULL,
+  `ModelID` int DEFAULT NULL,
   UNIQUE KEY `Shelf_UNIQUE` (`Shelf`),
   UNIQUE KEY `Lane_UNIQUE` (`Lane`),
-  UNIQUE KEY `Compartment_UNIQUE` (`Compartment`)
+  UNIQUE KEY `Compartment_UNIQUE` (`Compartment`),
+  UNIQUE KEY `ModelID_UNIQUE` (`ModelID`),
+  CONSTRAINT `fk_warehouse_modelID` FOREIGN KEY (`ModelID`) REFERENCES `models` (`ModelID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -418,4 +409,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-28  9:15:40
+-- Dump completed on 2021-11-07 17:20:13
