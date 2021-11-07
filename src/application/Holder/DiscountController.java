@@ -1,7 +1,6 @@
 package application.Holder;
 
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -189,7 +188,6 @@ public class DiscountController {
 		// execute the query, and get a java resultset
 		ResultSet rs = preparedStmt.executeQuery(query);
 
-		Optional<Blob> image = Optional.empty();
 		Optional<Integer> discount = Optional.empty();
 		Boolean sales;
 

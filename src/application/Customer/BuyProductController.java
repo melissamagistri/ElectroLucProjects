@@ -1,7 +1,6 @@
 package application.Customer;
 
 import java.io.IOException;
-import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -79,13 +78,12 @@ public class BuyProductController {
     private List<Model> searchModelInSalesCatalog(final Connection conn, final String modelName) throws SQLException {
 
 		List<Model> res = new ArrayList<>();
-		String query = "SELECT * FROM models WHERE ModelName = " +modelName +" AND SalesCatalogMembership = true";
+		String query = "SELECT * FROM models WHERE ModelName = \"" +modelName +"\" AND SalesCatalogMembership = true";
 		PreparedStatement preparedStmt = conn.prepareStatement(query);
 
 		// execute the query, and get a java resultset
 		ResultSet rs = preparedStmt.executeQuery(query);
 
-		Optional<Blob> image = Optional.empty();
 		Optional<Integer> discount = Optional.empty();
 		Boolean sales;
 
