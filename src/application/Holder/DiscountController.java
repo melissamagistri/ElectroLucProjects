@@ -124,9 +124,6 @@ public class DiscountController {
 			txModel.setText(String.valueOf(model.get().getModelID()));
 			txPrice.setText(String.valueOf(model.get().getUnitPrice()) +" $");
 			txOldDiscoun.setText(model.get().getDiscount().isEmpty() ? "" :	String.valueOf(model.get().getDiscount().get()));
-//			txModel.setEditable(false);
-//			txPrice.setEditable(false);
-//			txOldDiscoun.setEditable(false);
 		} catch (SQLException e) {}
     }
     
