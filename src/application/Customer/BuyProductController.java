@@ -81,33 +81,7 @@ public class BuyProductController {
     		return;
 		}
     }
-<<<<<<< HEAD
-=======
 
-    private List<Model> searchModelInSalesCatalog(final Connection conn, final String modelName) throws SQLException {
-
-		List<Model> res = new ArrayList<>();
-		String query = "SELECT * FROM models WHERE ModelName = '" +modelName +"' AND InSale = true";
-		PreparedStatement preparedStmt = conn.prepareStatement(query);
-
-		// execute the query, and get a java resultset
-		ResultSet rs = preparedStmt.executeQuery(query);
-
-		Optional<Integer> discount = Optional.empty();
-		Boolean sales;
-
-		// iterate through the java resultset
-		while (rs.next()) {
-		    discount = Optional.ofNullable(rs.getInt("Discount"));
-		    sales = (rs.getInt("InSale")==1) ? true : false;
-
-		    res.add(new Model(rs.getInt("ModelID"), rs.getString("ModelName"), rs.getString("Brand"),
-		    		rs.getString("Description"), rs.getBigDecimal("UnitPrice"),
-		    		discount, rs.getInt("UnitInStock"),	rs.getString("Category"), sales));
-		}
-		return res;
-	}
->>>>>>> 8634044aba54ff3b1ef70cf85a186be4884aaac8
     
     @FXML
     void OnActionSearchCategory(ActionEvent event) {
