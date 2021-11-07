@@ -84,10 +84,10 @@ public class AddProductController {
     		return;
 		}
 
-    	String sql="Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`, InSale)"
+    	String sql="Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`)"
 				 + " values ('" + this.ModelIDTextField.getText()+ "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
 				 + this.DescriptionTextField.getText() + "', '" + this.choiceBox.getValue() + "', '" + this.PriceTextField.getText() + "', '" 
-				 + this.UnitStockTextField.getText() + "',true)" ;
+				 + this.UnitStockTextField.getText() + "')" ;
 				  
 		  Statement statement = conn.createStatement();
 		  statement.executeUpdate(sql); 
