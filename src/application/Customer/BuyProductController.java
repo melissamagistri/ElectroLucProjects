@@ -78,7 +78,7 @@ public class BuyProductController {
     private List<Model> searchModelInSalesCatalog(final Connection conn, final String modelName) throws SQLException {
 
 		List<Model> res = new ArrayList<>();
-		String query = "SELECT * FROM models WHERE ModelName = \"" +modelName +"\" AND SalesCatalogMembership = true";
+		String query = "SELECT * FROM models WHERE ModelName = '" +modelName +"' AND SalesCatalogMembership = true";
 		PreparedStatement preparedStmt = conn.prepareStatement(query);
 
 		// execute the query, and get a java resultset
