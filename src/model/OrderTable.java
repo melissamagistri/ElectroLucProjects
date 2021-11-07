@@ -4,10 +4,10 @@ public class OrderTable {
 
 	private int orderId;
 	private String modelName;
-	private int modelPrice;
+	private double modelPrice;
 	private String orderDate;
 	
-	public OrderTable(int orderID, String modelName, String orderDate, int modelPrice) {
+	public OrderTable(int orderID, String modelName, String orderDate, double modelPrice) {
 		this.orderId = orderID;
 		this.modelName = modelName;
 		this.orderDate = orderDate;
@@ -30,7 +30,7 @@ public class OrderTable {
 		this.modelName = modelName;
 	}
 
-	public int getModelPrice() {
+	public double getModelPrice() {
 		return modelPrice;
 	}
 

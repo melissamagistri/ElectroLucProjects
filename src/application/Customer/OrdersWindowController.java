@@ -1,88 +1,82 @@
 package application.Customer;
 
 import java.io.IOException;
-
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ResourceBundle;
 
 import db.connection.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-<<<<<<< HEAD
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Employee;
 import model.OrderTable;
-=======
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
->>>>>>> b9c34998449ff5903005f040e11f2acd789bcd50
 
-public class OrdersWindowController {
+public class OrdersWindowController implements Initializable{
 
     @FXML
     private Button GoBackButton;
 
     @FXML
-    private TableColumn<?, ?> dateColumn;
+    private TableColumn<OrderTable, String> dateColumn;
 
     @FXML
-<<<<<<< HEAD
-    private ListView<OrderTable> OrdersListView;
-=======
-    private TableColumn<?, ?> modelNameColumn;
+    private TableColumn<OrderTable, String> modelNameColumn;
 
     @FXML
-    private TableColumn<?, ?> orderIDcolumn;
+    private TableColumn<OrderTable, Integer> orderIDcolumn;
 
     @FXML
-    private TableColumn<?, ?> priceColumn;
+    private TableColumn<OrderTable, Double> priceColumn;
 
     @FXML
-    private TableView<?> tableView;
->>>>>>> b9c34998449ff5903005f040e11f2acd789bcd50
+    private TableView<OrderTable> tableView;
+    
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
     	CustomerMain.changeWindow("ClientWindow.fxml");
     }
 
-    @FXML
-    void OnClickOrderState(ActionEvent event) throws SQLException {
-    	Connection connection;
-		String sql = "SELECT FirstName, LastName, Fiscalcode, c.EmployeeID, Salary "+ 
-				"FROM `negozio elettronica`.contract c " +
-				"join `negozio elettronica`.employees e on (c.EmployeeID = e.EmployeeID) " +
-				"where EndDate > CURDATE() " + 
-				"or EndDate is NULL";
-		ObservableList<Employee> list = FXCollections.observableArrayList();
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1){
+		Connection connection;
+		String sql = "SELECT o.OrderID, o.OrderDate, m.ModelName, m.UnitPrice "+ 
+				"FROM `negozio elettronica`.orders o " +
+				"join `negozio elettronica`.products p on (o.ProductID = p.ProductID) " +
+				"join `negozio elettronica`.models m on (m.ModelID = p.ModelID) "+
+				"where o.Email = '"+CustomerMain.CustomerEmail+"'"  ;
+		
+		ObservableList<OrderTable> list = FXCollections.observableArrayList();
 		
 		try {
 			connection = new DBConnection().getMySQLConnection().get();
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
-				list.add(new Employee(resultSet.getString("FirstName"), resultSet.getString("LastName"),
-						resultSet.getString("Fiscalcode"),Integer.parseInt(resultSet.getString("EmployeeID")), 
-								Double.parseDouble(resultSet.getString("Salary"))));
+				list.add(new OrderTable(Integer.parseInt(resultSet.getString("OrderID")), 
+						resultSet.getString("ModelName"),
+						resultSet.getString("OrderDate"), Double.parseDouble(resultSet.getString("UnitPrice"))));
 			}
-			this.IDColumn.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("employeeID"));
-			this.fiscalCodeColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("fiscalCode"));
-			this.nameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstName"));
-			this.surnameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("secondName"));
-			this.salaryColumn.setCellValueFactory(new PropertyValueFactory<Employee, Double>("salary"));
+			this.dateColumn.setCellValueFactory(new PropertyValueFactory<OrderTable, String>("orderDate"));
+			this.modelNameColumn.setCellValueFactory(new PropertyValueFactory<OrderTable, String>("modelName"));
+			this.orderIDcolumn.setCellValueFactory(new PropertyValueFactory<OrderTable, Integer>("orderId"));
+			this.priceColumn.setCellValueFactory(new PropertyValueFactory<OrderTable, Double>("modelPrice"));
 			this.tableView.setItems(list);
 		} catch (ClassNotFoundException | SQLException e) {
 			Alert alert = new Alert(AlertType.ERROR, "there was a problem with the db connection");
 			alert.show();
 			return;
 		}
-    
-
+		
+	}
 }
