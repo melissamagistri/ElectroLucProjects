@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert.AlertType;
 import model.Model;
 
@@ -103,6 +105,12 @@ public class BuyProductController {
 		}
 		return res;
 	}
+    
+
+    @FXML
+    void onClickSelectedProduct(MouseEvent event) {
+    	this.ProductListView.getSelectionModel().getSelectedItem().toString();
+    }
 
 }
 
