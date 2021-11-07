@@ -84,10 +84,10 @@ public class AddProductController {
     		return;
 		}
 
-    	String sql="Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`)"
+    	String sql="Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`, SalesCatalogMembership)"
 				 + " values ('" + this.ModelIDTextField.getText()+ "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
 				 + this.DescriptionTextField.getText() + "', '" + this.choiceBox.getValue() + "', '" + this.PriceTextField.getText() + "', '" 
-				 + this.UnitStockTextField.getText() + "')" ;
+				 + this.UnitStockTextField.getText() + "',true)" ;
 				  
 		  Statement statement = conn.createStatement();
 		  statement.executeUpdate(sql); 
@@ -107,17 +107,6 @@ public class AddProductController {
     void OnClickGoBack(ActionEvent event) throws IOException {
     	HolderMain.changeWindow("Holder.fxml");
     }
-
-    private void insertInSalesCatalog(final Connection conn, final int modelID) throws SQLException {
-
-		String query = "UPDATE models SET SalesCatalogMembership = true WHERE ModelID = ?";
-		PreparedStatement preparedStmt = conn.prepareStatement(query);
-		preparedStmt.setInt(1, modelID);
-
-		//execute query
-		preparedStmt.executeUpdate();
-
-	}
     
     @FXML 
     private void initialize() {
