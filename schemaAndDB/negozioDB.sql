@@ -219,7 +219,7 @@ CREATE TABLE `orders` (
   `EmployeeID` int DEFAULT NULL,
   `Email` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`OrderID`),
-  UNIQUE KEY `ProductID` (`ProductID`),
+  UNIQUE KEY `ModelID` (`ModelID`),
   KEY `FK_employeeID_order_idx` (`EmployeeID`),
   KEY `FK_customerEmail_idx` (`Email`),
   CONSTRAINT `FK_customerEmail` FOREIGN KEY (`Email`) REFERENCES `customers_accounts` (`Email`),
