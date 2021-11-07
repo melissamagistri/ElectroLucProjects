@@ -74,7 +74,7 @@ public class QuantityWindowController{
 			ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
 				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), sql, sql, 
-						null, null, null, Integer.parseInt(resultSet.getString("UnitinStock")), 0, sql, sql, sql, sql, false));
+						null, null, Integer.parseInt(resultSet.getString("UnitinStock")), sql, false));
 			}
 			this.codecolumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
 			this.modelcolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
@@ -101,7 +101,7 @@ public class QuantityWindowController{
 			ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
 				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), sql, sql, 
-						null, null, null, Integer.parseInt(resultSet.getString("UnitinStock")), 0, sql, sql, sql, sql, false));
+						null, null, Integer.parseInt(resultSet.getString("UnitinStock")), sql, false));
 			}
 			this.codecolumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
 			this.modelcolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));

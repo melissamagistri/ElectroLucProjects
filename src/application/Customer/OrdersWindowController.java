@@ -1,59 +1,82 @@
 package application.Customer;
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ResourceBundle;
 
 import db.connection.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import model.OrderTable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
-public class OrdersWindowController {
+public class OrdersWindowController implements Initializable{
 
     @FXML
     private Button GoBackButton;
 
     @FXML
-    private TableColumn<?, ?> dateColumn;
+    private TableColumn<OrderTable, String> dateColumn;
 
     @FXML
-    private TableColumn<?, ?> modelNameColumn;
+    private TableColumn<OrderTable, String> modelNameColumn;
 
     @FXML
-    private TableColumn<?, ?> orderIDcolumn;
+    private TableColumn<OrderTable, Integer> orderIDcolumn;
 
     @FXML
-    private TableColumn<?, ?> priceColumn;
+    private TableColumn<OrderTable, Double> priceColumn;
 
     @FXML
-    private TableView<?> tableView;
+    private TableView<OrderTable> tableView;
+    
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
     	CustomerMain.changeWindow("ClientWindow.fxml");
     }
 
-    @FXML
-    void OnClickOrderState(ActionEvent event) throws SQLException {
-    	
-    	Connection connection;
-    	try {
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1){
+		Connection connection;
+		String sql = "SELECT o.OrderID, o.OrderDate, m.ModelName, m.UnitPrice "+ 
+				"FROM `negozio elettronica`.orders o " +
+				"join `negozio elettronica`.products p on (o.ProductID = p.ProductID) " +
+				"join `negozio elettronica`.models m on (m.ModelID = p.ModelID) "+
+				"where o.Email = '"+CustomerMain.CustomerEmail+"'"  ;
+		
+		ObservableList<OrderTable> list = FXCollections.observableArrayList();
+		
+		try {
 			connection = new DBConnection().getMySQLConnection().get();
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				list.add(new OrderTable(Integer.parseInt(resultSet.getString("OrderID")), 
+						resultSet.getString("ModelName"),
+						resultSet.getString("OrderDate"), Double.parseDouble(resultSet.getString("UnitPrice"))));
+			}
+			this.dateColumn.setCellValueFactory(new PropertyValueFactory<OrderTable, String>("orderDate"));
+			this.modelNameColumn.setCellValueFactory(new PropertyValueFactory<OrderTable, String>("modelName"));
+			this.orderIDcolumn.setCellValueFactory(new PropertyValueFactory<OrderTable, Integer>("orderId"));
+			this.priceColumn.setCellValueFactory(new PropertyValueFactory<OrderTable, Double>("modelPrice"));
+			this.tableView.setItems(list);
 		} catch (ClassNotFoundException | SQLException e) {
-			System.out.println("there was a problem with the db connection");
+			Alert alert = new Alert(AlertType.ERROR, "there was a problem with the db connection");
+			alert.show();
 			return;
 		}
-    	
-    	String sql = "select * from `negozio elettronica`.orders where Email = '"+CustomerMain.CustomerEmail+"'";
-		Statement statement = connection.createStatement();
-		ResultSet resultSet = statement.executeQuery(sql);
-    }
-
+		
+	}
 }
