@@ -13,6 +13,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 public class OrdersWindowController {
 
@@ -20,10 +22,19 @@ public class OrdersWindowController {
     private Button GoBackButton;
 
     @FXML
-    private Button OrderStateButton;
+    private TableColumn<?, ?> dateColumn;
 
     @FXML
-    private ListView<?> OrdersListView;
+    private TableColumn<?, ?> modelNameColumn;
+
+    @FXML
+    private TableColumn<?, ?> orderIDcolumn;
+
+    @FXML
+    private TableColumn<?, ?> priceColumn;
+
+    @FXML
+    private TableView<?> tableView;
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
     	CustomerMain.changeWindow("ClientWindow.fxml");

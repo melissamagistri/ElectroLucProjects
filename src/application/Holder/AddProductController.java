@@ -5,9 +5,12 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import db.actions.CheckInteger;
 import db.connection.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -25,7 +28,16 @@ public class AddProductController {
     private Button GoBackButton;
 
     @FXML
-    private TextField ModelTextField;
+    private TextField BrandTextField;
+    
+    @FXML
+    private TextField ModelIDTextField;
+
+    @FXML
+    private TextField ModelNameTextField;
+    
+    @FXML
+    private TextField SupplierTextField;
 
     @FXML
     private TextField PriceTextField;
@@ -34,17 +46,32 @@ public class AddProductController {
     private TextField UnitStockTextField;
 
     @FXML
-    private ChoiceBox<?> choiceBox;
+    private ChoiceBox<String> choiceBox;
+    
+    private ObservableList<String> categoryList = FXCollections.observableArrayList("Smartphone", 
+    		"Computer","Auricolari", "Tablet");
 
     @FXML
-    void OnClickAddButton(ActionEvent event) {
+    void OnClickAddButton(ActionEvent event) throws IOException, SQLException {
     	Alert alert;
     	Connection conn;
-    	if(!CheckInteger.isNumeric(ModelTextField.getText())) {
+    	if(!CheckInteger.isNumeric(ModelIDTextField.getText()) && !CheckInteger.isNumeric(PriceTextField.getText())) {
     		alert = new Alert(AlertType.ERROR, "Error: model's id must be an integer number");
     		alert.show();
     		return;
     	}
+    	
+    	if(this.BrandTextField.getText().equals("") ||
+    			 this.DescriptionTextField.getText().equals("") ||
+    			 this.ModelIDTextField.getText().equals("") ||
+    			 this.ModelNameTextField.equals("") ||
+    			 this.PriceTextField.getText().equals("") ||
+    			 this.SupplierTextField.equals("") || this.UnitStockTextField.equals("")) { 
+    				 
+    				 Alert alert2 = new Alert(AlertType.ERROR, "You must write the datas"); 
+    				 alert2.show(); 
+    				 return; 
+    			}
     	try {
     		conn = new DBConnection().getMySQLConnection().get();
     	} catch (ClassNotFoundException e) {
@@ -57,16 +84,19 @@ public class AddProductController {
     		return;
 		}
 
-
-    	//insert the queries to add the model to the database
-
-    	  	
-
-
-
+    	String sql="Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`)"
+				 + " values ('" + this.ModelIDTextField.getText()+ "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
+				 + this.DescriptionTextField.getText() + "', '" + this.choiceBox.getValue() + "', '" + this.PriceTextField.getText() + "', '" 
+				 + this.UnitStockTextField.getText() + "')" ;
+				  
+		  Statement statement = conn.createStatement();
+		  statement.executeUpdate(sql); 
+		  
+		  Alert alert1 = new Alert(AlertType.INFORMATION, "Insert corretly a new supplier"); 
+		  alert1.show(); 
 
     	try {
-			this.insertInSalesCatalog(conn, Integer.valueOf(ModelTextField.getText()));
+			this.insertInSalesCatalog(conn, Integer.valueOf(ModelIDTextField.getText()));
 		} catch (SQLException e) {
 			alert = new Alert(AlertType.ERROR, "Error: " +e.getMessage());
     		alert.show();
@@ -88,6 +118,12 @@ public class AddProductController {
 		preparedStmt.executeUpdate();
 
 	}
+    
+    @FXML 
+    private void initialize() {
+    	this.choiceBox.setItems(categoryList);
+    	
+    }
 
 }
 
