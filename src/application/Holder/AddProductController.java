@@ -57,6 +57,7 @@ public class AddProductController {
     void OnClickAddButton(ActionEvent event) throws IOException, SQLException {
     	Alert alert;
     	Connection conn;
+    	
     	if(!CheckInteger.isNumeric(ModelIDTextField.getText()) && !CheckInteger.isNumeric(PriceTextField.getText())) {
     		alert = new Alert(AlertType.ERROR, "Error: model's id must be an integer number");
     		alert.show();
@@ -66,9 +67,9 @@ public class AddProductController {
     	if(this.BrandTextField.getText().equals("") ||
     			 this.DescriptionTextField.getText().equals("") ||
     			 this.ModelIDTextField.getText().equals("") ||
-    			 this.ModelNameTextField.equals("") ||
+    			 this.ModelNameTextField.getText().equals("") ||
     			 this.PriceTextField.getText().equals("") ||
-    			 this.SupplierTextField.equals("") || this.UnitStockTextField.equals("")) { 
+    			 this.SupplierTextField.getText().equals("") || this.UnitStockTextField.getText().equals("")) { 
     				 
     				 Alert alert2 = new Alert(AlertType.ERROR, "You must write the datas"); 
     				 alert2.show(); 
