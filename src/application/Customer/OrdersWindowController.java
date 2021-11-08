@@ -52,8 +52,7 @@ public class OrdersWindowController implements Initializable{
 		Connection connection;
 		String sql = "SELECT o.OrderID, o.OrderDate, m.ModelName, m.UnitPrice "+ 
 				"FROM `negozio elettronica`.orders o " +
-				"join `negozio elettronica`.products p on (o.ProductID = p.ProductID) " +
-				"join `negozio elettronica`.models m on (m.ModelID = p.ModelID) "+
+				"join `negozio elettronica`.models m on (m.ModelID = o.ModelID) "+
 				"where o.Email = '"+CustomerMain.CustomerEmail+"'"  ;
 		
 		ObservableList<OrderTable> list = FXCollections.observableArrayList();
