@@ -21,7 +21,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import model.Model;
 
 public class QuantityWindowController{
@@ -55,6 +54,10 @@ public class QuantityWindowController{
 
     @FXML
     private TextField txSearchQuantity;
+    
+    public static int modelIdToUpdate;
+    
+    public static int oldQuantity;
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
@@ -92,7 +95,7 @@ public class QuantityWindowController{
     void OnClickSearchQuantity(ActionEvent event) throws SQLException {
     	Connection connection;
 		String sql = "SELECT ModelName, ModelID, UnitinStock "+ 
-				"FROM `negozio elettronica`.models " + "where UnitinStock = '"
+				"FROM `negozio elettronica`.models " + "where UnitinStock <= '"
 						+this.txSearchQuantity.getText()+ "'";
 		ObservableList<Model> list = FXCollections.observableArrayList();
 		
@@ -117,12 +120,18 @@ public class QuantityWindowController{
     
 
     @FXML
-    void OnClickUpdate(ActionEvent event) {
+    void OnClickUpdate(ActionEvent event) throws IOException {
+    	if(this.tableview.getSelectionModel().getSelectedItems().size() > 1) {
+    		Alert alert = new Alert(AlertType.ERROR, "You can select only one model for time");
+			alert.show();
+			return;
+    	} else {
+    		QuantityWindowController.modelIdToUpdate = this.tableview.getSelectionModel()
+    				.getSelectedItem().getModelID();
+    		QuantityWindowController.oldQuantity = this.tableview.getSelectionModel().
+    				getSelectedItem().getUnitInStock();
+    		HolderMain.changeWindow("UpdateUnit.fxml");
+    	}
     	
-    }
-    
-    @FXML
-    void clickedColumn(MouseEvent event) {
-
     }
 }
