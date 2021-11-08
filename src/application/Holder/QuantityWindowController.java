@@ -56,6 +56,8 @@ public class QuantityWindowController{
     private TextField txSearchQuantity;
     
     public static int modelIdToUpdate;
+    
+    public static int oldQuantity;
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
@@ -93,7 +95,7 @@ public class QuantityWindowController{
     void OnClickSearchQuantity(ActionEvent event) throws SQLException {
     	Connection connection;
 		String sql = "SELECT ModelName, ModelID, UnitinStock "+ 
-				"FROM `negozio elettronica`.models " + "where UnitinStock = '"
+				"FROM `negozio elettronica`.models " + "where UnitinStock <= '"
 						+this.txSearchQuantity.getText()+ "'";
 		ObservableList<Model> list = FXCollections.observableArrayList();
 		
@@ -126,7 +128,9 @@ public class QuantityWindowController{
     	} else {
     		QuantityWindowController.modelIdToUpdate = this.tableview.getSelectionModel()
     				.getSelectedItem().getModelID();
-    		HolderMain.changeWindow("");
+    		QuantityWindowController.oldQuantity = this.tableview.getSelectionModel().
+    				getSelectedItem().getUnitInStock();
+    		HolderMain.changeWindow("UpdateUnit.fxml");
     	}
     	
     }
