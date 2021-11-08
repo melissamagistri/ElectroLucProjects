@@ -23,7 +23,7 @@
       <TextField fx:id="txSearchModel" layoutX="37.0" layoutY="68.0" prefHeight="26.0" prefWidth="372.0" />
       <Button fx:id="SearchProductButton" layoutX="453.0" layoutY="68.0" mnemonicParsing="false" onAction="#OnClickSearchProduct" style="-fx-background-color: lightskyblue;" text="Search Model" />
       <Button fx:id="GoBackButton" layoutX="37.0" layoutY="360.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
-      <TableView fx:id="tableview" layoutX="37.0" layoutY="150.0" prefHeight="196.0" prefWidth="372.0">
+      <TableView fx:id="tableview" layoutX="37.0" layoutY="150.0" onMouseClicked="#clickedColumn" prefHeight="196.0" prefWidth="372.0">
         <columns>
           <TableColumn fx:id="codecolumn" prefWidth="122.0" text="Code" />
             <TableColumn fx:id="modelcolumn" prefWidth="123.0" text="Model" />

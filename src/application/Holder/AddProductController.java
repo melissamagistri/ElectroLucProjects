@@ -48,8 +48,10 @@ public class AddProductController {
     @FXML
     private ChoiceBox<String> choiceBox;
     
+    private int insale = 1;
+    
     private ObservableList<String> categoryList = FXCollections.observableArrayList("Smartphone", 
-    		"Computer","Auricolari", "Tablet");
+    		"Computer","Auricolari", "Tablet","Smartwatch", "TV", "Monitor");
 
     @FXML
     void OnClickAddButton(ActionEvent event) throws IOException, SQLException {
@@ -84,10 +86,10 @@ public class AddProductController {
     		return;
 		}
 
-    	String sql="Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`)"
+    	String sql="Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`, `InSale`)"
 				 + " values ('" + this.ModelIDTextField.getText()+ "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
 				 + this.DescriptionTextField.getText() + "', '" + this.choiceBox.getValue() + "', '" + this.PriceTextField.getText() + "', '" 
-				 + this.UnitStockTextField.getText() + "')" ;
+				 + this.UnitStockTextField.getText() + "', '" + this.insale +"')" ;
 				  
 		  Statement statement = conn.createStatement();
 		  statement.executeUpdate(sql); 
