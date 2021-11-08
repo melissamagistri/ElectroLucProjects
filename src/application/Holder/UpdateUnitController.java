@@ -1,4 +1,5 @@
 package application.Holder;
+import java.io.IOException;
 import java.sql.Connection;
 
 import java.sql.SQLException;
@@ -17,13 +18,18 @@ public class UpdateUnitController {
     private TextField textfield;
 
     @FXML
-    void OnClickAdd(ActionEvent event) {
+    void OnClickAdd(ActionEvent event) throws IOException {
     	
     	if(this.textfield.getText().isBlank() || !this.isInt(this.textfield.getText())) {
-    		Alert alert = new Alert(AlertType.ERROR, "Ypu must to insert an integer");
+    		Alert alert = new Alert(AlertType.ERROR, "You must to insert an integer");
     		alert.show();
     		return;
-    	} else {
+    	} else if(Integer.parseInt(this.textfield.getText())<1){
+    		Alert alert = new Alert(AlertType.ERROR, "You must to insert an integer grater than 0");
+    		alert.show();
+    		return;
+    	}else {
+    	
     	
     	Connection connection; 
 		  try { 
@@ -35,7 +41,7 @@ public class UpdateUnitController {
 						 
 				Statement statement = connection.createStatement();
 		    	statement.executeUpdate(sql);
-		    	
+		    	HolderMain.changeWindow("QuantityWindow.fxml");
 			  
 		  } catch (ClassNotFoundException |SQLException e) {
 			  e.printStackTrace();
