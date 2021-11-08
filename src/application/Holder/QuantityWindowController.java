@@ -21,7 +21,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import model.Model;
 
 public class QuantityWindowController{
@@ -55,6 +54,8 @@ public class QuantityWindowController{
 
     @FXML
     private TextField txSearchQuantity;
+    
+    public static int modelIdToUpdate;
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
@@ -117,12 +118,16 @@ public class QuantityWindowController{
     
 
     @FXML
-    void OnClickUpdate(ActionEvent event) {
+    void OnClickUpdate(ActionEvent event) throws IOException {
+    	if(this.tableview.getSelectionModel().getSelectedItems().size() > 1) {
+    		Alert alert = new Alert(AlertType.ERROR, "You can select only one model for time");
+			alert.show();
+			return;
+    	} else {
+    		QuantityWindowController.modelIdToUpdate = this.tableview.getSelectionModel()
+    				.getSelectedItem().getModelID();
+    		HolderMain.changeWindow("");
+    	}
     	
-    }
-    
-    @FXML
-    void clickedColumn(MouseEvent event) {
-
     }
 }
