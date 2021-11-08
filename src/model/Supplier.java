@@ -2,13 +2,13 @@ package model;
 
 public class Supplier {
 
-	private final String vatNumber;
+	private final int vatNumber;
 	private final String companyName;
 	private final String email;
 	private final String address;
 	private final String phone;
 
-	public Supplier(final String vatNumber, final String companyName, final String email, final String address,
+	public Supplier(final int vatNumber, final String companyName, final String email, final String address,
 			final String phone) {
 		this.vatNumber = vatNumber;
 		this.companyName = companyName;
@@ -17,7 +17,7 @@ public class Supplier {
 		this.phone = phone;	
 	}
 
-	public String getVATNumber() {
+	public int getVATNumber() {
 		return vatNumber;
 	}
 
