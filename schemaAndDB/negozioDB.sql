@@ -219,9 +219,9 @@ CREATE TABLE `orders` (
   `EmployeeID` int DEFAULT NULL,
   `Email` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`OrderID`),
-  UNIQUE KEY `ModelID` (`ModelID`),
   KEY `FK_employeeID_order_idx` (`EmployeeID`),
   KEY `FK_customerEmail_idx` (`Email`),
+  KEY `FK_order_ModelID` (`ModelID`),
   CONSTRAINT `FK_customerEmail` FOREIGN KEY (`Email`) REFERENCES `customers_accounts` (`Email`),
   CONSTRAINT `FK_employeeID_order` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`),
   CONSTRAINT `FK_order_ModelID` FOREIGN KEY (`ModelID`) REFERENCES `models` (`ModelID`)
