@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,22 +39,27 @@ public class BuyProductController {
     private TextField SearchProductTextField;
     
     @FXML
-    private TableColumn<?, ?> categorycolumn;
+    private TableColumn<Model, String> categorycolumn;
 
     @FXML
     private ChoiceBox<String> choicebox;
     
     private ObservableList<String> categoryList = FXCollections.observableArrayList("Smartphone", 
-    		"Computer","Auricolari", "Tablet");
+    		"Computer","Auricolari", "Tablet","Smartwatch", "TV", "Monitor");
 
     @FXML
-    private TableColumn<?, ?> descriptioncolumn;
+    private TableColumn<Model, String> descriptioncolumn;
 
     @FXML
-    private TableColumn<?, ?> namecolumn;
+    private TableColumn<Model, String> namecolumn;
 
     @FXML
-    private TableColumn<?, ?> pricecolumn;
+    private TableColumn<Model, String> pricecolumn;
+    
+    @FXML
+    private TableColumn<Model, String> IDColumn;
+    
+    private int variable = 1;
 
     @FXML
     void OnClickBuy(ActionEvent event) throws IOException {
@@ -80,6 +86,14 @@ public class BuyProductController {
     		alert.show();
     		return;
 		}
+    	
+    	/*String sql="Insert into `negozio elettronica`.orders (`OrderID`, `OrderDate`,`PaymentMEthod`, `OrderType` , `EmployeeID` , `Email`)"
+				 + " values ('" + this.IDColumn.getCellData() + "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
+				 + this.DescriptionTextField.getText() + "', '" + this.choiceBox.getValue() + "', '" + this.PriceTextField.getText() + "', '" 
+				 + this.UnitStockTextField.getText() + "')" ;
+				  
+		  Statement statement = conn.createStatement();
+		  statement.executeUpdate(sql); */
     }
 
     
