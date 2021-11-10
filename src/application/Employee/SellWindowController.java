@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Optional;
 
+import application.Holder.HolderMain;
+import application.Holder.QuantityWindowController;
 import db.connection.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,14 +38,10 @@ public class SellWindowController {
 	    private TableColumn<Model, BigDecimal> priceColumn;
 
 	    @FXML
-<<<<<<< HEAD
 	    private TableColumn<Model, Integer> quantityColumn;
-=======
-	    private TableColumn<?, ?> quantityColumn;
 	    
 	    @FXML
-	    private TableColumn<?, ?> discountColumn;
->>>>>>> 0ed131fe200a41719a16d0ef4196c7485217a7e8
+	    private TableColumn<Model, Optional<Integer>> discountColumn;
 
 	    @FXML
 	    private TextField searchTextField;
@@ -58,7 +56,20 @@ public class SellWindowController {
 
     @FXML
     void OnClickSell(ActionEvent event) throws IOException {
-    	
+    	if(this.tableview.getSelectionModel().getSelectedItems().size() > 1) {
+    		Alert alert = new Alert(AlertType.ERROR, "You can select only one model for time");
+			alert.show();
+			return;
+    	} else {
+    		QuantityWindowController.modelIdToUpdate = this.tableview.getSelectionModel()
+    				.getSelectedItem().getModelID();
+    		QuantityWindowController.oldQuantity = this.tableview.getSelectionModel().
+    				getSelectedItem().getUnitInStock();
+    		
+    		//creare lo scontrino, abbassare le unità dell'oggetto, creare un istanza in orders
+    		
+    		HolderMain.changeWindow("UpdateUnit.fxml");
+    	}
     	EmployeeMain.changeWindow("ReciptWindow.fxml");
     }
     
@@ -96,9 +107,12 @@ public class SellWindowController {
 			this.IDcolumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
 			this.nameColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
 			this.quantityColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
-			this.priceColumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("price"));
+			this.priceColumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitPrice"));
 			this.descriptionColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
+			this.discountColumn.setCellValueFactory(new PropertyValueFactory<Model, Optional<Integer>>("discount"));
 			this.tableview.setItems(list);
+			
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			Alert alert = new Alert(AlertType.ERROR, "there was a problem with the db connection");
 			alert.show();
@@ -111,7 +125,8 @@ public class SellWindowController {
     	String sql = "SELECT Discount "+ 
 				"FROM `negozio elettronica`.models " + "where ModelId = '"
 						+this.searchTextField.getText()+ "' "
-								+ "and InSale = 1";
+								+ "and InSale = 1 "
+								+ "and UnitInStock > 0";
     	try {
     		connection = new DBConnection().getMySQLConnection().get();
     		Statement statement = connection.createStatement();
