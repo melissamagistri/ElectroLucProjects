@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 
 import application.Holder.HolderMain;
 import application.Holder.QuantityWindowController;
@@ -92,7 +93,7 @@ public class SellWindowController {
 				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), 
 						sql, resultSet.getString("Description"), 
 						new BigDecimal(resultSet.getString("UnitPrice")), 
-						Integer.parseInt(resultSet.getString("Discount")),
+						Optional.ofNullable((resultSet.getInt("Discount"))),
 						Integer.parseInt(resultSet.getString("UnitInStock")), sql, false));
 			}
 			this.IDcolumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
