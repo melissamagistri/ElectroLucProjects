@@ -310,9 +310,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `receipts`;
 DROP TABLE IF EXISTS `purchase_certificate`;
+DROP TABLE IF EXISTS `purchase_certificates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `purchase_certificate` (
+CREATE TABLE `purchase_certificates` (
   `CertificateID` int NOT NULL,
   `OrderID` int NOT NULL,
   PRIMARY KEY (`CertificateID`),
@@ -325,9 +326,9 @@ CREATE TABLE `purchase_certificate` (
 -- Dumping data for table `receipts`
 --
 
-LOCK TABLES `purchase_certificate` WRITE;
-/*!40000 ALTER TABLE `purchase_certificate` DISABLE KEYS */;
-/*!40000 ALTER TABLE `purchase_certificate` ENABLE KEYS */;
+LOCK TABLES `purchase_certificates` WRITE;
+/*!40000 ALTER TABLE `purchase_certificates` DISABLE KEYS */;
+/*!40000 ALTER TABLE `purchase_certificates` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
