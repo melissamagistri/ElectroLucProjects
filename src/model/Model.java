@@ -11,7 +11,7 @@ public class Model {
 	private final String description;
 	private final String category;
 	private final BigDecimal unitPrice;
-	private final Optional<Integer> discount;
+	private final int discount;
 	private final int unitInStock;
 	private final boolean inSale;
 
@@ -23,13 +23,13 @@ public class Model {
 		this.brand = brand;
 		this.description = description;
 		this.unitPrice = price;
-		this.discount = discount;
+		this.discount = discount.isEmpty() ? 0 : discount.get();
 		this.unitInStock = unitInStock;
 		this.category = modelCategory;
 		this.inSale = inSale;
 	}
 
-	public Optional<Integer> getDiscount() {
+	public int getDiscount() {
 		return discount;
 	}
 
