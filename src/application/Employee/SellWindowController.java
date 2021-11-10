@@ -24,6 +24,9 @@ public class SellWindowController {
 
 	    @FXML
 	    private TableColumn<?, ?> quantityColumn;
+	    
+	    @FXML
+	    private TableColumn<?, ?> discountColumn;
 
 	    @FXML
 	    private TextField searchTextField;

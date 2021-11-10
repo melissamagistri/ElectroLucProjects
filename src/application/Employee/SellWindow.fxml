@@ -26,20 +26,21 @@
          </font>
       </Label>
       <TextField fx:id="searchTextField" layoutX="173.0" layoutY="95.0" prefHeight="25.0" prefWidth="268.0" />
-      <Button layoutX="73.0" layoutY="353.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
-      <Button layoutX="479.0" layoutY="353.0" mnemonicParsing="false" onAction="#OnClickSell" style="-fx-background-color: lightskyblue;" text="Sell" />
+      <Button layoutX="42.0" layoutY="353.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
+      <Button layoutX="528.0" layoutY="353.0" mnemonicParsing="false" onAction="#OnClickSell" style="-fx-background-color: lightskyblue;" text="Sell" />
       <Label layoutX="73.0" layoutY="61.0" text="Insert the model name to sell this product to a customer:  ">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
       <Button layoutX="468.0" layoutY="95.0" mnemonicParsing="false" onAction="#OnCLickSearch" style="-fx-background-color: lightskyblue;" text="Search" />
-      <TableView fx:id="tableview" layoutX="74.0" layoutY="138.0" prefHeight="200.0" prefWidth="452.0">
+      <TableView fx:id="tableview" layoutX="36.0" layoutY="137.0" prefHeight="200.0" prefWidth="529.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
           <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
             <TableColumn fx:id="IDcolumn" prefWidth="75.0" text="ID" />
             <TableColumn fx:id="quantityColumn" prefWidth="75.0" text="Quantity" />
+            <TableColumn fx:id="discountColumn" prefWidth="75.0" text="Sconto" />
             <TableColumn fx:id="descriptionColumn" prefWidth="151.0" text="Description" />
         </columns>
       </TableView>
