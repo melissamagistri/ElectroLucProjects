@@ -19,6 +19,8 @@ public class LoginController {
 
     @FXML
     private TextField tx_employeeId;
+    
+    public static String employeeId;
 
     @FXML
     void OnClickLogin(ActionEvent event) throws IOException, SQLException {
@@ -54,14 +56,11 @@ public class LoginController {
     			alert = new Alert(AlertType.ERROR, "Your credential are wrong");
         		alert.show();
     		} else {
+    			LoginController.employeeId = this.tx_employeeId.getText();
     			EmployeeMain.changeWindow("EmployeeWindow.fxml");
     		}	
     	}
     }
 
-    @FXML
-    void OnClickSignIn(ActionEvent event) {
-
-    }
 
 }
