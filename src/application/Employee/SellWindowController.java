@@ -36,7 +36,14 @@ public class SellWindowController {
 	    private TableColumn<Model, BigDecimal> priceColumn;
 
 	    @FXML
+<<<<<<< HEAD
 	    private TableColumn<Model, Integer> quantityColumn;
+=======
+	    private TableColumn<?, ?> quantityColumn;
+	    
+	    @FXML
+	    private TableColumn<?, ?> discountColumn;
+>>>>>>> 0ed131fe200a41719a16d0ef4196c7485217a7e8
 
 	    @FXML
 	    private TextField searchTextField;
