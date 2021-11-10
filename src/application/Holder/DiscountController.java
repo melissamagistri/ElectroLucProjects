@@ -122,7 +122,7 @@ public class DiscountController {
 			}
 			txModel.setText(String.valueOf(model.get().getModelID()));
 			txPrice.setText(String.valueOf(model.get().getUnitPrice()) +" $");
-			txOldDiscoun.setText(model.get().getDiscount().isEmpty() ? "" :	String.valueOf(model.get().getDiscount().get()));
+			txOldDiscoun.setText(model.get().getDiscount() == 0 ? "" :	String.valueOf(model.get().getDiscount()));
 		} catch (SQLException e) {}
     }
     
