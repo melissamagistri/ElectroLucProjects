@@ -88,11 +88,11 @@ public class ValidWarrantyController {
     }*/
 
 
-    private Boolean isInWarranty(final Connection conn, final int receiptID, final int modelID) throws SQLException {
+    private Boolean isInWarranty(final Connection conn, final int certificateID, final int modelID) throws SQLException {
 
 		String query = "SELECT *"
-				+ "	FROM orders o, receipts r"
-				+ "	WHERE r.ReceiptID = " +receiptID
+				+ "	FROM orders o, purchase_certificates r"
+				+ "	WHERE r.CertificateID = " +certificateID
 				+ "	AND TIMESTAMPDIFF(YEAR, now(), o.OrderDate) <= 2"
 				+ "	AND r.OrderID = o.OrderID"
 				+ "	AND o.ModelID = " +modelID +";";
