@@ -1,12 +1,12 @@
 package application.Employee;
 
 import java.io.IOException;
+
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Optional;
 
 import application.Holder.HolderMain;
 import application.Holder.QuantityWindowController;
@@ -41,7 +41,7 @@ public class SellWindowController {
 	    private TableColumn<Model, Integer> quantityColumn;
 	    
 	    @FXML
-	    private TableColumn<Model, Optional<Integer>> discountColumn;
+	    private TableColumn<Model, Integer> discountColumn;
 
 	    @FXML
 	    private TextField searchTextField;
@@ -87,29 +87,20 @@ public class SellWindowController {
 									+ "and InSale = 1";
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
-			if(this.hasDiscount()) {
-				while(resultSet.next()) {
-					list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), 
-							sql, resultSet.getString("Description"), 
-							new BigDecimal(resultSet.getString("UnitPrice")), 
-							Optional.of(Integer.parseInt(resultSet.getString("Discount"))),
-							Integer.parseInt(resultSet.getString("UnitInStock")), sql, false));
-					}
-			} else {
-				while(resultSet.next()) {
-					list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), 
-							sql, resultSet.getString("Description"), 
-							new BigDecimal(resultSet.getString("UnitPrice")), 
-							Optional.of(0),
-							Integer.parseInt(resultSet.getString("UnitInStock")), sql, false));
-					}	
+			
+			while(resultSet.next()) {
+				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), 
+						sql, resultSet.getString("Description"), 
+						new BigDecimal(resultSet.getString("UnitPrice")), 
+						Integer.parseInt(resultSet.getString("Discount")),
+						Integer.parseInt(resultSet.getString("UnitInStock")), sql, false));
 			}
 			this.IDcolumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
 			this.nameColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
 			this.quantityColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
 			this.priceColumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitPrice"));
 			this.descriptionColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
-			this.discountColumn.setCellValueFactory(new PropertyValueFactory<Model, Optional<Integer>>("discount"));
+			this.discountColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("discount"));
 			this.tableview.setItems(list);
 			
 			
@@ -120,31 +111,4 @@ public class SellWindowController {
 		}
     }
     
-    private boolean hasDiscount() {
-    	Connection connection;
-    	String sql = "SELECT Discount "+ 
-				"FROM `negozio elettronica`.models " + "where ModelId = '"
-						+this.searchTextField.getText()+ "' "
-								+ "and InSale = 1 "
-								+ "and UnitInStock > 0";
-    	try {
-    		connection = new DBConnection().getMySQLConnection().get();
-    		Statement statement = connection.createStatement();
-    		ResultSet resultSet = statement.executeQuery(sql);
-    		if(resultSet.next()) {
-    			Optional<String> var = Optional.ofNullable(resultSet.getString("Discount"));
-    			if(var.isEmpty()) {
-    				return false;
-    			} else {
-    				return true;
-    			}
-    		}else {
-    			return false;
-    		}
-    		
-    	} catch (ClassNotFoundException | SQLException e) {
-			return false;
-		}
-    }
-
 }

@@ -16,14 +16,14 @@ public class Model {
 	private final boolean inSale;
 
 	public Model(final int modelID, final String modelName, final String brand, final String description,
-			final BigDecimal price, final Optional<Integer> discount, 
+			final BigDecimal price, final int discount, 
 			final int unitInStock, final String modelCategory, final boolean inSale) {
 		this.modelID = modelID;
 		this.modelName = modelName;
 		this.brand = brand;
 		this.description = description;
 		this.unitPrice = price;
-		this.discount = discount.isEmpty() ? 0 : discount.get();
+		this.discount = Optional.ofNullable(discount).isEmpty() ? 0 : discount;
 		this.unitInStock = unitInStock;
 		this.category = modelCategory;
 		this.inSale = inSale;
