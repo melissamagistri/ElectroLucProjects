@@ -20,11 +20,11 @@ USE `negozio elettronica`;
 --
 -- Table structure for table `contract`
 --
-
 DROP TABLE IF EXISTS `contract`;
+DROP TABLE IF EXISTS `contracts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `contract` (
+CREATE TABLE `contracts` (
   `EmployeeID` int NOT NULL,
   `HireDate` datetime NOT NULL,
   `EndDate` datetime DEFAULT NULL,
@@ -40,9 +40,9 @@ CREATE TABLE `contract` (
 -- Dumping data for table `contract`
 --
 
-LOCK TABLES `contract` WRITE;
-/*!40000 ALTER TABLE `contract` DISABLE KEYS */;
-/*!40000 ALTER TABLE `contract` ENABLE KEYS */;
+LOCK TABLES `contracts` WRITE;
+/*!40000 ALTER TABLE `contracts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contracts` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -309,12 +309,13 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `receipts`;
+DROP TABLE IF EXISTS `purchase_certificate`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `receipts` (
-  `ReceiptID` int NOT NULL,
+CREATE TABLE `purchase_certificate` (
+  `CertificateID` int NOT NULL,
   `OrderID` int NOT NULL,
-  PRIMARY KEY (`ReceiptID`),
+  PRIMARY KEY (`CertificateID`),
   UNIQUE KEY `OrderID` (`OrderID`),
   CONSTRAINT `OrderID` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -324,9 +325,9 @@ CREATE TABLE `receipts` (
 -- Dumping data for table `receipts`
 --
 
-LOCK TABLES `receipts` WRITE;
-/*!40000 ALTER TABLE `receipts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `receipts` ENABLE KEYS */;
+LOCK TABLES `purchase_certificate` WRITE;
+/*!40000 ALTER TABLE `purchase_certificate` DISABLE KEYS */;
+/*!40000 ALTER TABLE `purchase_certificate` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
