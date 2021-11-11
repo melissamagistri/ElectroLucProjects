@@ -185,7 +185,8 @@ CREATE TABLE `models` (
   `Brand` varchar(30) NOT NULL,
   `Description` varchar(100) NOT NULL,
   `Category` varchar(15) NOT NULL,
-  `UnitPrice` decimal(10,2) NOT NULL,
+  `UnitSellingPrice` decimal(10,2) NOT NULL,
+  `UnitPurchasePrice` decimal(10,2) NOT NULL,
   `Discount` int DEFAULT NULL,
   `UnitInStock` int NOT NULL,
   `InSale` tinyint(1) NOT NULL,
@@ -287,7 +288,6 @@ DROP TABLE IF EXISTS `purchase_orders`;
 CREATE TABLE `purchase_orders` (
   `OrderID` int NOT NULL,
   `Quantity` int NOT NULL,
-  `NetPrice` decimal(10,2) NOT NULL,
   `ModelID` int NOT NULL,
   PRIMARY KEY (`OrderID`),
   KEY `FK_ModelID_idx` (`ModelID`),

@@ -121,7 +121,7 @@ public class DiscountController {
 	    		return;
 			}
 			txModel.setText(String.valueOf(model.get().getModelID()));
-			txPrice.setText(String.valueOf(model.get().getUnitPrice()) +" $");
+			txPrice.setText(String.valueOf(model.get().getUnitSellingPrice()) +" $");
 			txOldDiscoun.setText(model.get().getDiscount() == 0 ? "" :	String.valueOf(model.get().getDiscount()));
 		} catch (SQLException e) {}
     }
@@ -197,7 +197,7 @@ public class DiscountController {
 		    sales = (rs.getInt("SalesCatalogMembership")==1) ? true : false;
 
 		    return Optional.of(new Model(rs.getInt("ModelID"), rs.getString("ModelName"), rs.getString("Brand"),
-		    	rs.getString("Description"), rs.getBigDecimal("UnitPrice"),
+		    	rs.getString("Description"), rs.getBigDecimal("UnitSellingPrice"), rs.getBigDecimal("UnitPurchasePrice"),
 		    	discount, rs.getInt("UnitInStock"),	rs.getString("Category"), sales));
 		}
 		return Optional.empty();
