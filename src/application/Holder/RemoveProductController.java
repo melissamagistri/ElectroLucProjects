@@ -2,8 +2,6 @@ package application.Holder;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
@@ -77,7 +75,7 @@ public class RemoveProductController {
     		return;
 		}
     	try {
-			Optional<Model> model = this.search(conn, Integer.valueOf(searchText.getText()));
+			Optional<Model> model = ActionsOnProduct.searchByID(conn, Integer.valueOf(searchText.getText()));
 			if(model.isEmpty()) {
 				alert = new Alert(AlertType.ERROR, "model not found");
 	    		alert.show();
@@ -85,28 +83,6 @@ public class RemoveProductController {
 			}
 		} catch (SQLException e) {}
     }
-
-    private Optional<Model> search(final Connection conn,final int modelID) throws SQLException {
-		String query = "SELECT * FROM models WHERE ModelID = " +modelID +";";
-		PreparedStatement preparedStmt = conn.prepareStatement(query);
-
-		// execute the query, and get a java resultset
-		ResultSet rs = preparedStmt.executeQuery(query);
-
-		Optional<Integer> discount = Optional.empty();
-		Boolean sales;
-
-		// iterate through the java resultset
-		if (rs.next()) {
-		    discount = Optional.ofNullable(rs.getInt("Discount"));
-		    sales = (rs.getInt("InSale")==1) ? true : false;
-
-		    return Optional.of(new Model(rs.getInt("ModelID"), rs.getString("ModelName"), rs.getString("Brand"),
-		    	rs.getString("Description"), rs.getBigDecimal("UnitSellingPrice"), rs.getBigDecimal("UnitPurchasePrice"),
-		    	discount, rs.getInt("UnitInStock"),	rs.getString("Category"), sales));
-		}
-		return Optional.empty();
-	}
 
 }
 
