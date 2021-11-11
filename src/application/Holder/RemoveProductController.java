@@ -81,6 +81,11 @@ public class RemoveProductController {
 	    		alert.show();
 	    		return;
 			}
+			if(!model.get().isInSales()) {
+				alert = new Alert(AlertType.ERROR, "model is not in sale");
+	    		alert.show();
+	    		return;
+			}
 		} catch (SQLException e) {}
     }
 
