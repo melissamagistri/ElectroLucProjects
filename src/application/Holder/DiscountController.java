@@ -194,7 +194,7 @@ public class DiscountController {
 		// iterate through the java resultset
 		if (rs.next()) {
 		    discount = Optional.ofNullable(rs.getInt("Discount"));
-		    sales = (rs.getInt("SalesCatalogMembership")==1) ? true : false;
+		    sales = (rs.getInt("InSale")==1) ? true : false;
 
 		    return Optional.of(new Model(rs.getInt("ModelID"), rs.getString("ModelName"), rs.getString("Brand"),
 		    	rs.getString("Description"), rs.getBigDecimal("UnitSellingPrice"), rs.getBigDecimal("UnitPurchasePrice"),

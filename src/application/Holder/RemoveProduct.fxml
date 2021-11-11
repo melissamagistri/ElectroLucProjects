@@ -21,7 +21,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TextField layoutX="47.0" layoutY="63.0" prefHeight="25.0" prefWidth="411.0" />
+      <TextField id="searchText" layoutX="47.0" layoutY="63.0" prefHeight="25.0" prefWidth="411.0" />
       <Button layoutX="478.0" layoutY="63.0" mnemonicParsing="false" onAction="#OnClickSerach" style="-fx-background-color: lightskyblue;" text="Search" />
       <Button layoutX="479.0" layoutY="341.0" mnemonicParsing="false" onAction="#OnClickRemove" style="-fx-background-color: lightskyblue;" text="Remove" />
       <Button layoutX="47.0" layoutY="341.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
