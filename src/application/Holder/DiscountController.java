@@ -120,6 +120,11 @@ public class DiscountController {
 	    		alert.show();
 	    		return;
 			}
+			if(!model.get().isInSales()) {
+				alert = new Alert(AlertType.ERROR, "model is not in sale");
+	    		alert.show();
+	    		return;
+			}
 			txModel.setText(String.valueOf(model.get().getModelID()));
 			txPrice.setText(String.valueOf(model.get().getUnitSellingPrice()) +" $");
 			txOldDiscoun.setText(model.get().getDiscount() == 0 ? "" :	String.valueOf(model.get().getDiscount()));

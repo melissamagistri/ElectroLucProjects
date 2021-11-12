@@ -51,7 +51,7 @@ public class RemoveProductController {
     	Alert alert;
     	Connection conn;
     	if(searchText.getText().isBlank()) {
-			alert = new Alert(AlertType.ERROR, "You must insert the model id before apllying a discount");
+			alert = new Alert(AlertType.ERROR, "You must insert the model id in the sarch text field");
 			alert.show();
 			return;
     	}
