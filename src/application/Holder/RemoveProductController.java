@@ -8,11 +8,16 @@ import java.util.Optional;
 import db.actions.ActionsOnProduct;
 import db.actions.CheckInteger;
 import db.connection.DBConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import model.Model;
 
 
@@ -20,6 +25,21 @@ public class RemoveProductController {
 
 	@FXML
 	private TextField searchText;
+
+	@FXML
+	private TableView<Model> products;
+
+	@FXML
+	private TableColumn<Model, Integer> modelID;
+
+	@FXML
+	private TableColumn<Model, String> modelName;
+
+	@FXML
+	private TableColumn<Model, String> modelBrand;
+
+	@FXML
+	private TableColumn<Model, String> description;
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
@@ -46,7 +66,14 @@ public class RemoveProductController {
     		alert.show();
     		return;
 		}
-//    	ActionsOnProduct.deleteProduct(conn, modelID);
+    	try {
+			ActionsOnProduct.deleteProduct(conn, products.getSelectionModel().getSelectedItem().getModelID());
+			products.getItems().clear();
+		} catch (SQLException e) {
+			alert = new Alert(AlertType.ERROR, "Error: " +e.getMessage());
+    		alert.show();
+    		return;
+		}
     }
 
     @FXML
@@ -81,11 +108,18 @@ public class RemoveProductController {
 	    		alert.show();
 	    		return;
 			}
-			if(!model.get().isInSales()) {
-				alert = new Alert(AlertType.ERROR, "model is not in sale");
+			if(!model.get().isInSales() && model.get().getUnitInStock() == 0) {
+				alert = new Alert(AlertType.ERROR, "model has already been removed");
 	    		alert.show();
 	    		return;
 			}
+			ObservableList<Model> list = FXCollections.observableArrayList();
+			list.add(model.get());
+			this.modelID.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
+			this.modelName.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
+			this.modelBrand.setCellValueFactory(new PropertyValueFactory<Model, String>("brand"));
+			this.description.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
+			this.products.setItems(list);
 		} catch (SQLException e) {}
     }
 

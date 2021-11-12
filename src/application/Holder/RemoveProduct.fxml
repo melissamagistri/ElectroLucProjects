@@ -21,15 +21,16 @@
             </Label>
          </children>
       </AnchorPane>
-      <TextField id="searchText" layoutX="47.0" layoutY="63.0" prefHeight="25.0" prefWidth="411.0" />
+      <TextField fx:id="searchText" layoutX="47.0" layoutY="63.0" prefHeight="25.0" prefWidth="411.0" />
       <Button layoutX="478.0" layoutY="63.0" mnemonicParsing="false" onAction="#OnClickSerach" style="-fx-background-color: lightskyblue;" text="Search" />
       <Button layoutX="479.0" layoutY="341.0" mnemonicParsing="false" onAction="#OnClickRemove" style="-fx-background-color: lightskyblue;" text="Remove" />
       <Button layoutX="47.0" layoutY="341.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
-      <TableView layoutX="47.0" layoutY="114.0" prefHeight="200.0" prefWidth="411.0">
+      <TableView fx:id="products" layoutX="47.0" layoutY="114.0" prefHeight="200.0" prefWidth="411.0">
         <columns>
-          <TableColumn prefWidth="81.0" text="Model" />
-          <TableColumn prefWidth="121.0" text="Name" />
-            <TableColumn prefWidth="208.0" text="Desciption" />
+          <TableColumn fx:id="modelID" prefWidth="81.0" text="Model" />
+          <TableColumn fx:id="modelName" prefWidth="121.0" text="Name" />
+          <TableColumn fx:id="modelBrand" prefWidth="81.0" text="Brand" />
+            <TableColumn fx:id="description" prefWidth="208.0" text="Desciption" />
         </columns>
       </TableView>
    </children>
