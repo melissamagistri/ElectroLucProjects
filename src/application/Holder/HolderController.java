@@ -25,7 +25,7 @@ public class HolderController {
 
     @FXML
     void OnClickModifyEmployee(ActionEvent event) throws IOException{
-    	HolderMain.changeWindow("ModifyEmployee.fxml");
+    	HolderMain.changeWindow("ModifyUnfinishedEmployee.fxml");
     }
 
     @FXML

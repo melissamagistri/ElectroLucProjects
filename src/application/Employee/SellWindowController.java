@@ -93,13 +93,14 @@ public class SellWindowController {
 				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), 
 						sql, resultSet.getString("Description"), 
 						new BigDecimal(resultSet.getString("UnitPrice")), 
+						new BigDecimal(0),
 						Optional.ofNullable((resultSet.getInt("Discount"))),
 						Integer.parseInt(resultSet.getString("UnitInStock")), sql, false));
 			}
 			this.IDcolumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
 			this.nameColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
 			this.quantityColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
-			this.priceColumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitPrice"));
+			this.priceColumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
 			this.descriptionColumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
 			this.discountColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("discount"));
 			this.tableview.setItems(list);

@@ -126,7 +126,7 @@ public class AddEmployeeController{
 			  Statement statement = connection.createStatement();
 			  statement.executeUpdate(sql);
 		  
-			  sql= "Insert into `negozio elettronica`.contract (`EmployeeID`,`HireDate`, `ContractType`)"
+			  sql= "Insert into `negozio elettronica`.contracts (`EmployeeID`,`HireDate`, `ContractType`)"
 					  + " values ('" + this.CodeTextField.getText()+ "','" +
 					  this.txHireDate.getText() + "','" + this.ChoiceBox.getValue() + "')" ;
 		  
@@ -155,7 +155,7 @@ public class AddEmployeeController{
 				  statement = connection.createStatement(); 
 				  statement.executeUpdate(sql);
 		 
-				  sql= "Insert into `negozio elettronica`.contract (`EmployeeID`,`HireDate`, `EndDate`, `ContractType`)"
+				  sql= "Insert into `negozio elettronica`.contracts (`EmployeeID`,`HireDate`, `EndDate`, `ContractType`)"
 						  + " values ('" + this.CodeTextField.getText()+ "','" +
 						  this.txHireDate.getText() + "','" +
 						  this.txEndDate.getText() + "','" + this.ChoiceBox.getValue() + "')" ;
@@ -251,7 +251,7 @@ public class AddEmployeeController{
 			return resultSet.getString("MinWage");
 			
 		} catch (ClassNotFoundException | SQLException e) {
-			System.out.println("there was a problem with the db connection min");
+			System.out.println("there was a problem with the db connection man");
 		}
 		return "error";
     }

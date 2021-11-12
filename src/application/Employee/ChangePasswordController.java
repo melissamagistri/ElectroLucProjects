@@ -9,7 +9,7 @@ public class ChangePasswordController {
 
     @FXML
     void OnClickChange(ActionEvent event) {
-
+    	
     }
 
     @FXML

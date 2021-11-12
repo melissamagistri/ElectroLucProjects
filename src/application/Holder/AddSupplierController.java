@@ -46,8 +46,8 @@ public class AddSupplierController {
 		 return; 
 		 }
 		  
-		  if(this.AgencyAdrress.equals("") || this.AgencyName.equals("")|| this.EmailAdress.equals("") ||
-				  this.PhoneNumber.equals("") || this.VATNumber.equals("")){ 
+		  if(this.AgencyAdrress.getText().equals("") || this.AgencyName.getText().equals("")|| this.EmailAdress.getText().equals("") ||
+				  this.PhoneNumber.getText().equals("") || this.VATNumber.getText().equals("")){ 
 						 
 					Alert alert = new Alert(AlertType.ERROR, "You must write the datas"); 
 					alert.show(); 

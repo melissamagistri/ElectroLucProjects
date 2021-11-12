@@ -77,27 +77,22 @@ public class AddProductController {
     			}
     	try {
     		conn = new DBConnection().getMySQLConnection().get();
-    	} catch (ClassNotFoundException e) {
+    		
+    		String sql = "Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`, `InSale`)"
+   				 + " values ('" + this.ModelIDTextField.getText()+ "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
+   				 + this.DescriptionTextField.getText() + "', '" + this.choiceBox.getValue() + "', '" + this.PriceTextField.getText() + "', '" 
+   				 + this.UnitStockTextField.getText() + "', '" + this.insale + "')" ;
+   				  
+   		  Statement statement = conn.createStatement();
+   		  statement.executeUpdate(sql); 
+   		  
+   		  Alert alert1 = new Alert(AlertType.INFORMATION, "Insert corretly a new model"); 
+   		  alert1.show(); 
+    	} catch (ClassNotFoundException | SQLException e) {
 			alert = new Alert(AlertType.ERROR, "Error: Driver not found");
     		alert.show();
     		return;
-		} catch (SQLException e) {
-			alert = new Alert(AlertType.ERROR, "Error: unable to connect with the database");
-    		alert.show();
-    		return;
 		}
-
-    	String sql="Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`, `InSale`)"
-				 + " values ('" + this.ModelIDTextField.getText()+ "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
-				 + this.DescriptionTextField.getText() + "', '" + this.choiceBox.getValue() + "', '" + this.PriceTextField.getText() + "', '" 
-				 + this.UnitStockTextField.getText() + "', '" + this.insale +"')" ;
-				  
-		  Statement statement = conn.createStatement();
-		  statement.executeUpdate(sql); 
-		  
-		  Alert alert1 = new Alert(AlertType.INFORMATION, "Insert corretly a new supplier"); 
-		  alert1.show(); 
-
     }
 
     @FXML
