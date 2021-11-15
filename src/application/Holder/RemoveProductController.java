@@ -108,7 +108,7 @@ public class RemoveProductController {
 	    		alert.show();
 	    		return;
 			}
-			if(!model.get().isInSales() && model.get().getUnitInStock() == 0) {
+			if(!model.get().isInSale() && model.get().getUnitInStock() == 0) {
 				alert = new Alert(AlertType.ERROR, "model has already been removed");
 	    		alert.show();
 	    		return;
