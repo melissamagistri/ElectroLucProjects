@@ -63,7 +63,7 @@ public class BuyProductController {
     @FXML
     void OnClickContinue(ActionEvent event) throws IOException, SQLException {
     	
-    	if(this.tableView.getSelectionModel().getSelectedItems().size() == 1) {
+    	if(!(this.tableView.getSelectionModel().getSelectedItems().size() == 1)) {
     		Alert alert = new Alert(AlertType.ERROR, "You can select only one model for time");
 			alert.show();
 			return;

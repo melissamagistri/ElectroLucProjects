@@ -16,6 +16,9 @@ import javafx.scene.control.Alert.AlertType;
 
 public class ModifyUnfinishedEmployeeController {
 
+	protected static String ID;
+	
+	protected  static String oldSalary;
 	@FXML
     private Button ChangeSalaryButton;
 
@@ -51,6 +54,8 @@ public class ModifyUnfinishedEmployeeController {
 
     @FXML
     void OnClickChangeSalary(ActionEvent event) throws IOException {
+    	ModifyUnfinishedEmployeeController.ID = this.txIDCode.getText();
+    	ModifyUnfinishedEmployeeController.oldSalary = this.txSalary.getText();
     	HolderMain.changeWindow("ChangeSalary.fxml");
     }
 
@@ -70,7 +75,7 @@ public class ModifyUnfinishedEmployeeController {
     	Statement statement = connection.createStatement();
 		statement.execute(sql);
 		
-		sql= "Delete from `negozio elettronica`.contract "
+		sql= "Delete from `negozio elettronica`.contracts "
 				+ "where EmployeeID = '" + this.txIDCode.getText() + "'";
 	
 		statement.execute(sql);
@@ -117,7 +122,7 @@ public class ModifyUnfinishedEmployeeController {
         		this.txFiscalCode.setText(resultSet.getString("Fiscalcode"));
         		this.txIDCode.setText(resultSet.getString("EmployeeID"));
         		this.txSalary.setText(resultSet.getString("Salary"));
-        		sql = "select * from `negozio elettronica`.contract where EmployeeID = '"
+        		sql = "select * from `negozio elettronica`.contracts where EmployeeID = '"
         				+this.SearchBar.getText()+ "'";
         		statement = connection.createStatement();
         		resultSet = statement.executeQuery(sql);

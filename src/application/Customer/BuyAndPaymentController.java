@@ -45,8 +45,9 @@ public class BuyAndPaymentController {
 	    		return;
 			}
 	    	
+	    	int orderID = this.getNewID();
 	    	String sql="Insert into `negozio elettronica`.orders (`OrderID`, `OrderDate`,`ModelID`,`PaymentMethod`, `OrderType`, `Email`)"
-					 + " values ('" + this.getNewID() + "', '" + this.getCurrentDate() +"', '" + BuyProductController.ID + "', '" + this.choicebox.getValue() + "','"
+					 + " values ('" + orderID + "', '" + this.getCurrentDate() +"', '" + BuyProductController.ID + "', '" + this.choicebox.getValue() + "','"
 					 + this.orderType + "', '" + CustomerMain.CustomerEmail + "')" ;
 					  
 			Statement statement = connection.createStatement();
@@ -58,8 +59,8 @@ public class BuyAndPaymentController {
 			
 			statement.executeUpdate(sql);
 			
-			sql = "Insert into `negozio elettronica`.purchase_certicate (`CertificateID` ,`OrderID`)"
-					 + " values ('" + this.getNewID() + "', '" + this.getNewID() + "')" ;
+			sql = "Insert into `negozio elettronica`.purchase_certificate (`CertificateID` ,`OrderID`)"
+					 + " values ('" + orderID + "', '" + orderID + "')" ;
 			
 			statement.executeUpdate(sql);
 			 
