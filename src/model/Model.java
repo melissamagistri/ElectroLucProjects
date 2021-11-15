@@ -67,7 +67,7 @@ public class Model {
 		return category;
 	}
 
-	public boolean isInSales() {
+	public boolean isInSale() {
 		return inSale;
 	}
 
