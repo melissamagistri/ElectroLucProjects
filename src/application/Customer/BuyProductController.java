@@ -42,7 +42,7 @@ public class BuyProductController {
     private ChoiceBox<String> choicebox;
     
     private ObservableList<String> categoryList = FXCollections.observableArrayList("Smartphone", 
-    		"Computer","Auricolari", "Tablet","Smartwatch", "TV", "Monitor");
+    		"Computer","Pods", "Tablet","Smartwatch", "TV", "Monitor");
     
     @FXML
     private TableColumn<Model, String> descriptioncolumn;
@@ -87,7 +87,7 @@ public class BuyProductController {
     	
     	String sql = "SELECT ModelID, ModelName, Category, UnitPrice, Description "+ 
 				"FROM `negozio elettronica`.models " +
-				"where ModelName= '"+ this.SearchProductTextField.getText()+"'"  ;
+				"where ModelName= '" + this.SearchProductTextField.getText()+ "'"  ;
     	
     	ObservableList<Model> list = FXCollections.observableArrayList();
     	
