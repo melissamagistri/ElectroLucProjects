@@ -93,8 +93,6 @@ public class DiscountController {
     	Alert alert;
     	Connection conn;
     	if(SearchBar.getText().isBlank()) {
-    		alert = new Alert(AlertType.ERROR, "the search text field cannot be empty");
-    		alert.show();
     		return;
     	}
     	if(!CheckInteger.isNumeric(SearchBar.getText())) {
@@ -147,8 +145,6 @@ public class DiscountController {
     		return;
 		}
     	if(SearchBar.getText().isBlank()) {
-			alert = new Alert(AlertType.ERROR, "You must insert the model id before removing a discount");
-			alert.show();
 			return;
     	}
     	try {
