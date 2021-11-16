@@ -61,11 +61,16 @@ public class BuyProductController {
     		Alert alert = new Alert(AlertType.ERROR, "You can select only one model for time");
 			alert.show();
 			return;
-    	} else {
+    	} else if(this.tableView.getSelectionModel().getSelectedItem().getUnitInStock() > 0){
     		BuyProductController.ID= this.tableView.getSelectionModel()
     				.getSelectedItem().getModelID();
 
         	CustomerMain.changeWindow("BuyAndPayment.fxml");
+        	return;
+    	} else {
+    		Alert alert = new Alert(AlertType.ERROR, "This product is out of stock");
+			alert.show();
+			return;
     	}
     }
 
