@@ -83,7 +83,7 @@ public class SellWindowController {
 		try {
 			connection = new DBConnection().getMySQLConnection().get();
 			String sql= "SELECT ModelName, ModelID, UnitInStock, Description, UnitPrice, Discount "+ 
-					"FROM `negozio elettronica`.models " + "where ModelId = '"
+					"FROM `negozio elettronica`.models " + "where ModelName = '"
 							+this.searchTextField.getText()+ "' "
 									+ "and InSale = 1";
 			Statement statement = connection.createStatement();

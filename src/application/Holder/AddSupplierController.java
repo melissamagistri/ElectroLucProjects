@@ -16,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 
 public class AddSupplierController {
 
+	protected static String supplierID; 
     @FXML
     private TextField AgencyAdrress;
 
@@ -36,6 +37,7 @@ public class AddSupplierController {
 
     @FXML
     void OnClickContinue(ActionEvent event) throws IOException, SQLException{
+    	AddSupplierController.supplierID = this.VATNumber.getText();
     	
     	Connection connection; 
 		  try { 

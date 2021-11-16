@@ -19,6 +19,9 @@ public class ModifyUnfinishedEmployeeController {
 	protected static String ID;
 	
 	protected  static String oldSalary;
+	
+	protected static String contractType;
+	
 	@FXML
     private Button ChangeSalaryButton;
 
@@ -56,6 +59,7 @@ public class ModifyUnfinishedEmployeeController {
     void OnClickChangeSalary(ActionEvent event) throws IOException {
     	ModifyUnfinishedEmployeeController.ID = this.txIDCode.getText();
     	ModifyUnfinishedEmployeeController.oldSalary = this.txSalary.getText();
+    	ModifyUnfinishedEmployeeController.contractType = this.txContract.getText();
     	HolderMain.changeWindow("ChangeSalary.fxml");
     }
 

@@ -74,10 +74,9 @@ public class AvaliabilityProductController {
 				double price = resultSet.getInt("UnitPrice");
 				double ris = price - ((price * discount)/100);
 				BigDecimal ris2 = new BigDecimal(ris).setScale(2, RoundingMode.HALF_UP);
-				boolean insale = resultSet.getInt("InSale") == 1 ? true : false;
 				
 				list.add(new Model(resultSet.getInt("ModelID"), resultSet.getString("ModelName"), 
-						sql, sql, ris2, null, Optional.empty(), 0, sql, insale));
+						sql, sql, ris2, null, Optional.empty(), 0, sql, resultSet.getBoolean("InSale")));
 			}
 			
 			this.NumberTableColoumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));

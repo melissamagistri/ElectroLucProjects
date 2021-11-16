@@ -47,14 +47,14 @@ public class ViewEmployeesController implements Initializable {
     
     @FXML
     void OnCLickGoBack(ActionEvent event) throws IOException {
-    	HolderMain.changeWindow("ModifyEmployee.fxml");
+    	HolderMain.changeWindow("ModifyUnfinishedEmployee.fxml");
     }
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		Connection connection;
 		String sql = "SELECT FirstName, LastName, Fiscalcode, c.EmployeeID, Salary "+ 
-				"FROM `negozio elettronica`.contract c " +
+				"FROM `negozio elettronica`.contracts c " +
 				"join `negozio elettronica`.employees e on (c.EmployeeID = e.EmployeeID) " +
 				"where EndDate > CURDATE() " + 
 				"or EndDate is NULL";

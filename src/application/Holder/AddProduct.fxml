@@ -26,7 +26,7 @@
       <ChoiceBox fx:id="choiceBox" layoutX="164.0" layoutY="369.0" prefHeight="26.0" prefWidth="302.0" />
       <Button layoutX="521.0" layoutY="412.0" mnemonicParsing="false" onAction="#OnClickAddButton" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: lightskyblue;" text="Add" />
       <Button fx:id="GoBackButton" layoutX="14.0" layoutY="412.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandyBrown;" text="GoBack" />
-      <TextField fx:id="UnitStockTextField" layoutX="164.0" layoutY="281.0" prefHeight="26.0" prefWidth="302.0" />
+      <TextField fx:id="UnitTextField" layoutX="164.0" layoutY="281.0" prefHeight="26.0" prefWidth="302.0" />
       <TextField fx:id="SupplierTextField" layoutX="164.0" layoutY="325.0" prefHeight="26.0" prefWidth="302.0" />
       <VBox layoutX="19.0" layoutY="47.0" prefHeight="348.0" prefWidth="100.0" spacing="25.0">
          <children>
@@ -55,7 +55,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label text="Unit in Stock">
+            <Label text="Unit">
                <font>
                   <Font size="15.0" />
                </font>

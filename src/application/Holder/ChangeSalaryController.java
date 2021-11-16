@@ -3,6 +3,7 @@ package application.Holder;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
@@ -31,9 +32,10 @@ public class ChangeSalaryController implements Initializable{
     	Alert alert;
     	Connection connection;
     	
-    	if(Integer.parseInt(this.txOldSalary.getText()) == Integer.parseInt(this.txNewSalary.getText())) {
-    		alert = new Alert(AlertType.ERROR, "You must write a new salary that is lesser or greater than the old salary");
+    	if(Double.parseDouble(this.txNewSalary.getText()) < Double.parseDouble(this.getMinWage())) {
+    		alert = new Alert(AlertType.ERROR, "You must write a new salary that is greater than min wage");
     		alert.show();
+    		return;
     	}
     	try {
     		connection = new DBConnection().getMySQLConnection().get();
@@ -71,6 +73,27 @@ public class ChangeSalaryController implements Initializable{
     	this.txOldSalary.setText(ModifyUnfinishedEmployeeController.oldSalary);
 		
 	}
+	
+	
+	private String getMinWage(){
+    	Connection connection;
+    	try {
+			connection = new DBConnection().getMySQLConnection().get();
+			String salary = "select MinWage from `negozio elettronica`.contract_types"
+	    			+ " Where TypeName = '" + ModifyUnfinishedEmployeeController.contractType + "'";
+			
+			Statement statement = connection.createStatement();
+		
+			ResultSet resultSet = statement.executeQuery(salary);
+			resultSet.next();
+			
+			return resultSet.getString("MinWage");
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println("there was a problem with the db connection man");
+		}
+		return "error";
+    }
 
 }
 

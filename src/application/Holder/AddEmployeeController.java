@@ -92,11 +92,7 @@ public class AddEmployeeController{
 			 return;
 		}
 		
-		if(!this.checkOrderDate(this.txEndDate.getText()) || !this.checkOrderDate(this.txHireDate.getText())) {
-			Alert alert = new Alert(AlertType.ERROR, "You didn't write the date in the correct format yyyy-mm-dd");
-			 alert.show(); 
-			 return;
-		}
+		
 		  
 		 if((this.ChoiceBox.getValue().toString() == "PartTime Determinated" ||
 		  this.ChoiceBox.getValue().toString() == "FullTime Determinated") &&
@@ -116,31 +112,44 @@ public class AddEmployeeController{
 		  
 		  if(this.ChoiceBox.getValue() == "PartTime Indeterminated" || 
 				  this.ChoiceBox.getValue() == "FullTime Indeterminated") {
-		  
-			  String sql="Insert into `negozio elettronica`.employees (`FirstName`, `LastName`, `EmployeeID`,`Fiscalcode`,  `Salary`)"
-					  + " values ('" + this.NameTextField.getText()+"', '" +
-					  this.SurnameTextField.getText()+"', '" + this.CodeTextField.getText()+ "','"
-					  + this.FiscalCodeTextField.getText() + "', '" +
-					  Float.parseFloat(this.getMinWage()) + "')" ;
-		  
-			  Statement statement = connection.createStatement();
-			  statement.executeUpdate(sql);
-		  
-			  sql= "Insert into `negozio elettronica`.contracts (`EmployeeID`,`HireDate`, `ContractType`)"
-					  + " values ('" + this.CodeTextField.getText()+ "','" +
-					  this.txHireDate.getText() + "','" + this.ChoiceBox.getValue() + "')" ;
-		  
-			  statement = connection.createStatement(); statement.executeUpdate(sql);
-		  
-			  sql= "Insert into `negozio elettronica`.employees_account (`EmployeeID`,`Password`)"
-					  + " values ('" + this.CodeTextField.getText()+ "','" +
-					  this.PasswordTextField.getText()+ "')" ;
-		 
-			  statement = connection.createStatement(); statement.executeUpdate(sql);
-		  
-			  Alert alert = new Alert(AlertType.INFORMATION,"You have successfully insert a new employee"); alert.show();
+			  
+			  if(!this.checkOrderDate(this.txHireDate.getText())) {
+					Alert alert = new Alert(AlertType.ERROR, "You didn't write the date in the correct format yyyy-mm-dd");
+					 alert.show(); 
+					 return;
+				} else {
+					String sql="Insert into `negozio elettronica`.employees (`FirstName`, `LastName`, `EmployeeID`,`Fiscalcode`,  `Salary`)"
+							  + " values ('" + this.NameTextField.getText()+"', '" +
+							  this.SurnameTextField.getText()+"', '" + this.CodeTextField.getText()+ "','"
+							  + this.FiscalCodeTextField.getText() + "', '" +
+							  Float.parseFloat(this.getMinWage()) + "')" ;
+				  
+					  Statement statement = connection.createStatement();
+					  statement.executeUpdate(sql);
+				  
+					  sql= "Insert into `negozio elettronica`.contracts (`EmployeeID`,`HireDate`, `ContractType`)"
+							  + " values ('" + this.CodeTextField.getText()+ "','" +
+							  this.txHireDate.getText() + "','" + this.ChoiceBox.getValue() + "')" ;
+				  
+					  statement = connection.createStatement(); statement.executeUpdate(sql);
+				  
+					  sql= "Insert into `negozio elettronica`.employees_account (`EmployeeID`,`Password`)"
+							  + " values ('" + this.CodeTextField.getText()+ "','" +
+							  this.PasswordTextField.getText()+ "')" ;
+				 
+					  statement = connection.createStatement(); statement.executeUpdate(sql);
+				  
+					  Alert alert = new Alert(AlertType.INFORMATION,"You have successfully insert a new employee"); alert.show();
+				} 
 		  
 		  } else { 
+			  
+			  if(!this.checkOrderDate(this.txEndDate.getText()) || !this.checkOrderDate(this.txHireDate.getText())) {
+					Alert alert = new Alert(AlertType.ERROR, "You didn't write the date in the correct format yyyy-mm-dd");
+					 alert.show(); 
+					 return;
+				}
+			  
 			  if(!this.checkDate(this.txEndDate.getText(),this.txHireDate.getText())) {
 				  Alert alert = new Alert(AlertType.ERROR,"You can't write a end date that is before to the hire date");
 				  alert.show(); 
@@ -241,7 +250,7 @@ public class AddEmployeeController{
     	try {
 			connection = new DBConnection().getMySQLConnection().get();
 			String salary = "select MinWage from `negozio elettronica`.contract_types"
-	    			+ " Where TypeName = '" + this.ChoiceBox.getValue().toString() + "'";
+	    			+ " Where TypeName = '" + this.ChoiceBox.getValue() + "'";
 			
 			Statement statement = connection.createStatement();
 		
@@ -251,9 +260,8 @@ public class AddEmployeeController{
 			return resultSet.getString("MinWage");
 			
 		} catch (ClassNotFoundException | SQLException e) {
-			System.out.println("there was a problem with the db connection man");
+			return "error";
 		}
-		return "error";
     }
     
     private boolean  checkCode() {
