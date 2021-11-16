@@ -6,12 +6,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
-import application.Holder.HolderMain;
-import application.Holder.QuantityWindowController;
 import db.connection.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,9 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
@@ -85,9 +79,9 @@ public class BuyProductController {
     	Alert alert;
     	Connection connection;
     	
-    	String sql = "SELECT ModelID, ModelName, Category, UnitPrice, Description "+ 
+    	String sql = "SELECT ModelID, ModelName, Category, UnitSellingPrice, Description "+ 
 				"FROM `negozio elettronica`.models " +
-				"where ModelName= '" + this.SearchProductTextField.getText()+ "'"  ;
+				"where ModelName= '" + this.SearchProductTextField.getText()+ "' and InSale = true;"  ;
     	
     	ObservableList<Model> list = FXCollections.observableArrayList();
     	
@@ -97,7 +91,7 @@ public class BuyProductController {
 			ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
 				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), sql, resultSet.getString("Description"), 
-						new BigDecimal(resultSet.getString("UnitPrice")), new BigDecimal(0), Optional.empty(), 0, resultSet.getString("Category"), true));
+						new BigDecimal(resultSet.getString("UnitSellingPrice")), new BigDecimal(0), Optional.empty(), 0, resultSet.getString("Category"), true));
 			}
 			this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
 			this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
@@ -122,9 +116,9 @@ public class BuyProductController {
     	Alert alert;
     	Connection connection;
     	
-    	String sql = "SELECT ModelID, ModelName, Category, UnitPrice, Description "+ 
+    	String sql = "SELECT ModelID, ModelName, Category, UnitSellingPrice, Description "+ 
 				"FROM `negozio elettronica`.models " +
-				"where Category= '"+this.choicebox.getValue()+"'"  ;
+				"where Category= '"+this.choicebox.getValue()+"' and InSale = true;"  ;
     	
     	ObservableList<Model> list = FXCollections.observableArrayList();
     	
@@ -135,7 +129,7 @@ public class BuyProductController {
 			ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
 				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), sql, resultSet.getString("Description"), 
-						new BigDecimal(resultSet.getString("UnitPrice")),new BigDecimal(0), Optional.empty(), 0, resultSet.getString("Category"), true));
+						new BigDecimal(resultSet.getString("UnitSellingPrice")),new BigDecimal(0), Optional.empty(), 0, resultSet.getString("Category"), true));
 			}
 			this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
 			this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
