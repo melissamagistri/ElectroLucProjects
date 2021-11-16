@@ -67,8 +67,15 @@ public class RemoveProductController {
     		return;
 		}
     	try {
-			ActionsOnProduct.deleteProduct(conn, products.getSelectionModel().getSelectedItem().getModelID());
-			products.getItems().clear();
+    		if(!products.getSelectionModel().isEmpty()) {
+    			ActionsOnProduct.deleteProduct(conn, products.getSelectionModel().getSelectedItem().getModelID());
+    			products.getItems().clear();
+    		}
+    		else {
+    			alert = new Alert(AlertType.ERROR, "Error: you must select one element");
+        		alert.show();
+        		return;
+    		}
 		} catch (SQLException e) {
 			alert = new Alert(AlertType.ERROR, "Error: " +e.getMessage());
     		alert.show();
@@ -108,7 +115,7 @@ public class RemoveProductController {
 	    		alert.show();
 	    		return;
 			}
-			if(!model.get().isInSale() && model.get().getUnitInStock() == 0) {
+			if(!model.get().isInSale()) {
 				alert = new Alert(AlertType.ERROR, "model has already been removed");
 	    		alert.show();
 	    		return;
