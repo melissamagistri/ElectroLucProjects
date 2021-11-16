@@ -74,26 +74,7 @@ UNLOCK TABLES;
 --
 
 DROP TABLE IF EXISTS `customers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `customers` (
-  `FirstName` varchar(10) NOT NULL,
-  `LastName` varchar(20) NOT NULL,
-  `Fiscalcode` varchar(16) NOT NULL,
-  `Phone` varchar(10) DEFAULT NULL,
-  `DeliveryAddress` varchar(60) NOT NULL,
-  PRIMARY KEY (`Fiscalcode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `customers`
---
-
-LOCK TABLES `customers` WRITE;
-/*!40000 ALTER TABLE `customers` DISABLE KEYS */;
-/*!40000 ALTER TABLE `customers` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `customers_accounts`
@@ -103,12 +84,13 @@ DROP TABLE IF EXISTS `customers_accounts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customers_accounts` (
+  `FirstName` varchar(10) NOT NULL,
+  `LastName` varchar(20) NOT NULL,
+  `Phone` varchar(10) DEFAULT NULL,
+  `DeliveryAddress` varchar(60) NOT NULL,
   `Email` varchar(150) NOT NULL,
   `Password` varchar(45) NOT NULL,
-  `Fiscalcode` varchar(16) NOT NULL,
-  PRIMARY KEY (`Email`),
-  KEY `Fiscalcode_idx` (`Fiscalcode`),
-  CONSTRAINT `Fiscalcode` FOREIGN KEY (`Fiscalcode`) REFERENCES `customers` (`Fiscalcode`)
+  PRIMARY KEY (`Email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

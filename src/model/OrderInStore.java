@@ -14,7 +14,7 @@ public class OrderInStore extends Order {
 		this.setPaymentMethod(paymentMethod);
 		this.setModelID(modelID);
 		this.setCustomerEmail(Optional.empty());
-		this.setOrderType("OrderInStore");
+		this.setOrderType("in store");
 		this.setEmployeeID(Optional.of(employeeID));
 	}
 }

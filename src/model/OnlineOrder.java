@@ -14,7 +14,7 @@ public class OnlineOrder extends Order {
 		this.setModelID(modelID);
 		this.setPaymentMethod(paymentMethod);
 		this.setCustomerEmail(Optional.of(customerEmail));
-		this.setOrderType("OnlineOrder");
+		this.setOrderType("online");
 		this.setEmployeeID(Optional.empty());
 	}
 
