@@ -30,9 +30,9 @@
             <TableView fx:id="tableView" layoutX="30.0" layoutY="92.0" prefHeight="200.0" prefWidth="545.0">
               <columns>
                 <TableColumn fx:id="namecolumn" prefWidth="85.0" text="Name" />
-                  <TableColumn fx:id="IDColumn" prefWidth="62.0" text="ID" />
-                <TableColumn fx:id="pricecolumn" prefWidth="87.0" text="Price" />
+                <TableColumn fx:id="pricecolumn" prefWidth="80.0" text="Price" />
                   <TableColumn fx:id="categorycolumn" prefWidth="105.0" text="Category" />
+                  <TableColumn fx:id="unitInStockColumn" prefWidth="70.0" text="UnitInStock" />
                   <TableColumn fx:id="descriptioncolumn" prefWidth="205.0" text="Description" />
               </columns>
             </TableView>

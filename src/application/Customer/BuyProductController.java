@@ -48,7 +48,7 @@ public class BuyProductController {
     private TableColumn<Model, BigDecimal> pricecolumn;
     
     @FXML
-    private TableColumn<Model, Integer> IDColumn;
+    private TableColumn<Model, Integer> unitInStockColumn;
     
     @FXML
     private TableView<Model> tableView;
@@ -81,24 +81,12 @@ public class BuyProductController {
     	
     	String sql = "SELECT * "+ 
 				"FROM `negozio elettronica`.models " +
-				"where ModelName= '" + this.SearchProductTextField.getText()+ "' and InSale = true;"  ;
+				"where ModelName = '" + this.SearchProductTextField.getText()+ "' and InSale = true;"  ;
     	
     	ObservableList<Model> list = FXCollections.observableArrayList();
     	
     	try {
     		connection = new DBConnection().getMySQLConnection().get();
-    		Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(sql);
-			while(resultSet.next()) {
-				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), sql, resultSet.getString("Description"), 
-						new BigDecimal(resultSet.getString("UnitSellingPrice")), new BigDecimal(0), Optional.empty(), 0, resultSet.getString("Category"), true));
-			}
-			this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
-			this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
-			this.IDColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
-			this.pricecolumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
-			this.descriptioncolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
-			this.tableView.setItems(list);
     		
     	} catch (ClassNotFoundException e) {
 			alert = new Alert(AlertType.ERROR, "Error: Driver not found");
@@ -109,6 +97,29 @@ public class BuyProductController {
     		alert.show();
     		return;
 		}
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				list.add(new Model(resultSet.getInt("ModelID"), resultSet.getString("ModelName"),
+						resultSet.getString("Brand"), resultSet.getString("Description"), 
+						resultSet.getBigDecimal("UnitSellingPrice"), resultSet.getBigDecimal("UnitPurchasePrice"),
+						Optional.ofNullable(resultSet.getInt("Discount")), resultSet.getInt("UnitInStock"),
+						resultSet.getString("Category"), true));
+			}
+			this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
+			this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
+			this.unitInStockColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
+			this.pricecolumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
+			this.descriptioncolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
+			this.tableView.setItems(list);
+
+		} catch (SQLException e) {
+			alert = new Alert(AlertType.ERROR, e.getMessage());
+    		alert.show();
+    		return;
+		}
+		
     }
 
     @FXML
@@ -118,7 +129,7 @@ public class BuyProductController {
     	
     	String sql = "SELECT * "+ 
 				"FROM `negozio elettronica`.models " +
-				"where Category= '"+this.choicebox.getValue()+"' and InSale = true;"  ;
+				"where Category = '"+this.choicebox.getValue()+"' and InSale = true;"  ;
     	
     	ObservableList<Model> list = FXCollections.observableArrayList();
     	
@@ -133,17 +144,19 @@ public class BuyProductController {
     		alert.show();
     		return;
 		}
-    	Statement statement;
 		try {
-			statement = connection.createStatement();
+			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
-				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), sql, resultSet.getString("Description"), 
-						new BigDecimal(resultSet.getString("UnitSellingPrice")),new BigDecimal(0), Optional.empty(), 0, resultSet.getString("Category"), true));
+				list.add(new Model(resultSet.getInt("ModelID"), resultSet.getString("ModelName"),
+						resultSet.getString("Brand"), resultSet.getString("Description"), 
+						resultSet.getBigDecimal("UnitSellingPrice"), resultSet.getBigDecimal("UnitPurchasePrice"),
+						Optional.ofNullable(resultSet.getInt("Discount")), resultSet.getInt("UnitInStock"),
+						resultSet.getString("Category"), true));
 			}
 			this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
 			this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
-			this.IDColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
+			this.unitInStockColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
 			this.pricecolumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
 			this.descriptioncolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
 			this.tableView.setItems(list);
