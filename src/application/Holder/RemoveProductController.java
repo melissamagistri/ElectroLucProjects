@@ -88,8 +88,6 @@ public class RemoveProductController {
     	Alert alert;
     	Connection conn;
     	if(searchText.getText().isBlank()) {
-    		alert = new Alert(AlertType.ERROR, "the search text field cannot be empty");
-    		alert.show();
     		return;
     	}
     	if(!CheckInteger.isNumeric(searchText.getText())) {
