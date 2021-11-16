@@ -79,7 +79,7 @@ public class BuyProductController {
     	Alert alert;
     	Connection connection;
     	
-    	String sql = "SELECT ModelID, ModelName, Category, UnitSellingPrice, Description "+ 
+    	String sql = "SELECT * "+ 
 				"FROM `negozio elettronica`.models " +
 				"where ModelName= '" + this.SearchProductTextField.getText()+ "' and InSale = true;"  ;
     	
@@ -116,7 +116,7 @@ public class BuyProductController {
     	Alert alert;
     	Connection connection;
     	
-    	String sql = "SELECT ModelID, ModelName, Category, UnitSellingPrice, Description "+ 
+    	String sql = "SELECT * "+ 
 				"FROM `negozio elettronica`.models " +
 				"where Category= '"+this.choicebox.getValue()+"' and InSale = true;"  ;
     	
@@ -124,8 +124,18 @@ public class BuyProductController {
     	
     	try {
     		connection = new DBConnection().getMySQLConnection().get();
-    		
-    		Statement statement = connection.createStatement();
+    	} catch (ClassNotFoundException e) {
+			alert = new Alert(AlertType.ERROR, "Error: Driver not found");
+    		alert.show();
+    		return;
+		} catch (SQLException e) {
+			alert = new Alert(AlertType.ERROR, "Error: unable to connect with the database");
+    		alert.show();
+    		return;
+		}
+    	Statement statement;
+		try {
+			statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
 				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), sql, resultSet.getString("Description"), 
@@ -137,12 +147,8 @@ public class BuyProductController {
 			this.pricecolumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
 			this.descriptioncolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
 			this.tableView.setItems(list);
-    	} catch (ClassNotFoundException e) {
-			alert = new Alert(AlertType.ERROR, "Error: Driver not found");
-    		alert.show();
-    		return;
 		} catch (SQLException e) {
-			alert = new Alert(AlertType.ERROR, "Error: unable to connect with the database");
+			alert = new Alert(AlertType.ERROR, e.getMessage());
     		alert.show();
     		return;
 		}
