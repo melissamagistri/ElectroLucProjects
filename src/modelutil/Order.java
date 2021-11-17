@@ -1,5 +1,6 @@
 package modelutil;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ public abstract class Order {
 	private String orderType;
 	private String paymentMethod;
 	private int modelID;
+	private BigDecimal totalAmount;
 
 	public int getModelID() {
 		return modelID;
@@ -68,6 +70,14 @@ public abstract class Order {
 
 	protected void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
+	}
+
+	public BigDecimal getTotalAmount() {
+		return totalAmount;
+	}
+
+	protected void setTotalAmount(BigDecimal totalAmount) {
+		this.totalAmount = totalAmount;
 	}
 
 }

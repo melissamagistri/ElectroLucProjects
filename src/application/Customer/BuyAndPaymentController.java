@@ -1,12 +1,15 @@
 package application.Customer;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import db.connection.DBConnection;
 import javafx.collections.FXCollections;
@@ -45,12 +48,24 @@ public class BuyAndPaymentController {
 	    		return;
 			}
 	    	
+	    	
+	    	String query = "select * from models where ModelID = " +BuyProductController.ID +";";
+	    	Statement statement = connection.createStatement();
+			ResultSet res = statement.executeQuery(query);
+			
+			res.next();
+			int discount = Optional.ofNullable(res.getInt("Discount")).isEmpty() ? 0 : res.getInt("Discount");
+			BigDecimal pr = res.getBigDecimal("UnitSellingPrice");
+			BigDecimal price = pr.subtract(pr.multiply(BigDecimal.valueOf(discount)).divide(BigDecimal.valueOf(100),RoundingMode.HALF_UP));
+	    	
+			
 	    	int orderID = this.getNewID();
-	    	String sql="Insert into `negozio elettronica`.orders (`OrderID`, `OrderDate`,`ModelID`,`PaymentMethod`, `OrderType`, `Email`)"
-					 + " values ('" + orderID + "', '" + this.getCurrentDate() +"', '" + BuyProductController.ID + "', '" + this.choicebox.getValue() + "','"
+	    	String sql="Insert into `negozio elettronica`.orders (`OrderID`, `OrderDate`,`ModelID`,TotalAmount,`PaymentMethod`, `OrderType`, `Email`)"
+					 + " values ('" + orderID + "', '" + this.getCurrentDate() +"', '" + BuyProductController.ID + "', '"
+					 + price + "', '"+ this.choicebox.getValue() + "','"
 					 + this.orderType + "', '" + CustomerMain.CustomerEmail + "')" ;
 					  
-			Statement statement = connection.createStatement();
+			statement = connection.createStatement();
 			statement.executeUpdate(sql);
 			  
 			sql = "Update `negozio elettronica`.models "

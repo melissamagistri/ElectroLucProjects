@@ -198,6 +198,7 @@ CREATE TABLE `orders` (
   `OrderDate` datetime NOT NULL,
   `ModelID` int NOT NULL,
   `PaymentMethod` varchar(20) NOT NULL,
+  `TotalAmount` decimal(10,2) NOT NULL,
   `OrderType` varchar(10) NOT NULL,
   `EmployeeID` int DEFAULT NULL,
   `Email` varchar(150) DEFAULT NULL,

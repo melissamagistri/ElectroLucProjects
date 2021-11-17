@@ -50,7 +50,7 @@ public class OrdersWindowController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1){
 		Connection connection;
-		String sql = "SELECT o.OrderID, o.OrderDate, m.ModelName, m.UnitPrice "+ 
+		String sql = "SELECT o.OrderID, o.OrderDate, m.ModelName, o.TotalAmount "+ 
 				"FROM `negozio elettronica`.orders o " +
 				"join `negozio elettronica`.models m on (m.ModelID = o.ModelID) "+
 				"where o.Email = '"+CustomerMain.CustomerEmail+"'"  ;
@@ -64,7 +64,7 @@ public class OrdersWindowController implements Initializable{
 			while(resultSet.next()) {
 				list.add(new OrderTable(Integer.parseInt(resultSet.getString("OrderID")), 
 						resultSet.getString("ModelName"),
-						resultSet.getString("OrderDate"), Double.parseDouble(resultSet.getString("UnitPrice"))));
+						resultSet.getString("OrderDate"), Double.parseDouble(resultSet.getString("TotalAmount"))));
 			}
 			this.dateColumn.setCellValueFactory(new PropertyValueFactory<OrderTable, String>("orderDate"));
 			this.modelNameColumn.setCellValueFactory(new PropertyValueFactory<OrderTable, String>("modelName"));
