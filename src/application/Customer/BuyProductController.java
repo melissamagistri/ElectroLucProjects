@@ -114,7 +114,7 @@ public class BuyProductController {
 			}
 			this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
 			this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
-			this.unitInStockColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("uniInStock"));
+			this.unitInStockColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
 			this.pricecolumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
 			this.descriptioncolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
 			this.tableView.setItems(list);
