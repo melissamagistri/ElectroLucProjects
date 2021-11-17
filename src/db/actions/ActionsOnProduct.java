@@ -37,7 +37,7 @@ public class ActionsOnProduct {
 		Boolean sales;
 
 		// iterate through the java resultset
-		if (rs.next()) {
+		if (rs.isBeforeFirst() && rs.next()) {
 		    discount = Optional.ofNullable(rs.getInt("Discount"));
 		    sales = (rs.getInt("InSale")==1) ? true : false;
 
