@@ -1,7 +1,6 @@
 package application.Holder;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -80,7 +79,7 @@ public class QuantityWindowController{
 			ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
 				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), sql, sql, 
-						null, new BigDecimal(0), Optional.empty(), Integer.parseInt(resultSet.getString("UnitinStock")), sql, true));
+						null, Optional.empty(), Integer.parseInt(resultSet.getString("UnitinStock")), sql, true));
 			}
 			this.codecolumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
 			this.modelcolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
@@ -107,7 +106,7 @@ public class QuantityWindowController{
 			ResultSet resultSet = statement.executeQuery(sql);
 			while(resultSet.next()) {
 				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), sql, sql, 
-						null,new BigDecimal(0), Optional.empty(), Integer.parseInt(resultSet.getString("UnitinStock")), sql, true));
+						null, Optional.empty(), Integer.parseInt(resultSet.getString("UnitinStock")), sql, true));
 			}
 			this.codecolumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
 			this.modelcolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));

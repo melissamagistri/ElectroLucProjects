@@ -41,7 +41,7 @@ public class DiscountController {
     private TextField txNewDiscount;
 
     @FXML
-    private TextField txOldDiscoun;
+    private TextField txOldDiscount;
 
     @FXML
     void OnClickApplyDiscount(ActionEvent event) throws IOException {
@@ -49,8 +49,6 @@ public class DiscountController {
     	Connection conn;
 
     	if(SearchBar.getText().isBlank()) {
-			alert = new Alert(AlertType.ERROR, "You must insert the model id before apllying a discount");
-			alert.show();
 			return;
     	}
     	try {
@@ -70,12 +68,13 @@ public class DiscountController {
     		return;
     	}
         try {
-        	if(Integer.valueOf(txNewDiscount.getText()) == 0 || txNewDiscount.getText().isBlank()) {
+        	if(txNewDiscount.getText().isBlank() || 
+        			(CheckInteger.isNumeric(txNewDiscount.getText()) &&
+        					Integer.parseInt(txNewDiscount.getText())==0)) {
         		this.removeDiscount(conn, Integer.valueOf(txModel.getText()));
         		return;
         	}
-        	this.applyDiscount(conn, Integer.valueOf(txModel.getText()), 
-					Integer.valueOf(txOldDiscoun.getText()));
+        	this.applyDiscount(conn, Integer.valueOf(txModel.getText()), Integer.valueOf(txNewDiscount.getText()));
 		} catch (SQLException e) {
 			return;
     	} finally {
@@ -125,8 +124,12 @@ public class DiscountController {
 			}
 			txModel.setText(String.valueOf(model.get().getModelID()));
 			txPrice.setText(String.valueOf(model.get().getUnitSellingPrice()) +" $");
-			txOldDiscoun.setText(model.get().getDiscount() == 0 ? "" :	String.valueOf(model.get().getDiscount()));
-		} catch (SQLException e) {}
+			txOldDiscount.setText(model.get().getDiscount() == 0 ? "" :	String.valueOf(model.get().getDiscount()));
+
+			txModel.setEditable(false);
+			txPrice.setEditable(false);
+			txOldDiscount.setEditable(false);
+    	} catch (SQLException e) {}
     }
     
     @FXML
@@ -198,7 +201,7 @@ public class DiscountController {
 		    sales = (rs.getInt("InSale")==1) ? true : false;
 
 		    return Optional.of(new Model(rs.getInt("ModelID"), rs.getString("ModelName"), rs.getString("Brand"),
-		    	rs.getString("Description"), rs.getBigDecimal("UnitSellingPrice"), rs.getBigDecimal("UnitPurchasePrice"),
+		    	rs.getString("Description"), rs.getBigDecimal("UnitSellingPrice"),
 		    	discount, rs.getInt("UnitInStock"),	rs.getString("Category"), sales));
 		}
 		return Optional.empty();

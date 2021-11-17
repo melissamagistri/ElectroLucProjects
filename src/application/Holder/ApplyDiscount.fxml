@@ -50,7 +50,7 @@
             <TextField fx:id="txModel" layoutX="122.0" layoutY="24.0" />
             <TextField fx:id="txPrice" layoutX="122.0" layoutY="74.0" />
             <TextField fx:id="txNewDiscount" layoutX="122.0" layoutY="127.0" />
-            <TextField fx:id="txOldDiscoun" layoutX="122.0" layoutY="182.0" />
+            <TextField fx:id="txOldDiscount" layoutX="122.0" layoutY="182.0" />
             <Button layoutX="349.0" layoutY="255.0" mnemonicParsing="false" onAction="#OnClickDeleteDiscount" style="-fx-background-color: lightskyblue;" text="Delete Discount" />
          </children>
       </AnchorPane>

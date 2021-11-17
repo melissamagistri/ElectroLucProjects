@@ -83,13 +83,16 @@ public class BuyProductController {
     void OnClickSearchProduct(ActionEvent event) {
     	Alert alert;
     	Connection connection;
-    	
+
     	String sql = "SELECT * "+ 
 				"FROM `negozio elettronica`.models " +
 				"where ModelName = '" + this.SearchProductTextField.getText()+ "' and InSale = true;"  ;
     	
     	ObservableList<Model> list = FXCollections.observableArrayList();
-    	
+
+//    	tableView.getSelectionModel().getSelectedItems().clear();
+//    	choicebox.getSelectionModel().clearSelection();
+
     	try {
     		connection = new DBConnection().getMySQLConnection().get();
     		
@@ -108,7 +111,7 @@ public class BuyProductController {
 			while(resultSet.next()) {
 				list.add(new Model(resultSet.getInt("ModelID"), resultSet.getString("ModelName"),
 						resultSet.getString("Brand"), resultSet.getString("Description"), 
-						resultSet.getBigDecimal("UnitSellingPrice"), resultSet.getBigDecimal("UnitPurchasePrice"),
+						resultSet.getBigDecimal("UnitSellingPrice"),
 						Optional.ofNullable(resultSet.getInt("Discount")), resultSet.getInt("UnitInStock"),
 						resultSet.getString("Category"), true));
 			}
@@ -131,6 +134,9 @@ public class BuyProductController {
     void OnActionSearchCategory(ActionEvent event) {
     	Alert alert;
     	Connection connection;
+
+//    	SearchProductTextField.clear();
+//    	tableView.getSelectionModel().getSelectedItems().clear();
     	
     	String sql = "SELECT * "+ 
 				"FROM `negozio elettronica`.models " +
@@ -155,7 +161,7 @@ public class BuyProductController {
 			while(resultSet.next()) {
 				list.add(new Model(resultSet.getInt("ModelID"), resultSet.getString("ModelName"),
 						resultSet.getString("Brand"), resultSet.getString("Description"), 
-						resultSet.getBigDecimal("UnitSellingPrice"), resultSet.getBigDecimal("UnitPurchasePrice"),
+						resultSet.getBigDecimal("UnitSellingPrice"),
 						Optional.ofNullable(resultSet.getInt("Discount")), resultSet.getInt("UnitInStock"),
 						resultSet.getString("Category"), true));
 			}

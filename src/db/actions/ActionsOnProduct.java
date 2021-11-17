@@ -42,7 +42,7 @@ public class ActionsOnProduct {
 		    sales = (rs.getInt("InSale")==1) ? true : false;
 
 		    return Optional.of(new Model(rs.getInt("ModelID"), rs.getString("ModelName"), rs.getString("Brand"),
-		    	rs.getString("Description"), rs.getBigDecimal("UnitSellingPrice"), rs.getBigDecimal("UnitPurchasePrice"),
+		    	rs.getString("Description"), rs.getBigDecimal("UnitSellingPrice"),
 		    	discount, rs.getInt("UnitInStock"),	rs.getString("Category"), sales));
 		}
 		return Optional.empty();

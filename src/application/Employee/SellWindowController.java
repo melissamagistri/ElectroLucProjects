@@ -92,8 +92,7 @@ public class SellWindowController {
 			while(resultSet.next()) {
 				list.add(new Model(Integer.parseInt(resultSet.getString("ModelID")), resultSet.getString("ModelName"), 
 						sql, resultSet.getString("Description"), 
-						new BigDecimal(resultSet.getString("UnitPrice")), 
-						new BigDecimal(0),
+						new BigDecimal(resultSet.getString("UnitPrice")),
 						Optional.ofNullable((resultSet.getInt("Discount"))),
 						Integer.parseInt(resultSet.getString("UnitInStock")), sql, false));
 			}
