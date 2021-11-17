@@ -1,6 +1,5 @@
 package model;
 
-import java.math.BigDecimal;
 import java.sql.Date;
 
 public class PurchaseInvoices {
@@ -8,15 +7,13 @@ public class PurchaseInvoices {
 	private final int invoiceID;
 	private final int orderID;
 	private final Date issueDate;
-	private final BigDecimal totalAmount;
 	private final int supplierID;
 
-	public PurchaseInvoices(final int inviceID, final int orderID, final Date issueDate, final BigDecimal totalAmount,
+	public PurchaseInvoices(final int inviceID, final int orderID, final Date issueDate,
 			final int supplierID) {
 		this.invoiceID = inviceID;
 		this.orderID = orderID;
 		this.issueDate = issueDate;
-		this.totalAmount = totalAmount;
 		this.supplierID = supplierID;
 	}
 
@@ -30,10 +27,6 @@ public class PurchaseInvoices {
 
 	public Date getIssueDate() {
 		return issueDate;
-	}
-
-	public BigDecimal getTotalAmount() {
-		return totalAmount;
 	}
 
 	public int getSupplierID() {

@@ -93,9 +93,9 @@ public class AddProductController implements Initializable{
    		  statement.executeUpdate(sql); 
    		  
    		int orderID = this.getNewID();
-   		  sql = "Insert into `negozio elettronica`.purchase_invoices (`InvoicesID` ,`OrderID`, IssueDate, TotalAmount, SupplierID)"
-				 + " values ('" + orderID + "', '" + orderID + "', '" + this.getCurrentDate()+ 
-				 "', '" + this.getTotalAmount() + "', '" + AddSupplierController.supplierID + "')" ;
+   		  sql = "Insert into `negozio elettronica`.purchase_invoices (`InvoicesID` ,`OrderID`, IssueDate, SupplierID)"
+				 + " values ('" + orderID + "', '" + orderID + "', '" + this.getCurrentDate()
+				 + "', '" + AddSupplierController.supplierID + "')" ;
 		
    		  statement.executeUpdate(sql);
    		  
@@ -117,11 +117,6 @@ public class AddProductController implements Initializable{
     	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-mm-dd");  
     	LocalDateTime now = LocalDateTime.now();  
     	return now.toString();
-    }
-    
-    private Integer getTotalAmount() {
-		return Integer.parseInt(this.UnitTextField.getText()) * Integer.parseInt(this.PriceTextField.getText());
-    	
     }
     
     private int getNewID() {

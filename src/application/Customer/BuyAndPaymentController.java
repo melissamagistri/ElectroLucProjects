@@ -48,7 +48,7 @@ public class BuyAndPaymentController {
 	    		return;
 			}
 	    	
-	    	
+	    	//calcolo total amount
 	    	String query = "select * from models where ModelID = " +BuyProductController.ID +";";
 	    	Statement statement = connection.createStatement();
 			ResultSet res = statement.executeQuery(query);

@@ -241,7 +241,6 @@ CREATE TABLE `purchase_invoices` (
   `InvoiceID` int NOT NULL,
   `OrderID` int NOT NULL,
   `IssueDate` date NOT NULL,
-  `TotalAmount` decimal(10,2) NOT NULL,
   `SupplierID` int NOT NULL,
   PRIMARY KEY (`InvoiceID`),
   UNIQUE KEY `OrderID` (`OrderID`),
@@ -291,7 +290,6 @@ UNLOCK TABLES;
 -- Table structure for table `receipts`
 --
 
-DROP TABLE IF EXISTS `receipts`;
 DROP TABLE IF EXISTS `purchase_certificate`;
 DROP TABLE IF EXISTS `purchase_certificates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
