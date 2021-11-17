@@ -90,8 +90,8 @@ public class BuyProductController {
     	
     	ObservableList<Model> list = FXCollections.observableArrayList();
 
-//    	tableView.getSelectionModel().getSelectedItems().clear();
-//    	choicebox.getSelectionModel().clearSelection();
+    	tableView.getSelectionModel().getSelectedItems().clear();
+    	choicebox.getSelectionModel().clearSelection();
 
     	try {
     		connection = new DBConnection().getMySQLConnection().get();
@@ -135,8 +135,8 @@ public class BuyProductController {
     	Alert alert;
     	Connection connection;
 
-//    	SearchProductTextField.clear();
-//    	tableView.getSelectionModel().getSelectedItems().clear();
+    	SearchProductTextField.clear();
+    	tableView.getSelectionModel().getSelectedItems().clear();
     	
     	String sql = "SELECT * "+ 
 				"FROM `negozio elettronica`.models " +
