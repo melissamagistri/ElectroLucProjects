@@ -3,11 +3,12 @@ package application.Customer;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
+import db.actions.ActionsOnProduct;
 import db.connection.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Model;
+import util.Pair;
 
 public class BuyProductController {
 
@@ -36,7 +38,7 @@ public class BuyProductController {
     private ChoiceBox<String> choicebox;
     
     private ObservableList<String> categoryList = FXCollections.observableArrayList("Smartphone", 
-    		"Computer","Pods", "Tablet","Smartwatch", "TV", "Monitor");
+    		"Computer","Pods", "Tablet","Smartwatch", "TV", "Monitor","");
     
     @FXML
     private TableColumn<Model, String> descriptioncolumn;
@@ -81,106 +83,69 @@ public class BuyProductController {
 
     @FXML
     void OnClickSearchProduct(ActionEvent event) {
-    	Alert alert;
-    	Connection connection;
-
-    	String sql = "SELECT * "+ 
-				"FROM `negozio elettronica`.models " +
-				"where ModelName = '" + this.SearchProductTextField.getText()+ "' and InSale = true;"  ;
-    	
-    	ObservableList<Model> list = FXCollections.observableArrayList();
-
-    	tableView.getSelectionModel().getSelectedItems().clear();
-    	choicebox.getSelectionModel().clearSelection();
+    	Connection conn;
 
     	try {
-    		connection = new DBConnection().getMySQLConnection().get();
-    		
-    	} catch (ClassNotFoundException e) {
-			alert = new Alert(AlertType.ERROR, "Error: Driver not found");
-    		alert.show();
-    		return;
+			conn = new DBConnection().getMySQLConnection().get();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return;
 		} catch (SQLException e) {
-			alert = new Alert(AlertType.ERROR, "Error: unable to connect with the database");
-    		alert.show();
-    		return;
+			e.printStackTrace();
+			return;
 		}
-		try {
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(sql);
-			while(resultSet.next()) {
-				list.add(new Model(resultSet.getInt("ModelID"), resultSet.getString("ModelName"),
-						resultSet.getString("Brand"), resultSet.getString("Description"), 
-						resultSet.getBigDecimal("UnitSellingPrice"),
-						Optional.ofNullable(resultSet.getInt("Discount")), resultSet.getInt("UnitInStock"),
-						resultSet.getString("Category"), true));
-			}
-			this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
-			this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
-			this.unitInStockColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
-			this.pricecolumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
-			this.descriptioncolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
-			this.tableView.setItems(list);
 
-		} catch (SQLException e) {
-			alert = new Alert(AlertType.ERROR, e.getMessage());
-    		alert.show();
-    		return;
-		}
-		
-    }
-
-    @FXML
-    void OnActionSearchCategory(ActionEvent event) {
-    	Alert alert;
-    	Connection connection;
-
-    	SearchProductTextField.clear();
-    	tableView.getSelectionModel().getSelectedItems().clear();
-    	
-    	String sql = "SELECT * "+ 
-				"FROM `negozio elettronica`.models " +
-				"where Category = '"+this.choicebox.getValue()+"' and InSale = true;"  ;
-    	
     	ObservableList<Model> list = FXCollections.observableArrayList();
-    	
-    	try {
-    		connection = new DBConnection().getMySQLConnection().get();
-    	} catch (ClassNotFoundException e) {
-			alert = new Alert(AlertType.ERROR, "Error: Driver not found");
-    		alert.show();
-    		return;
-		} catch (SQLException e) {
-			alert = new Alert(AlertType.ERROR, "Error: unable to connect with the database");
-    		alert.show();
-    		return;
-		}
-		try {
-			Statement statement = connection.createStatement();
-			ResultSet resultSet = statement.executeQuery(sql);
-			while(resultSet.next()) {
-				list.add(new Model(resultSet.getInt("ModelID"), resultSet.getString("ModelName"),
-						resultSet.getString("Brand"), resultSet.getString("Description"), 
-						resultSet.getBigDecimal("UnitSellingPrice"),
-						Optional.ofNullable(resultSet.getInt("Discount")), resultSet.getInt("UnitInStock"),
-						resultSet.getString("Category"), true));
+    	Optional<String> category = Optional.ofNullable(this.choicebox.getSelectionModel().getSelectedItem());
+    	if(this.SearchProductTextField.getText().isBlank() 
+    			&& (category.isEmpty() || category.get().isBlank())) {
+    		try {
+				list.addAll(ActionsOnProduct.searchAll(conn));
+			} catch (SQLException e) {
+				return;
 			}
-			this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
-			this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
-			this.unitInStockColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
-			this.pricecolumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
-			this.descriptioncolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
-			this.tableView.setItems(list);
-		} catch (SQLException e) {
-			alert = new Alert(AlertType.ERROR, e.getMessage());
-    		alert.show();
-    		return;
-		}
+    	} else {
+    		List<Pair<String,String>> attr = new ArrayList<>();
+
+    		attr.add(new Pair<>("ModelName", this.SearchProductTextField.getText()));
+    		attr.add(new Pair<>("Category", 
+    				Optional.ofNullable(this.choicebox.getSelectionModel().getSelectedItem()).isEmpty()
+    				? "" : this.choicebox.getSelectionModel().getSelectedItem()));
+	
+    		tableView.getItems().clear();
+
+    		try {
+    			list.addAll(ActionsOnProduct.search(conn, attr));
+    		} catch (SQLException e) {
+    			return;
+    		}
+    	}
+    	this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
+		this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
+		this.unitInStockColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
+		this.pricecolumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
+		this.descriptioncolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
+		this.tableView.setItems(list);		
     }
+
 
     @FXML 
     private void initialize() {
     	this.choicebox.setItems(categoryList);
+    	ObservableList<Model> list = FXCollections.observableArrayList();
+    	try {
+			list.addAll(ActionsOnProduct.searchAll(new DBConnection().getMySQLConnection().get()));
+			this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
+			this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
+			this.unitInStockColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
+			this.pricecolumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
+			this.descriptioncolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
+			this.tableView.setItems(list);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
     
     
