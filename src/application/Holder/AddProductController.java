@@ -4,14 +4,15 @@ package application.Holder;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
+import db.actions.ActionsOnCategory;
 import db.actions.CheckInteger;
 import db.connection.DBConnection;
 import javafx.collections.FXCollections;
@@ -56,8 +57,7 @@ public class AddProductController implements Initializable{
     
     private int insale = 1;
     
-    private ObservableList<String> categoryList = FXCollections.observableArrayList("Smartphone", 
-    		"Computer","Pods", "Tablet","Smartwatch", "TV", "Monitor");
+    private ObservableList<String> categoryList;
 
     @FXML
     void OnClickAddButton(ActionEvent event) throws IOException, SQLException {
@@ -69,38 +69,42 @@ public class AddProductController implements Initializable{
     		alert.show();
     		return;
     	}
-    	
+
     	if(this.BrandTextField.getText().equals("") ||
     			 this.DescriptionTextField.getText().equals("") ||
     			 this.ModelIDTextField.getText().equals("") ||
     			 this.ModelNameTextField.getText().equals("") ||
     			 this.PriceTextField.getText().equals("") ||
-    			 this.SupplierTextField.getText().equals("") || this.UnitTextField.getText().equals("")) { 
+    			 this.SupplierTextField.getText().equals("") || 
+    			 choiceBox.getValue().isBlank() ||
+    			 this.UnitTextField.getText().equals("")) { 
     				 
-    				 Alert alert2 = new Alert(AlertType.ERROR, "You must write the datas"); 
+    				 Alert alert2 = new Alert(AlertType.ERROR, "You must insert all the datas"); 
     				 alert2.show(); 
     				 return; 
     			}
     	try {
     		conn = new DBConnection().getMySQLConnection().get();
+
+    		ActionsOnCategory.insert(conn, choiceBox.getValue());
     		
     		String sql = "Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`, `InSale`)"
    				 + " values ('" + this.ModelIDTextField.getText()+ "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
    				 + this.DescriptionTextField.getText() + "', '" + this.choiceBox.getValue() + "', '" + this.PriceTextField.getText() + "', '" 
    				 + this.UnitTextField.getText() + "', '" + this.insale + "')" ;
    				  
-   		  Statement statement = conn.createStatement();
-   		  statement.executeUpdate(sql); 
+   		  	Statement statement = conn.createStatement();
+   		  	statement.executeUpdate(sql); 
    		  
-   		int orderID = this.getNewID();
-   		  sql = "Insert into `negozio elettronica`.purchase_invoices (`InvoicesID` ,`OrderID`, IssueDate, SupplierID)"
+   		  	int orderID = this.getNewID();
+   		  	sql = "Insert into `negozio elettronica`.purchase_invoices (`InvoicesID` ,`OrderID`, IssueDate, SupplierID)"
 				 + " values ('" + orderID + "', '" + orderID + "', '" + this.getCurrentDate()
 				 + "', '" + AddSupplierController.supplierID + "')" ;
 		
-   		  statement.executeUpdate(sql);
+   		  	statement.executeUpdate(sql);
    		  
-   		  Alert alert1 = new Alert(AlertType.INFORMATION, "Insert corretly a new model"); 
-   		  alert1.show(); 
+   		  	Alert alert1 = new Alert(AlertType.INFORMATION, "Insert corretly a new model"); 
+   		  	alert1.show();
     	} catch (ClassNotFoundException | SQLException e) {
 			alert = new Alert(AlertType.ERROR, "Error: Driver not found");
     		alert.show();
@@ -142,7 +146,19 @@ public class AddProductController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		this.SupplierTextField.setText(AddSupplierController.supplierID);
-    	this.choiceBox.setItems(categoryList);
+		categoryList = FXCollections.observableArrayList();
+    	try {
+			categoryList.addAll(ActionsOnCategory
+					.searchAll(new DBConnection().getMySQLConnection().get())
+					.stream()
+					.map(e->e.getCategoryName())
+					.collect(Collectors.toList()));
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		this.choiceBox.setItems(categoryList);
 		
 	} 
 

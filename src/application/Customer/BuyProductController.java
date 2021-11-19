@@ -6,8 +6,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
+import db.actions.ActionsOnCategory;
 import db.actions.ActionsOnProduct;
 import db.connection.DBConnection;
 import javafx.collections.FXCollections;
@@ -37,8 +38,7 @@ public class BuyProductController {
     @FXML
     private ChoiceBox<String> choicebox;
     
-    private ObservableList<String> categoryList = FXCollections.observableArrayList("Smartphone", 
-    		"Computer","Pods", "Tablet","Smartwatch", "TV", "Monitor","");
+    private ObservableList<String> categoryList;
     
     @FXML
     private TableColumn<Model, String> descriptioncolumn;
@@ -96,9 +96,7 @@ public class BuyProductController {
 		}
 
     	ObservableList<Model> list = FXCollections.observableArrayList();
-    	Optional<String> category = Optional.ofNullable(this.choicebox.getSelectionModel().getSelectedItem());
-    	if(this.SearchProductTextField.getText().isBlank() 
-    			&& (category.isEmpty() || category.get().isBlank())) {
+    	if(this.SearchProductTextField.getText().isBlank() && choicebox.getValue().isBlank()) {
     		try {
 				list.addAll(ActionsOnProduct.searchAll(conn));
 			} catch (SQLException e) {
@@ -108,9 +106,7 @@ public class BuyProductController {
     		List<Pair<String,String>> attr = new ArrayList<>();
 
     		attr.add(new Pair<>("ModelName", this.SearchProductTextField.getText()));
-    		attr.add(new Pair<>("Category", 
-    				Optional.ofNullable(this.choicebox.getSelectionModel().getSelectedItem()).isEmpty()
-    				? "" : this.choicebox.getSelectionModel().getSelectedItem()));
+    		attr.add(new Pair<>("Category", choicebox.getValue()));
 	
     		tableView.getItems().clear();
 
@@ -131,21 +127,43 @@ public class BuyProductController {
 
     @FXML 
     private void initialize() {
-    	this.choicebox.setItems(categoryList);
-    	ObservableList<Model> list = FXCollections.observableArrayList();
+    	Connection conn;
     	try {
-			list.addAll(ActionsOnProduct.searchAll(new DBConnection().getMySQLConnection().get()));
+			conn = new DBConnection().getMySQLConnection().get();
+		} catch (ClassNotFoundException e1) {
+			e1.printStackTrace();
+			return;
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+			return;
+		}
+    	
+    	categoryList = FXCollections.observableArrayList();
+    	try {
+			categoryList.addAll(ActionsOnCategory
+					.searchAll(conn)
+					.stream()
+					.map(e->e.getCategoryName())
+					.collect(Collectors.toList()));
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+    	categoryList.add("");
+    	this.choicebox.setItems(categoryList);
+
+    	ObservableList<Model> list = FXCollections.observableArrayList();
+		try {
+			list.addAll(ActionsOnProduct.searchAll(conn));
 			this.namecolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
 			this.categorycolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("category"));
 			this.unitInStockColumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
 			this.pricecolumn.setCellValueFactory(new PropertyValueFactory<Model, BigDecimal>("unitSellingPrice"));
 			this.descriptioncolumn.setCellValueFactory(new PropertyValueFactory<Model, String>("description"));
 			this.tableView.setItems(list);
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
     }
     
     

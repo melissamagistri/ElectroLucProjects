@@ -18,31 +18,26 @@ USE `negozio elettronica`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `contract`
+-- Table structure for table `categories`
 --
-DROP TABLE IF EXISTS `contract`;
-DROP TABLE IF EXISTS `contracts`;
+
+DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `contracts` (
-  `EmployeeID` int NOT NULL,
-  `HireDate` datetime NOT NULL,
-  `EndDate` datetime DEFAULT NULL,
-  `ContractType` varchar(60) NOT NULL,
-  PRIMARY KEY (`EmployeeID`,`HireDate`),
-  KEY `ContractType_idx` (`ContractType`),
-  CONSTRAINT `ContractType` FOREIGN KEY (`ContractType`) REFERENCES `contract_types` (`TypeName`),
-  CONSTRAINT `EmployeeID` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`)
+CREATE TABLE `categories` (
+  `CategoryName` varchar(60) NOT NULL,
+  PRIMARY KEY (`CategoryName`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `contract`
+-- Dumping data for table `categories`
 --
 
-LOCK TABLES `contracts` WRITE;
-/*!40000 ALTER TABLE `contracts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `contracts` ENABLE KEYS */;
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES ('Computer'),('Monitor'),('Pods'),('Smartphone'),('Smartwatch'),('Tablet'),('TV');
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -70,11 +65,32 @@ LOCK TABLES `contract_types` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `customers`
+-- Table structure for table `contracts`
 --
 
-DROP TABLE IF EXISTS `customers`;
+DROP TABLE IF EXISTS `contracts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contracts` (
+  `EmployeeID` int NOT NULL,
+  `HireDate` datetime NOT NULL,
+  `EndDate` datetime DEFAULT NULL,
+  `ContractType` varchar(60) NOT NULL,
+  PRIMARY KEY (`EmployeeID`,`HireDate`),
+  KEY `ContractType_idx` (`ContractType`),
+  CONSTRAINT `ContractType` FOREIGN KEY (`ContractType`) REFERENCES `contract_types` (`TypeName`),
+  CONSTRAINT `EmployeeID` FOREIGN KEY (`EmployeeID`) REFERENCES `employees` (`EmployeeID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `contracts`
+--
+
+LOCK TABLES `contracts` WRITE;
+/*!40000 ALTER TABLE `contracts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `contracts` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `customers_accounts`
@@ -166,12 +182,14 @@ CREATE TABLE `models` (
   `ModelName` varchar(40) NOT NULL,
   `Brand` varchar(30) NOT NULL,
   `Description` varchar(100) NOT NULL,
-  `Category` varchar(15) NOT NULL,
   `UnitSellingPrice` decimal(10,2) NOT NULL,
   `Discount` int DEFAULT NULL,
+  `Category` varchar(60) NOT NULL,
   `UnitInStock` int NOT NULL,
   `InSale` tinyint(1) NOT NULL,
   PRIMARY KEY (`ModelID`),
+  KEY `fk_category_idx` (`Category`),
+  CONSTRAINT `fk_category` FOREIGN KEY (`Category`) REFERENCES `categories` (`CategoryName`),
   CONSTRAINT `models_chk_1` CHECK ((`InSale` <= 1))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -221,13 +239,29 @@ LOCK TABLES `orders` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `products`
+-- Table structure for table `purchase_certificates`
 --
 
-DROP TABLE IF EXISTS `products`;
+DROP TABLE IF EXISTS `purchase_certificates`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `purchase_certificates` (
+  `CertificateID` int NOT NULL,
+  `OrderID` int NOT NULL,
+  PRIMARY KEY (`CertificateID`),
+  UNIQUE KEY `OrderID` (`OrderID`),
+  CONSTRAINT `OrderID` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `purchase_certificates`
+--
+
+LOCK TABLES `purchase_certificates` WRITE;
+/*!40000 ALTER TABLE `purchase_certificates` DISABLE KEYS */;
+/*!40000 ALTER TABLE `purchase_certificates` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `purchase_invoices`
@@ -284,32 +318,6 @@ CREATE TABLE `purchase_orders` (
 LOCK TABLES `purchase_orders` WRITE;
 /*!40000 ALTER TABLE `purchase_orders` DISABLE KEYS */;
 /*!40000 ALTER TABLE `purchase_orders` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `receipts`
---
-
-DROP TABLE IF EXISTS `purchase_certificate`;
-DROP TABLE IF EXISTS `purchase_certificates`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `purchase_certificates` (
-  `CertificateID` int NOT NULL,
-  `OrderID` int NOT NULL,
-  PRIMARY KEY (`CertificateID`),
-  UNIQUE KEY `OrderID` (`OrderID`),
-  CONSTRAINT `OrderID` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`OrderID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `receipts`
---
-
-LOCK TABLES `purchase_certificates` WRITE;
-/*!40000 ALTER TABLE `purchase_certificates` DISABLE KEYS */;
-/*!40000 ALTER TABLE `purchase_certificates` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -376,4 +384,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-07 17:20:13
+-- Dump completed on 2021-11-19 20:29:11

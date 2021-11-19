@@ -64,13 +64,13 @@ public class ActionsOnProduct {
 					query = query 
 							+"select * "
 							+ "from (select * from models "
-							+ "where " +condition.getFirst() +"=" +condition.getSecond() +") as a" +i++;
+							+ "where " +condition.getFirst() +"='" +condition.getSecond() +"') as a" +i++;
 					inizialize = true;
 				} else{
 					query = query 
 							+" NATURAL JOIN "
 							+ "(select ModelID from models "
-							+ "where " +condition.getFirst() +"=" +condition.getSecond() +") as a" +i++;
+							+ "where " +condition.getFirst() +"='" +condition.getSecond() +"') as a" +i++;
 				}
 			}
 		}
