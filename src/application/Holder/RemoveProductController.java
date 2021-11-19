@@ -50,11 +50,6 @@ public class RemoveProductController {
     void OnClickRemove(ActionEvent event) {
     	Alert alert;
     	Connection conn;
-    	if(searchText.getText().isBlank()) {
-			alert = new Alert(AlertType.ERROR, "You must insert the model id in the sarch text field");
-			alert.show();
-			return;
-    	}
     	try {
     		conn = new DBConnection().getMySQLConnection().get();
     	} catch (ClassNotFoundException e) {
@@ -72,7 +67,7 @@ public class RemoveProductController {
     			products.getItems().clear();
     		}
     		else {
-    			alert = new Alert(AlertType.ERROR, "Error: you must select one element");
+    			alert = new Alert(AlertType.ERROR, "Error: no element are selected");
         		alert.show();
         		return;
     		}
