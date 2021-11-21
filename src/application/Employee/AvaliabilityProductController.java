@@ -58,7 +58,7 @@ public class AvaliabilityProductController {
     @FXML
     void OnClickSearchButton(ActionEvent event) {
     	Connection connection;
-		String sql = "SELECT ModelID, ModelName, UnitPrice, InSale, Discount "+ 
+		String sql = "SELECT ModelID, ModelName, UnitSellingPrice, InSale, Discount "+ 
 				"FROM `negozio elettronica`.models " +
 				"where ModelID = " + this.SearchBar.getText();
 		
@@ -71,7 +71,7 @@ public class AvaliabilityProductController {
 			
 			while(resultSet.next()) {
 				double discount = Optional.ofNullable(resultSet.getInt("Discount")).isEmpty() ? 0 : resultSet.getInt("Discount"); 
-				double price = resultSet.getInt("UnitPrice");
+				double price = resultSet.getInt("UnitSellingPrice");
 				double ris = price - ((price * discount)/100);
 				BigDecimal ris2 = new BigDecimal(ris).setScale(2, RoundingMode.HALF_UP);
 				

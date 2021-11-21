@@ -1,6 +1,7 @@
 package application.Customer;
 
 import java.io.IOException;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.sql.Connection;
@@ -8,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
 import db.connection.DBConnection;
@@ -21,13 +21,11 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Alert.AlertType;
 
 public class BuyAndPaymentController {
-
-    private int var = 1;
     
     private String orderType = "online"; 
     
-    private ObservableList<String> paymentList = FXCollections.observableArrayList("Carta di credito", 
-    		"Bancomat","Bonifico");
+    private ObservableList<String> paymentList = FXCollections.observableArrayList("Credit card", 
+    		"Bancomat","Bank transfer");
 
 	    @FXML
 	    private ChoiceBox<String> choicebox;
@@ -74,8 +72,8 @@ public class BuyAndPaymentController {
 			
 			statement.executeUpdate(sql);
 			
-			sql = "Insert into `negozio elettronica`.purchase_certificate (`CertificateID` ,`OrderID`)"
-					 + " values ('" + orderID + "', '" + orderID + "')" ;
+			sql = "Insert into `negozio elettronica`.purchase_certificates (`CertificateID` ,`OrderID`)"
+					 + " values ('" + getNewPurchaseID() + "', '" + orderID + "')" ;
 			
 			statement.executeUpdate(sql);
 			 
@@ -107,8 +105,27 @@ public class BuyAndPaymentController {
 			return 0;
 	    } 
 	    
+	    private int getNewPurchaseID() {
+	    	Connection connection; 
+			  try { 
+				  connection = new DBConnection().getMySQLConnection().get(); 
+				  String sql="SELECT CertificateID from `negozio elettronica`.purchase_certificates " + 
+						  "order by CertificateID desc " + 
+						  "limit 1";
+							 
+					Statement statement = connection.createStatement();
+			    	ResultSet resultSet = statement.executeQuery(sql);
+			    	if(resultSet.next()) {
+			    		return resultSet.getInt("CertificateID") + 1;
+			    	}
+				  
+			  } catch (ClassNotFoundException |SQLException e) {
+			 System.out.println("there was a problem with the db connection");
+			  }
+			return 0;
+	    } 
+	    
 	    private String getCurrentDate() {
-	    	DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-mm-dd");  
 	    	   LocalDateTime now = LocalDateTime.now();  
 	    	   return now.toString();  
 	    }

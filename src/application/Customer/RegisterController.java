@@ -53,8 +53,7 @@ public class RegisterController {
     		Alert alert = new Alert(AlertType.ERROR,"You need to fill all the fields");
     		alert.show();
     	} else {
-    		String sql = "select * from `negozio elettronica`.customers_accounts where Email = '"+this.txEmail.getText()+"' or "
-    				+ "FiscalCode = '"+this.txFiscalCode.getText()+"'";
+    		String sql = "select * from `negozio elettronica`.customers_accounts where Email = '"+this.txEmail.getText()+"'";
     		Statement statement = connection.createStatement();
     		ResultSet resultSet = statement.executeQuery(sql);
     		if(resultSet.next()) {
@@ -62,14 +61,10 @@ public class RegisterController {
     					+ "code associated");
         		alert.show();
     		} else {
-    			sql = "insert into `negozio elettronica`.`customers` (`FirstName`, `LastName`, `Fiscalcode`, `Phone`, `DeliveryAddress`)"
+    			sql = "insert into `negozio elettronica`.`customers_accounts` (`FirstName`, `LastName`,`Phone`,  `DeliveryAddress`,`Email`, `Password`)"
     					+ " values ('"+this.txName.getText()+"', '"+this.txSurname.getText()+"', '"+
-    					this.txFiscalCode.getText()+"', '"+ this.txPhone.getText()+"', '"+this.txDeliveryAddress.getText()+"')";
-    			statement = connection.createStatement();
-    			statement.executeUpdate(sql);
-    			sql = "insert into `negozio elettronica`.`customers_accounts` (`Email`, `Password`, `Fiscalcode`)"
-    					+ " values ('"+this.txEmail.getText()+"', '"+this.txPassword.getText()+"', '"+
-    					this.txFiscalCode.getText()+"')";
+    					this.txPhone.getText()+"', '"+
+    					this.txDeliveryAddress.getText()+"', '"+this.txEmail.getText()+"', '"+this.txPassword.getText()+"')";
     			statement = connection.createStatement();
     			statement.executeUpdate(sql);
     			Alert alert = new Alert(AlertType.INFORMATION, "The account was created");
@@ -80,7 +75,6 @@ public class RegisterController {
     	}
     }
 
-    //INSERT INTO `negozio elettronica`.`customers` (`FirstName`, `LastName`, `Fiscalcode`, `Phone`, `DeliveryAddress`) VALUES ('jscj', 'sncsn', 'cklnsl', 'cksn', 'cnskn');
     
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
