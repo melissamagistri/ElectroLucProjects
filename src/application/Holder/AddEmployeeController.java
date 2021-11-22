@@ -114,7 +114,7 @@ public class AddEmployeeController{
 			  
 			  if(!this.checkOrderDate(this.txHireDate.getText())) {
 				  System.out.println(this.txHireDate.getText());
-					Alert alert = new Alert(AlertType.ERROR, "You didn't write the date in the correct format yyyy-mm-dd 56");
+					Alert alert = new Alert(AlertType.ERROR, "You didn't write the date in the correct format yyyy-mm-dd");
 					 alert.show(); 
 					 return;
 				} else {
@@ -131,7 +131,8 @@ public class AddEmployeeController{
 							  + " values ('" + this.CodeTextField.getText()+ "','" +
 							  this.txHireDate.getText() + "','" + this.ChoiceBox.getValue() + "')" ;
 				  
-					  statement = connection.createStatement(); statement.executeUpdate(sql);
+					  statement = connection.createStatement(); 
+					  statement.executeUpdate(sql);
 				  
 					  sql= "Insert into `negozio elettronica`.employees_account (`EmployeeID`,`Password`)"
 							  + " values ('" + this.CodeTextField.getText()+ "','" +
@@ -170,13 +171,15 @@ public class AddEmployeeController{
 						  this.txHireDate.getText() + "','" +
 						  this.txEndDate.getText() + "','" + this.ChoiceBox.getValue() + "')" ;
 		  
-				  statement = connection.createStatement(); statement.executeUpdate(sql);
+				  statement = connection.createStatement(); 
+				  statement.executeUpdate(sql);
 		  
 				  sql= "Insert into `negozio elettronica`.employees_account (`EmployeeID`,`Password`)"
 						  + " values ('" + this.CodeTextField.getText()+ "','" +
 						  this.PasswordTextField.getText()+ "')" ;
 		  
-				  statement = connection.createStatement(); statement.executeUpdate(sql);
+				  statement = connection.createStatement(); 
+				  statement.executeUpdate(sql);
 		  	
 				  Alert alert = new Alert(AlertType.INFORMATION,
 						  "You have successfully insert a new employee"); 

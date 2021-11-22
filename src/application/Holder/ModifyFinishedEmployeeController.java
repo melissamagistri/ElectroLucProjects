@@ -87,7 +87,7 @@ public class ModifyFinishedEmployeeController  implements Initializable {
 	    @FXML
 	    void OnClickRenew(ActionEvent event) throws IOException {
 	    	if(this.tableview.getSelectionModel().getSelectedItems().size() == 1) {
-	    		data = this.tableview.getSelectionModel().getSelectedItem();
+	    		ModifyFinishedEmployeeController.data = this.tableview.getSelectionModel().getSelectedItem();
 	    		HolderMain.changeWindow("Renew.fxml");
 	    	}else {
 	    		Alert alert = new Alert(AlertType.ERROR, "You can selected only one employee");
