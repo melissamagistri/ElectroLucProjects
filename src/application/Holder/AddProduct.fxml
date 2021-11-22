@@ -27,7 +27,6 @@
       <Button layoutX="521.0" layoutY="412.0" mnemonicParsing="false" onAction="#OnClickAddButton" prefHeight="26.0" prefWidth="88.0" style="-fx-background-color: lightskyblue;" text="Add" />
       <Button fx:id="GoBackButton" layoutX="14.0" layoutY="412.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandyBrown;" text="GoBack" />
       <TextField fx:id="UnitTextField" layoutX="164.0" layoutY="281.0" prefHeight="26.0" prefWidth="302.0" />
-      <TextField fx:id="SupplierTextField" layoutX="164.0" layoutY="325.0" prefHeight="26.0" prefWidth="302.0" />
       <VBox layoutX="19.0" layoutY="47.0" prefHeight="348.0" prefWidth="100.0" spacing="25.0">
          <children>
             <Label prefHeight="26.0" prefWidth="61.0" text="Model ID">
@@ -77,5 +76,6 @@
       </VBox>
       <TextField fx:id="ModelNameTextField" layoutX="164.0" layoutY="102.0" prefHeight="26.0" prefWidth="302.0" />
       <TextField fx:id="BrandTextField" layoutX="164.0" layoutY="143.0" prefHeight="26.0" prefWidth="302.0" />
+      <ChoiceBox fx:id="supplicerChoiceBox" layoutX="164.0" layoutY="324.0" prefHeight="25.0" prefWidth="302.0" />
    </children>
 </AnchorPane>

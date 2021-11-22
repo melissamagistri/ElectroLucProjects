@@ -72,7 +72,7 @@ public class ViewEmployeesController implements Initializable {
 			this.IDColumn.setCellValueFactory(new PropertyValueFactory<Employee, Integer>("employeeID"));
 			this.fiscalCodeColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("fiscalCode"));
 			this.nameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("firstName"));
-			this.surnameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("secondName"));
+			this.surnameColumn.setCellValueFactory(new PropertyValueFactory<Employee, String>("lastName"));
 			this.salaryColumn.setCellValueFactory(new PropertyValueFactory<Employee, Double>("salary"));
 			this.tableView.setItems(list);
 		} catch (ClassNotFoundException | SQLException e) {

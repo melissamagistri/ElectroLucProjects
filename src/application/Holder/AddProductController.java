@@ -42,9 +42,6 @@ public class AddProductController implements Initializable{
 
     @FXML
     private TextField ModelNameTextField;
-    
-    @FXML
-    private TextField SupplierTextField;
 
     @FXML
     private TextField PriceTextField;
@@ -55,9 +52,14 @@ public class AddProductController implements Initializable{
     @FXML
     private ChoiceBox<String> choiceBox;
     
+    @FXML
+    private ChoiceBox<String> supplicerChoiceBox;
+    
     private int insale = 1;
     
     private ObservableList<String> categoryList;
+    
+    private ObservableList<String> supplierList;
 
     @FXML
     void OnClickAddButton(ActionEvent event) throws IOException, SQLException {
@@ -74,8 +76,7 @@ public class AddProductController implements Initializable{
     			 this.DescriptionTextField.getText().equals("") ||
     			 this.ModelIDTextField.getText().equals("") ||
     			 this.ModelNameTextField.getText().equals("") ||
-    			 this.PriceTextField.getText().equals("") ||
-    			 this.SupplierTextField.getText().equals("") || 
+    			 this.PriceTextField.getText().equals("") || 
     			 choiceBox.getValue().isBlank() ||
     			 this.UnitTextField.getText().equals("")) { 
     				 
@@ -88,24 +89,32 @@ public class AddProductController implements Initializable{
 
     		ActionsOnCategory.insert(conn, choiceBox.getValue());
     		
-    		String sql = "Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitPrice` , `UnitInStock`, `InSale`)"
+    		String sql = "Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitSellingPrice` , `UnitInStock`, `InSale`)"
    				 + " values ('" + this.ModelIDTextField.getText()+ "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
    				 + this.DescriptionTextField.getText() + "', '" + this.choiceBox.getValue() + "', '" + this.PriceTextField.getText() + "', '" 
    				 + this.UnitTextField.getText() + "', '" + this.insale + "')" ;
    				  
    		  	Statement statement = conn.createStatement();
    		  	statement.executeUpdate(sql); 
+   		  	
+   		  	int purchaseOrders = this.getNewOrdersID();
    		  
-   		  	int orderID = this.getNewID();
-   		  	sql = "Insert into `negozio elettronica`.purchase_invoices (`InvoicesID` ,`OrderID`, IssueDate, SupplierID)"
-				 + " values ('" + orderID + "', '" + orderID + "', '" + this.getCurrentDate()
-				 + "', '" + AddSupplierController.supplierID + "')" ;
+   		  	sql = "Insert into `negozio elettronica`.purchase_orders (`OrderID`, `Quantity`, `UnitPurchasePrice`, `ModelID`)"
+				 + " values ('" + purchaseOrders + "', '" + this.UnitTextField.getText() + "', '" + this.PriceTextField.getText()
+				 + "', '" + this.ModelIDTextField.getText() + "')" ;
+		
+   		  	statement.executeUpdate(sql);
+   		  	
+   		  	sql = "Insert into `negozio elettronica`.purchase_invoices (`InvoiceID` ,`OrderID`, `IssueDate`, `SupplierID`)"
+				 + " values ('" +this.getNewInvoicesID() + "', '" + purchaseOrders + "', '" + this.getCurrentDate()
+				 + "', '" + this.supplicerChoiceBox.getValue() + "')" ;
 		
    		  	statement.executeUpdate(sql);
    		  
    		  	Alert alert1 = new Alert(AlertType.INFORMATION, "Insert corretly a new model"); 
    		  	alert1.show();
     	} catch (ClassNotFoundException | SQLException e) {
+    		e.printStackTrace();
 			alert = new Alert(AlertType.ERROR, "Error: Driver not found");
     		alert.show();
     		return;
@@ -123,11 +132,32 @@ public class AddProductController implements Initializable{
     	return now.toString();
     }
     
-    private int getNewID() {
+    
+    private int getNewInvoicesID() {
     	Connection connection; 
 		  try { 
 			  connection = new DBConnection().getMySQLConnection().get(); 
-			  String sql="SELECT OrderID from `negozio elettronica`.orders " + 
+			  String sql="SELECT InvoiceID from `negozio elettronica`.purchase_invoices " + 
+					  "order by InvoiceID desc " + 
+					  "limit 1";
+						 
+				Statement statement = connection.createStatement();
+		    	ResultSet resultSet = statement.executeQuery(sql);
+		    	if(resultSet.next()) {
+		    		return resultSet.getInt("InvoiceID") + 1;
+		    	}
+			  
+		  } catch (ClassNotFoundException |SQLException e) {
+		 System.out.println("there was a problem with the db connection");
+		  }
+		return 0;
+		
+		
+    } private int getNewOrdersID() {
+    	Connection connection; 
+		  try { 
+			  connection = new DBConnection().getMySQLConnection().get(); 
+			  String sql="SELECT OrderID from `negozio elettronica`.purchase_orders " + 
 					  "order by OrderID desc " + 
 					  "limit 1";
 						 
@@ -141,12 +171,13 @@ public class AddProductController implements Initializable{
 		 System.out.println("there was a problem with the db connection");
 		  }
 		return 0;
-    }
+    } 
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		this.SupplierTextField.setText(AddSupplierController.supplierID);
+		this.supplicerChoiceBox.setValue(AddSupplierController.supplierID);
 		categoryList = FXCollections.observableArrayList();
+		supplierList = FXCollections.observableArrayList();
     	try {
 			categoryList.addAll(ActionsOnCategory
 					.searchAll(new DBConnection().getMySQLConnection().get())
@@ -159,9 +190,28 @@ public class AddProductController implements Initializable{
 			e.printStackTrace();
 		}
 		this.choiceBox.setItems(categoryList);
-		
+		this.supplicerChoiceBox.setItems(getSupplierList());
+	
 	} 
 
+	private ObservableList<String> getSupplierList(){
+		Connection connection; 
+		  try { 
+			  connection = new DBConnection().getMySQLConnection().get(); 
+			  String sql="SELECT VAT_Number from `negozio elettronica`.suppliers ";
+						 
+				Statement statement = connection.createStatement();
+		    	ResultSet resultSet = statement.executeQuery(sql);
+		    	while(resultSet.next()) {
+		    		this.supplierList.add(resultSet.getString("VAT_Number"));
+		    	}
+			  
+		  } catch (ClassNotFoundException |SQLException e) {
+			  System.out.println("there was a problem with the db connection");
+		  }
+		return this.supplierList;
+		
+	}
 }
 
 

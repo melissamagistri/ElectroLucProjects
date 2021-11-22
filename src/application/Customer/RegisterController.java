@@ -22,9 +22,6 @@ public class RegisterController {
     private TextField txEmail;
 
     @FXML
-    private TextField txFiscalCode;
-
-    @FXML
     private TextField txName;
 
     @FXML

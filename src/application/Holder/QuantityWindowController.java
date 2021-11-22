@@ -122,7 +122,7 @@ public class QuantityWindowController{
 
     @FXML
     void OnClickUpdate(ActionEvent event) throws IOException {
-    	if(this.tableview.getSelectionModel().getSelectedItems().size() == 1) {
+    	if(this.tableview.getSelectionModel().getSelectedItems().size() != 1) {
     		Alert alert = new Alert(AlertType.ERROR, "You can select only one model for time");
 			alert.show();
 			return;

@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Customer.RegisterController">
    <children>
       <AnchorPane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: orange;">
@@ -22,7 +21,7 @@
       </AnchorPane>
       <Button layoutX="13.0" layoutY="347.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
       <Button layoutX="512.0" layoutY="347.0" mnemonicParsing="false" onAction="#OnClickCreate" style="-fx-background-color: lightskyblue;" text="Create" />
-      <VBox layoutX="77.0" layoutY="71.0" prefHeight="223.0" prefWidth="118.0" spacing="17.0">
+      <VBox layoutX="76.0" layoutY="89.0" prefHeight="223.0" prefWidth="118.0" spacing="17.0">
          <children>
             <Label text="Name">
                <font>
@@ -30,11 +29,6 @@
                </font>
             </Label>
             <Label text="Surname">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
-            <Label text="FiscalCode">
                <font>
                   <Font size="15.0" />
                </font>
@@ -61,11 +55,10 @@
             </Label>
          </children>
       </VBox>
-      <VBox layoutX="283.0" layoutY="71.0" prefHeight="223.0" prefWidth="158.0" spacing="10.0">
+      <VBox layoutX="283.0" layoutY="89.0" prefHeight="223.0" prefWidth="158.0" spacing="10.0">
          <children>
             <TextField fx:id="txName" />
             <TextField fx:id="txSurname" />
-            <TextField fx:id="txFiscalCode" />
             <TextField fx:id="txEmail" />
             <TextField fx:id="txPassword" />
             <TextField fx:id="txPhone" />

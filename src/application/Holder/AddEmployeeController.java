@@ -30,8 +30,7 @@ public class AddEmployeeController{
     @FXML
     private ChoiceBox<String> ChoiceBox;
 
-    private ObservableList<String> contractList = FXCollections.observableArrayList("FullTime Determinated", 
-    		"PartTime Determinated","FullTime Indeterminated", "PartTime Indeterminated");
+    private ObservableList<String> contractList;
 
     @FXML
     private TextField CodeTextField;
@@ -94,27 +93,28 @@ public class AddEmployeeController{
 		
 		
 		  
-		 if((this.ChoiceBox.getValue().toString() == "PartTime Determinated" ||
-		  this.ChoiceBox.getValue().toString() == "FullTime Determinated") &&
+		 if((this.ChoiceBox.getValue().toString().equals("PartTime Determinated") ||
+		  this.ChoiceBox.getValue().toString().equals("FullTime Determinated")) &&
 		  this.txEndDate.getText().equals("")) { 
 			 Alert alert = new Alert(AlertType.ERROR, "You must write an end date"); 
 			 alert.show(); 
 			 return; 
 		 }
 		  
-		  if((this.ChoiceBox.getValue() == "PartTime Indeterminated" ||
-		  this.ChoiceBox.getValue() == "FullTime Indeterminated") &&
+		  if((this.ChoiceBox.getValue().equals("PartTime Indeterminated") ||
+		  this.ChoiceBox.getValue().equals("FullTime Indeterminated")) &&
 		  !this.txEndDate.getText().equals("")) { 
 			  Alert alert = new Alert(AlertType.ERROR, "You can't write an end date"); 
 			  alert.show(); 
 			  return;
 		  }
 		  
-		  if(this.ChoiceBox.getValue() == "PartTime Indeterminated" || 
-				  this.ChoiceBox.getValue() == "FullTime Indeterminated") {
+		  if(this.ChoiceBox.getValue().equals("PartTime Indeterminated") || 
+				  this.ChoiceBox.getValue().equals("FullTime Indeterminated")) {
 			  
 			  if(!this.checkOrderDate(this.txHireDate.getText())) {
-					Alert alert = new Alert(AlertType.ERROR, "You didn't write the date in the correct format yyyy-mm-dd");
+				  System.out.println(this.txHireDate.getText());
+					Alert alert = new Alert(AlertType.ERROR, "You didn't write the date in the correct format yyyy-mm-dd 56");
 					 alert.show(); 
 					 return;
 				} else {
@@ -139,7 +139,8 @@ public class AddEmployeeController{
 				 
 					  statement = connection.createStatement(); statement.executeUpdate(sql);
 				  
-					  Alert alert = new Alert(AlertType.INFORMATION,"You have successfully insert a new employee"); alert.show();
+					  Alert alert = new Alert(AlertType.INFORMATION,"You have successfully insert a new employee"); 
+					  alert.show();
 				} 
 		  
 		  } else { 
@@ -199,9 +200,29 @@ public class AddEmployeeController{
 
     @FXML 
     private void initialize() {
-    	this.ChoiceBox.setItems(contractList);
+    	this.ChoiceBox.setItems(this.getContractList());
     	
     }
+    
+    private ObservableList<String> getContractList(){
+		Connection connection; 
+		this.contractList = FXCollections.observableArrayList();
+		  try { 
+			  connection = new DBConnection().getMySQLConnection().get(); 
+			  String sql="SELECT TypeName from `negozio elettronica`.contract_types ";
+						 
+				Statement statement = connection.createStatement();
+		    	ResultSet resultSet = statement.executeQuery(sql);
+		    	while(resultSet.next()) {
+		    		this.contractList.add(resultSet.getString("TypeName"));
+		    	}
+			  
+		  } catch (ClassNotFoundException |SQLException e) {
+			  System.out.println("there was a problem with the db connection");
+		  }
+		return this.contractList;
+		
+	}
     
     private boolean checkDigits(String string) {
     	if(string.isBlank()) {
