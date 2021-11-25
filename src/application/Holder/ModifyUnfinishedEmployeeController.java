@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import db.connection.DBConnection;
 import javafx.event.ActionEvent;
@@ -79,6 +81,14 @@ public class ModifyUnfinishedEmployeeController {
     	Statement statement = connection.createStatement();
 		statement.execute(sql);
 		
+		for (String i: this.getOrderID()) {
+			sql= "Update `negozio elettronica`.orders "
+			  		+ "SET `EmployeeID` = NULL"
+			  		+ " WHERE (`OrderID` = '" + i +"')";
+		
+			statement.execute(sql);
+		}
+		
 		sql= "Delete from `negozio elettronica`.contracts "
 				+ "where EmployeeID = '" + this.txIDCode.getText() + "'";
 	
@@ -88,6 +98,7 @@ public class ModifyUnfinishedEmployeeController {
 				+ "where EmployeeID = '" + this.txIDCode.getText() + "'";
 	
 		statement.execute(sql);
+		
 		
 		Alert alert = new Alert(AlertType.INFORMATION, "The Employee was dismiss");
 		alert.show();
@@ -139,6 +150,29 @@ public class ModifyUnfinishedEmployeeController {
     @FXML
     void OnClickViewEmployees(ActionEvent event) throws IOException {
     	HolderMain.changeWindow("ViewEmployees.fxml");
+    }
+    
+    private List<String> getOrderID() {
+    	Connection connection;
+    	List<String> string = new ArrayList<>();
+    	try {
+			connection = new DBConnection().getMySQLConnection().get();
+			String sql = "select OrderID from `negozio elettronica`.orders "
+	    			+ " Where EmployeeID = '" + this.txIDCode.getText() + "'";
+			
+			Statement statement = connection.createStatement();
+		
+			ResultSet resultSet = statement.executeQuery(sql);
+			while(resultSet.next()) {
+				string.add(resultSet.getString("OrderID"));
+			}
+			
+			return string;
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			System.out.println("there was a problem with the db connection man");
+		}
+		return List.of();
     }
 
 }
