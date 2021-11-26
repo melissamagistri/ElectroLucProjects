@@ -89,8 +89,6 @@ public class AddProductController implements Initializable{
 
     		ActionsOnCategory.insert(conn, choiceBox.getValue());
     		
-    		int price = Integer.parseInt(this.PriceTextField.getText()) * Integer.parseInt(this.UnitTextField.getText());
-    		
     		String sql = "Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitSellingPrice` , `UnitInStock`, `InSale`)"
    				 + " values ('" + this.ModelIDTextField.getText()+ "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
    				 + this.DescriptionTextField.getText() + "', '" + this.choiceBox.getValue() + "', '" + this.PriceTextField.getText() + "', '" 
@@ -102,7 +100,7 @@ public class AddProductController implements Initializable{
    		  	int purchaseOrders = this.getNewOrdersID();
    		  	
    		  	sql = "Insert into `negozio elettronica`.purchase_orders (`OrderID`, `Quantity`, `UnitPurchasePrice`, `ModelID`)"
-				 + " values ('" + purchaseOrders + "', '" + this.UnitTextField.getText() + "', '" + price
+				 + " values ('" + purchaseOrders + "', '" + this.UnitTextField.getText() + "', '" + this.PriceTextField.getText()
 				 + "', '" + this.ModelIDTextField.getText() + "')" ;
 		
    		  	statement.executeUpdate(sql);
