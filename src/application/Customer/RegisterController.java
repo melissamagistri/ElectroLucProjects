@@ -43,10 +43,9 @@ public class RegisterController {
 			return;
 		}
     	
-    	if(this.txDeliveryAddress.getText().equals("") || this.txDeliveryAddress.getText().equals("") ||
-    			this.txDeliveryAddress.getText().equals("") || this.txDeliveryAddress.getText().equals("") ||
-    			this.txDeliveryAddress.getText().equals("") || this.txDeliveryAddress.getText().equals("") ||
-    			this.txDeliveryAddress.getText().equals("")) {
+    	if(this.txDeliveryAddress.getText().equals("") || this.txEmail.getText().equals("") ||
+    			this.txName.getText().equals("") || this.txPassword.getText().equals("") ||
+    			this.txPhone.getText().equals("") || this.txSurname.getText().equals("")) {
     		Alert alert = new Alert(AlertType.ERROR,"You need to fill all the fields");
     		alert.show();
     	} else {

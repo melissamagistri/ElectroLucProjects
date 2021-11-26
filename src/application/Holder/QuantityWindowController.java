@@ -70,7 +70,7 @@ public class QuantityWindowController{
     	Connection connection;
 		String sql = "SELECT ModelName, ModelID, UnitinStock "+ 
 				"FROM `negozio elettronica`.models " + "where ModelId = '"
-						+this.txSearchModel.getText()+ "'";
+						+this.txSearchModel.getText()+ "' and InSale = 1";
 		ObservableList<Model> list = FXCollections.observableArrayList();
 		
 		try {
@@ -97,7 +97,7 @@ public class QuantityWindowController{
     	Connection connection;
 		String sql = "SELECT ModelName, ModelID, UnitinStock "+ 
 				"FROM `negozio elettronica`.models " + "where UnitinStock <= '"
-						+this.txSearchQuantity.getText()+ "'";
+						+this.txSearchQuantity.getText()+ "' and InSale = 1";
 		ObservableList<Model> list = FXCollections.observableArrayList();
 		
 		try {

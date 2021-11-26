@@ -77,7 +77,7 @@ public class SellWindowController {
     		var modelPrice = this.tableview.getSelectionModel().getSelectedItem().getUnitSellingPrice();
     		int discount = Optional.ofNullable(this.tableview.getSelectionModel().getSelectedItem().getDiscount())
     						.isEmpty() ? 0 : this.tableview.getSelectionModel().getSelectedItem().getDiscount();
-			BigDecimal price = modelPrice.subtract(modelPrice.multiply(BigDecimal.valueOf(discount)).divide(BigDecimal.valueOf(100),RoundingMode.HALF_UP));
+			BigDecimal price = modelPrice.subtract(modelPrice.multiply(BigDecimal.valueOf(discount)).divide(BigDecimal.valueOf(100)));
 	    	
     		String sql="Insert into `negozio elettronica`.orders (`OrderID`, `OrderDate`,`ModelID`,TotalAmount,`PaymentMethod`, `OrderType`, `EmployeeID`)"
 					 + " values ('" + orderID + "', '" + this.getCurrentDate() +"', '" + modelIdToUpdate+ "', '"

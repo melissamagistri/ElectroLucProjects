@@ -73,7 +73,7 @@ public class AvaliabilityProductController {
 				double discount = Optional.ofNullable(resultSet.getInt("Discount")).isEmpty() ? 0 : resultSet.getInt("Discount"); 
 				double price = resultSet.getInt("UnitSellingPrice");
 				double ris = price - ((price * discount)/100);
-				BigDecimal ris2 = new BigDecimal(ris).setScale(2, RoundingMode.HALF_UP);
+				BigDecimal ris2 = new BigDecimal(ris).setScale(2);
 				
 				list.add(new Model(resultSet.getInt("ModelID"), resultSet.getString("ModelName"), 
 						sql, sql, ris2, Optional.empty(), 0, sql, resultSet.getBoolean("InSale")));

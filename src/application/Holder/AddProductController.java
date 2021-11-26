@@ -98,7 +98,7 @@ public class AddProductController implements Initializable{
    		  	statement.executeUpdate(sql); 
    		  	
    		  	int purchaseOrders = this.getNewOrdersID();
-   		  
+   		  //cambiare prezzo prendendo il costo dal singolo modello e moltiplicarlo per quantity
    		  	sql = "Insert into `negozio elettronica`.purchase_orders (`OrderID`, `Quantity`, `UnitPurchasePrice`, `ModelID`)"
 				 + " values ('" + purchaseOrders + "', '" + this.UnitTextField.getText() + "', '" + this.PriceTextField.getText()
 				 + "', '" + this.ModelIDTextField.getText() + "')" ;
