@@ -45,7 +45,7 @@ public class RegisterController {
     	
     	if(this.txDeliveryAddress.getText().equals("") || this.txEmail.getText().equals("") ||
     			this.txName.getText().equals("") || this.txPassword.getText().equals("") ||
-    			this.txPhone.getText().equals("") || this.txSurname.getText().equals("")) {
+    			this.txSurname.getText().equals("")) {
     		Alert alert = new Alert(AlertType.ERROR,"You need to fill all the fields");
     		alert.show();
     	} else {
@@ -57,10 +57,18 @@ public class RegisterController {
     					+ "code associated");
         		alert.show();
     		} else {
-    			sql = "insert into `negozio elettronica`.`customers_accounts` (`FirstName`, `LastName`,`Phone`,  `DeliveryAddress`,`Email`, `Password`)"
-    					+ " values ('"+this.txName.getText()+"', '"+this.txSurname.getText()+"', '"+
-    					this.txPhone.getText()+"', '"+
-    					this.txDeliveryAddress.getText()+"', '"+this.txEmail.getText()+"', '"+this.txPassword.getText()+"')";
+    			if(this.txPhone.getText().equals("")) {
+    				sql = "insert into `negozio elettronica`.`customers_accounts` (`FirstName`, `LastName`, `DeliveryAddress`,`Email`, `Password`)"
+        					+ " values ('"+this.txName.getText()+"', '"+this.txSurname.getText()+"', '"+
+        					this.txDeliveryAddress.getText()+"', '"+this.txEmail.getText()+"', '"+this.txPassword.getText()+"')";
+        			
+    			}else {
+    				sql = "insert into `negozio elettronica`.`customers_accounts` (`FirstName`, `LastName`,`Phone`,  `DeliveryAddress`,`Email`, `Password`)"
+        					+ " values ('"+this.txName.getText()+"', '"+this.txSurname.getText()+"', '"+
+        					this.txPhone.getText()+"', '"+
+        					this.txDeliveryAddress.getText()+"', '"+this.txEmail.getText()+"', '"+this.txPassword.getText()+"')";
+        			
+    			}
     			statement = connection.createStatement();
     			statement.executeUpdate(sql);
     			Alert alert = new Alert(AlertType.INFORMATION, "The account was created");
