@@ -58,7 +58,7 @@ public class AvaliabilityProductController {
     @FXML
     void OnClickSearchButton(ActionEvent event) {
     	Connection connection;
-		String sql = "SELECT ModelID, ModelName, UnitSellingPrice, InSale, Discount "+ 
+		String sql = "SELECT ModelId, UnitInStock, ModelName, UnitSellingPrice, InSale, Discount "+ 
 				"FROM `negozio elettronica`.models " +
 				"where ModelID = " + this.SearchBar.getText();
 		
@@ -76,10 +76,10 @@ public class AvaliabilityProductController {
 				BigDecimal ris2 = new BigDecimal(ris).setScale(2, RoundingMode.HALF_UP);
 				
 				list.add(new Model(resultSet.getInt("ModelID"), resultSet.getString("ModelName"), 
-						sql, sql, ris2, Optional.empty(), 0, sql, resultSet.getBoolean("InSale")));
+						sql, sql, ris2, Optional.empty(), resultSet.getInt("UnitInStock"), sql, resultSet.getBoolean("InSale")));
 			}
 			
-			this.NumberTableColoumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("modelID"));
+			this.NumberTableColoumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
 			this.NameTableColuomn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
 			this.PriceTableColuomn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitSellingPrice"));
 			this.StateTableColumn.setCellValueFactory(new PropertyValueFactory<Model, Boolean>("inSale"));
