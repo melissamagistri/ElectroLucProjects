@@ -15,8 +15,8 @@
         <columns>
           <TableColumn fx:id="NameTableColuomn" prefWidth="120.0" text="Name" />
           <TableColumn fx:id="PriceTableColuomn" prefWidth="120.0" text="Price" />
-            <TableColumn fx:id="NumberTableColoumn" prefWidth="120.0" text="Number" />
-            <TableColumn fx:id="StateTableColumn" prefWidth="120.0" text="State" />
+            <TableColumn fx:id="NumberTableColoumn" prefWidth="120.0" text="Unit" />
+            <TableColumn fx:id="StateTableColumn" prefWidth="120.0" text="In Sale" />
         </columns>
       </TableView>
    </children>
