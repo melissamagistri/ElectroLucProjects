@@ -71,7 +71,7 @@ public class AvaliabilityProductController {
 			
 			while(resultSet.next()) {
 				double discount = Optional.ofNullable(resultSet.getInt("Discount")).isEmpty() ? 0 : resultSet.getInt("Discount"); 
-				double price = resultSet.getInt("UnitSellingPrice");
+				double price = resultSet.getDouble("UnitSellingPrice");
 				double ris = price - ((price * discount)/100);
 				BigDecimal ris2 = new BigDecimal(ris).setScale(2, RoundingMode.HALF_UP);
 				
