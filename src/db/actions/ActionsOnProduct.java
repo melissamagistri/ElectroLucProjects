@@ -126,9 +126,22 @@ public class ActionsOnProduct {
 
 	public static void insertIntoWarehouse(final Connection conn, final String shelf, final String lane,
 			final String compartment, final int modelID) throws SQLException {
-		String query = "insert into warehouse values('"+shelf +"','"+lane +"','"+compartment
-				+"','"+modelID+"')";
+		
+		String query = "SELECT ModelID "
+				+ "FROM warehouse "
+				+ "WHERE Shelf = '" +shelf +"' "
+				+ "AND Lane = '" +lane +"' "
+				+ "AND Compartment = '" +compartment +"';";
 		PreparedStatement preparedStmt = conn.prepareStatement(query);
+		ResultSet rs = preparedStmt.executeQuery(query);
+		if (rs.isBeforeFirst() && rs.next()) {
+			if(Optional.ofNullable(rs.getObject("ModelID")).isPresent()) {
+				throw new SQLException("This position is already occupied");
+			}
+		}
+		query = "insert into warehouse values('"+shelf +"','"+lane +"','"+compartment
+				+"','"+modelID+"') on duplicate key update ModelID = '"+modelID+"';";
+		preparedStmt = conn.prepareStatement(query);
 		preparedStmt.executeUpdate();
 	}
 }

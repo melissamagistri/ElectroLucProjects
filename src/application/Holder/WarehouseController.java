@@ -47,7 +47,7 @@ public class WarehouseController {
 					txShelf.getText(), txLane.getText(), txCompartament.getText(), 
 					Integer.valueOf(txID.getText()));
 		} catch (SQLException e) {
-			alert = new Alert(AlertType.ERROR, "This position is already occupied");
+			alert = new Alert(AlertType.ERROR, e.getMessage());
     		alert.show();
     		return;
 		}
