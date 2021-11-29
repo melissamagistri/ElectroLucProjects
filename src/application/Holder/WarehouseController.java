@@ -55,7 +55,7 @@ public class WarehouseController {
 
     @FXML
     void OnClickGoBack(ActionEvent event) throws IOException {
-    	HolderMain.changeWindow("HolderController.fxml");
+    	HolderMain.changeWindow("Holder.fxml");
     }
 
 }
