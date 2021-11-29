@@ -52,7 +52,8 @@ public class ActionsOnProduct {
 	}
 
 
-	public static List<Model> search(final Connection conn, final List<Pair<String,String>> modelAttr) throws SQLException{
+	public static List<Model> search(final Connection conn, final List<Pair<String,String>> modelAttr)
+			throws SQLException{
 		List<Model> list = new ArrayList<>();
 		boolean inizialize = false;
 		int i = 0;
@@ -99,7 +100,6 @@ public class ActionsOnProduct {
 		return list;
 	}
 
-
 	public static List<Model> searchAll(final Connection conn) throws SQLException{
 		List<Model> list = new ArrayList<>();
 
@@ -122,5 +122,13 @@ public class ActionsOnProduct {
 					discount, rs.getInt("UnitInStock"),	rs.getString("Category"), sales));
 		}
 		return list;
+	}
+
+	public static void insertIntoWarehouse(final Connection conn, final String shelf, final String lane,
+			final String compartment, final int modelID) throws SQLException {
+		String query = "insert into warehouse values('"+shelf +"','"+lane +"','"+compartment
+				+"','"+modelID+"')";
+		PreparedStatement preparedStmt = conn.prepareStatement(query);
+		preparedStmt.executeUpdate();
 	}
 }

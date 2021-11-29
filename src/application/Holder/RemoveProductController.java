@@ -67,7 +67,7 @@ public class RemoveProductController {
     			products.getItems().clear();
     		}
     		else {
-    			alert = new Alert(AlertType.ERROR, "Error: no element are selected");
+    			alert = new Alert(AlertType.ERROR, "Error: no element has been selected");
         		alert.show();
         		return;
     		}

@@ -358,9 +358,7 @@ CREATE TABLE `warehouse` (
   `Lane` varchar(10) NOT NULL,
   `Compartment` varchar(10) NOT NULL,
   `ModelID` int DEFAULT NULL,
-  UNIQUE KEY `Shelf_UNIQUE` (`Shelf`),
-  UNIQUE KEY `Lane_UNIQUE` (`Lane`),
-  UNIQUE KEY `Compartment_UNIQUE` (`Compartment`),
+  PRIMARY KEY (`Shelf`,`Lane`,`Compartment`),
   UNIQUE KEY `ModelID_UNIQUE` (`ModelID`),
   CONSTRAINT `fk_warehouse_modelID` FOREIGN KEY (`ModelID`) REFERENCES `models` (`ModelID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
