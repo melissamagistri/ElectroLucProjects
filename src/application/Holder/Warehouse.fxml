@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller = "application.Holder.WarehouseController.java">
+   <children>
+      <AnchorPane prefHeight="47.0" prefWidth="600.0" style="-fx-background-color: orange;">
+         <children>
+            <Label layoutX="253.0" layoutY="9.0" text="WareHouse">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <VBox layoutX="31.0" layoutY="70.0" prefHeight="261.0" prefWidth="125.0" spacing="40.0">
+         <children>
+            <Label text="Model ID">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Shelf">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Lane">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Compartment">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="199.0" layoutY="73.0" prefHeight="254.0" prefWidth="147.0" spacing="35.0">
+         <children>
+            <TextField fx:id="txID" />
+            <TextField fx:id="txShelf" />
+            <TextField fx:id="txLane" />
+            <TextField fx:id="txCompartament" />
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+      <Button layoutX="31.0" layoutY="356.0" mnemonicParsing="false" onAction="#OnClickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
+      <Button layoutX="498.0" layoutY="356.0" mnemonicParsing="false" onAction="#OnClickApply" prefHeight="26.0" prefWidth="63.0" style="-fx-background-color: lightskyblue;" text="Apply" />
+   </children>
+</Pane>

@@ -37,6 +37,15 @@ public class AvaliabilityProductController {
 
     @FXML
     private TableColumn<Model, Integer> PriceTableColuomn;
+    
+    @FXML
+    private TableColumn<?, ?> compartamentColumn;
+
+    @FXML
+    private TableColumn<?, ?> laneColumn;
+
+    @FXML
+    private TableColumn<?, ?> shelfColumn;
 
     @FXML
     private TableView<Model> ProductTableView;

@@ -37,5 +37,10 @@ public class HolderController {
     void OnClickQuantityButton(ActionEvent event) throws IOException {
     	HolderMain.changeWindow("QuantityWindow.fxml");
     }
+    
+    @FXML
+    void OnCLickWarehouse(ActionEvent event) throws IOException {
+    	HolderMain.changeWindow("Warehouse.fxml");
+    }
    
 }
