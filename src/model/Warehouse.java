@@ -4,27 +4,27 @@ import java.util.Optional;
 
 public class Warehouse {
 
-	private final int shelfID;
-	private final int laneID;
-	private final int compartmentID;
+	private final String shelfID;
+	private final String laneID;
+	private final String compartmentID;
 	private final Optional<Integer> modelID;
 
-	public Warehouse(final int shelfID, final int laneID, final int cmpartmentID, Optional<Integer> modelID) {
+	public Warehouse(final String shelfID, final String laneID, final String cmpartmentID, Optional<Integer> modelID) {
 		this.shelfID = shelfID;
 		this.laneID = laneID;
 		this.compartmentID = cmpartmentID;
 		this.modelID = modelID;
 	}
 
-	public int getShelfID() {
+	public String getShelfID() {
 		return shelfID;
 	}
 
-	public int getLaneID() {
+	public String getLaneID() {
 		return laneID;
 	}
 
-	public int getCompartmentID() {
+	public String getCompartmentID() {
 		return compartmentID;
 	}
 
