@@ -21,7 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Employee;
+import model.AvaibilityTable;
 import model.Model;
 
 public class AvaliabilityProductController {
@@ -30,25 +30,25 @@ public class AvaliabilityProductController {
     private Button GoBackButton;
 
     @FXML
-    private TableColumn<Model, String> NameTableColuomn;
+    private TableColumn<AvaibilityTable, String> NameTableColuomn;
 
     @FXML
-    private TableColumn<Model, Integer> NumberTableColoumn;
+    private TableColumn<AvaibilityTable, Integer> NumberTableColoumn;
 
     @FXML
-    private TableColumn<Model, Integer> PriceTableColuomn;
+    private TableColumn<AvaibilityTable, Integer> PriceTableColuomn;
     
     @FXML
-    private TableColumn<?, ?> compartamentColumn;
+    private TableColumn<AvaibilityTable, String> compartamentColumn;
 
     @FXML
-    private TableColumn<?, ?> laneColumn;
+    private TableColumn<AvaibilityTable, String> laneColumn;
 
     @FXML
-    private TableColumn<?, ?> shelfColumn;
+    private TableColumn<AvaibilityTable, String> shelfColumn;
 
     @FXML
-    private TableView<Model> ProductTableView;
+    private TableView<AvaibilityTable> ProductTableView;
 
     @FXML
     private TextField SearchBar;
@@ -57,7 +57,7 @@ public class AvaliabilityProductController {
     private Button SearchProductButton;
 
     @FXML
-    private TableColumn<Model, Boolean> StateTableColumn;
+    private TableColumn<AvaibilityTable, Boolean> StateTableColumn;
 
     @FXML
     void OnCLickGoBack(ActionEvent event) throws IOException {
@@ -67,16 +67,33 @@ public class AvaliabilityProductController {
     @FXML
     void OnClickSearchButton(ActionEvent event) {
     	Connection connection;
-		String sql = "SELECT ModelId, UnitInStock, ModelName, UnitSellingPrice, InSale, Discount "+ 
-				"FROM `negozio elettronica`.models " +
-				"where ModelID = " + this.SearchBar.getText();
+		String sql = "Select * from `negozio elettronica`.warehouse where ModelId = "+ this.SearchBar.getText();
 		
-		ObservableList<Model> list = FXCollections.observableArrayList();
+		ObservableList<AvaibilityTable> list = FXCollections.observableArrayList();
 		
 		try {
 			connection = new DBConnection().getMySQLConnection().get();
+			String lane;
+			String shelf;
+			String compartment;
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery(sql);
+			
+			if(resultSet.next()) {
+				lane = resultSet.getString("Lane");
+				shelf = resultSet.getString("Shelf");
+				compartment = resultSet.getString("Compartment");
+			} else {
+				lane = "null";
+				shelf = "null";
+				compartment = "null";
+			}
+			
+			sql = "SELECT ModelId, UnitInStock, ModelName, UnitSellingPrice, InSale, Discount "+ 
+					"FROM `negozio elettronica`.models " +
+					"where ModelID = " + this.SearchBar.getText();
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(sql);
 			
 			while(resultSet.next()) {
 				double discount = Optional.ofNullable(resultSet.getInt("Discount")).isEmpty() ? 0 : resultSet.getInt("Discount"); 
@@ -84,14 +101,17 @@ public class AvaliabilityProductController {
 				double ris = price - ((price * discount)/100);
 				BigDecimal ris2 = new BigDecimal(ris).setScale(2, RoundingMode.HALF_UP);
 				
-				list.add(new Model(resultSet.getInt("ModelID"), resultSet.getString("ModelName"), 
-						sql, sql, ris2, Optional.empty(), resultSet.getInt("UnitInStock"), sql, resultSet.getBoolean("InSale")));
+				list.add(new AvaibilityTable(resultSet.getString("ModelName"), ris2, resultSet.getInt("UnitInStock"),
+						resultSet.getBoolean("InSale"), lane, shelf, compartment));
 			}
 			
-			this.NumberTableColoumn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitInStock"));
-			this.NameTableColuomn.setCellValueFactory(new PropertyValueFactory<Model, String>("modelName"));
-			this.PriceTableColuomn.setCellValueFactory(new PropertyValueFactory<Model, Integer>("unitSellingPrice"));
-			this.StateTableColumn.setCellValueFactory(new PropertyValueFactory<Model, Boolean>("inSale"));
+			this.NumberTableColoumn.setCellValueFactory(new PropertyValueFactory<AvaibilityTable, Integer>("unitInStock"));
+			this.NameTableColuomn.setCellValueFactory(new PropertyValueFactory<AvaibilityTable, String>("name"));
+			this.PriceTableColuomn.setCellValueFactory(new PropertyValueFactory<AvaibilityTable, Integer>("unitSellingPrice"));
+			this.StateTableColumn.setCellValueFactory(new PropertyValueFactory<AvaibilityTable, Boolean>("state"));
+			this.shelfColumn.setCellValueFactory(new PropertyValueFactory<AvaibilityTable, String>("shelf"));
+			this.compartamentColumn.setCellValueFactory(new PropertyValueFactory<AvaibilityTable, String>("compartment"));
+			this.laneColumn.setCellValueFactory(new PropertyValueFactory<AvaibilityTable, String>("lane"));
 			this.ProductTableView.setItems(list);
 			
 		} catch (ClassNotFoundException | SQLException e) {
