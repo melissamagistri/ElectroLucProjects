@@ -37,7 +37,7 @@ public class WarehouseController {
 			System.err.println(e.getMessage());
 			return;
 		}
-		if(CheckInteger.isNumeric(txID.getText())) {
+		if(!CheckInteger.isNumeric(txID.getText())) {
 			alert = new Alert(AlertType.ERROR, "Error: the id must be an integer number");
     		alert.show();
     		return;
