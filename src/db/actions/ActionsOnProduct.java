@@ -129,19 +129,34 @@ public class ActionsOnProduct {
 		
 		String query = "SELECT ModelID "
 				+ "FROM warehouse "
+				+ "WHERE ModelID = '" +modelID +"';";
+		PreparedStatement preparedStmt = conn.prepareStatement(query);
+		ResultSet rs = preparedStmt.executeQuery(query);
+		if (rs.isBeforeFirst()) {
+			throw new SQLException("This model is already in stock");
+		}
+		query = "SELECT ModelID "
+				+ "FROM warehouse "
 				+ "WHERE Shelf = '" +shelf +"' "
 				+ "AND Lane = '" +lane +"' "
 				+ "AND Compartment = '" +compartment +"';";
-		PreparedStatement preparedStmt = conn.prepareStatement(query);
-		ResultSet rs = preparedStmt.executeQuery(query);
+		preparedStmt = conn.prepareStatement(query);
+		rs = preparedStmt.executeQuery(query);
 		if (rs.isBeforeFirst() && rs.next()) {
 			if(Optional.ofNullable(rs.getObject("ModelID")).isPresent()) {
 				throw new SQLException("This position is already occupied");
 			}
 		}
-		query = "insert into warehouse values('"+shelf +"','"+lane +"','"+compartment
-				+"','"+modelID+"') on duplicate key update ModelID = '"+modelID+"';";
+		query = "insert into warehouse values(?,?,?,?) on duplicate key update ModelID = ?;";
 		preparedStmt = conn.prepareStatement(query);
+		preparedStmt.setString(1, shelf);
+		preparedStmt.setString(2, lane);
+		preparedStmt.setString(3, compartment);
+		preparedStmt.setInt(4, modelID);
+		preparedStmt.setInt(5, modelID);
 		preparedStmt.executeUpdate();
+		
+		
+		
 	}
 }
