@@ -86,8 +86,6 @@ public class AddProductController implements Initializable{
     			}
     	try {
     		conn = new DBConnection().getMySQLConnection().get();
-
-    		ActionsOnCategory.insert(conn, choiceBox.getValue());
     		
     		String sql = "Insert into `negozio elettronica`.models (`ModelID`, `ModelName`, `Brand`,`Description`, `Category` , `UnitSellingPrice` , `UnitInStock`, `InSale`)"
    				 + " values ('" + this.ModelIDTextField.getText()+ "', '" + this.ModelNameTextField.getText() +"', '" + this.BrandTextField.getText() + "','"
