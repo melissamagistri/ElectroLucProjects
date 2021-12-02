@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller = "application.Holder.ModifyFinishedEmployeeController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.Holder.ModifyFinishedEmployeeController">
    <children>
       <AnchorPane layoutX="-3.0" prefHeight="47.0" prefWidth="607.0" style="-fx-background-color: orange;">
          <children>
@@ -20,7 +19,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="tableview" layoutX="14.0" layoutY="71.0" prefHeight="246.0" prefWidth="572.0">
+      <TableView fx:id="tableview" layoutX="14.0" layoutY="71.0" prefHeight="265.0" prefWidth="572.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
           <TableColumn fx:id="surmaneColumn" prefWidth="75.0" text="Surname" />
@@ -31,8 +30,8 @@
             <TableColumn fx:id="salaryColumn" text="Salary" />
         </columns>
       </TableView>
-      <Button layoutX="427.0" layoutY="339.0" mnemonicParsing="false" onAction="#OnClickDismiss" style="-fx-background-color: lightskyblue;" text="Dismiss" />
-      <Button layoutX="509.0" layoutY="339.0" mnemonicParsing="false" onAction="#OnClickRenew" style="-fx-background-color: lightskyblue;" text="Renew" />
-      <Button layoutX="14.0" layoutY="339.0" mnemonicParsing="false" onAction="#OnCLickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
+      <Button layoutX="428.0" layoutY="352.0" mnemonicParsing="false" onAction="#OnClickDismiss" style="-fx-background-color: lightskyblue;" text="Dismiss" />
+      <Button layoutX="509.0" layoutY="352.0" mnemonicParsing="false" onAction="#OnClickRenew" style="-fx-background-color: lightskyblue;" text="Renew" />
+      <Button layoutX="14.0" layoutY="352.0" mnemonicParsing="false" onAction="#OnCLickGoBack" style="-fx-background-color: sandybrown;" text="Go Back" />
    </children>
 </Pane>
